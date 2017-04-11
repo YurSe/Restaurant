@@ -14,7 +14,7 @@
 
     <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
           id="dataSource">
-        <property name="driverClassName" value="org.postgresql.Driver"></property>
+        <property name="driverClassName" value="${database.driver}"></property>
         <property name="url" value="${database.url}"></property>
         <property name="username" value="${database.user}"></property>
         <property name="password" value="${database.password}"></property>
@@ -31,7 +31,7 @@
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
             </props>
         </property>
-        <property name="packagesToScan" value="by.restaurant.model"></property>
+        <property name="packagesToScan" value="by.restaurant.entity"></property>
     </bean>
 
     <bean id="transactionManager"
