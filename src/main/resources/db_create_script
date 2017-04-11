@@ -1,0 +1,215 @@
+CREATE TABLE "user" (
+	"user_id" serial NOT NULL,
+	"name" serial NOT NULL,
+	"phone_number" varchar NOT NULL,
+	"password" varchar NOT NULL,
+	"email" varchar NOT NULL,
+	"address" serial NOT NULL,
+	"vip" serial NOT NULL,
+	"balance" double precision NOT NULL,
+	CONSTRAINT user_pk PRIMARY KEY ("user_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "user_role" (
+	"role_id" bigint NOT NULL,
+	"user_id" bigint NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "role" (
+	"role_id" serial NOT NULL,
+	"name" varchar NOT NULL UNIQUE,
+	CONSTRAINT role_pk PRIMARY KEY ("role_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "table" (
+	"table_id" serial NOT NULL,
+	"number" bigint NOT NULL UNIQUE,
+	"zone_id" bigint NOT NULL,
+	CONSTRAINT table_pk PRIMARY KEY ("table_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "zone" (
+	"zone_id" serial NOT NULL,
+	"title" varchar NOT NULL UNIQUE,
+	"description" TEXT NOT NULL,
+	CONSTRAINT zone_pk PRIMARY KEY ("zone_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "dish" (
+	"dish_id" serial NOT NULL,
+	"name" varchar NOT NULL UNIQUE,
+	"image" bigint NOT NULL,
+	"price" double precision NOT NULL,
+	"category_id" bigint NOT NULL,
+	CONSTRAINT dish_pk PRIMARY KEY ("dish_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "image" (
+	"image_id" serial NOT NULL,
+	"image" varchar NOT NULL,
+	CONSTRAINT image_pk PRIMARY KEY ("image_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "dish_image" (
+	"dish_id" bigint NOT NULL,
+	"image_id" bigint NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "order" (
+	"order_id" serial NOT NULL,
+	"date" TIMESTAMP NOT NULL,
+	"table_id" bigint NOT NULL,
+	"user_id" bigint NOT NULL,
+	CONSTRAINT order_pk PRIMARY KEY ("order_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "order_dish" (
+	"order_id" bigint NOT NULL,
+	"dish_id" bigint NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "bill" (
+	"bill_id" serial NOT NULL,
+	"order_id" bigint NOT NULL,
+	"user_id" bigint NOT NULL,
+	"total_price" double precision NOT NULL,
+	CONSTRAINT bill_pk PRIMARY KEY ("bill_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "discount" (
+	"discount_id" serial NOT NULL,
+	"percent" double precision NOT NULL,
+	CONSTRAINT discount_pk PRIMARY KEY ("discount_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "dish_discount" (
+	"dish_id" bigint NOT NULL,
+	"discount_id" bigint NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "category" (
+	"category_id" serial NOT NULL,
+	"name" varchar NOT NULL UNIQUE,
+	CONSTRAINT category_pk PRIMARY KEY ("category_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "token" (
+	"token_id" serial NOT NULL,
+	"token" varchar NOT NULL,
+	"user_id" bigint NOT NULL,
+	CONSTRAINT token_pk PRIMARY KEY ("token_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "album" (
+	"album_id" serial NOT NULL,
+	"title" varchar NOT NULL,
+	"description" TEXT NOT NULL,
+	CONSTRAINT album_pk PRIMARY KEY ("album_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "album_image" (
+	"album_id" bigint NOT NULL,
+	"image_id" bigint NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+
+ALTER TABLE "user_role" ADD CONSTRAINT "user_role_fk0" FOREIGN KEY ("role_id") REFERENCES "role"("role_id");
+ALTER TABLE "user_role" ADD CONSTRAINT "user_role_fk1" FOREIGN KEY ("user_id") REFERENCES "user"("user_id");
+
+
+ALTER TABLE "table" ADD CONSTRAINT "table_fk0" FOREIGN KEY ("zone_id") REFERENCES "zone"("zone_id");
+
+
+ALTER TABLE "dish" ADD CONSTRAINT "dish_fk0" FOREIGN KEY ("category_id") REFERENCES "category"("category_id");
+
+
+ALTER TABLE "dish_image" ADD CONSTRAINT "dish_image_fk0" FOREIGN KEY ("dish_id") REFERENCES "dish"("dish_id");
+ALTER TABLE "dish_image" ADD CONSTRAINT "dish_image_fk1" FOREIGN KEY ("image_id") REFERENCES "image"("image_id");
+
+ALTER TABLE "order" ADD CONSTRAINT "order_fk0" FOREIGN KEY ("table_id") REFERENCES "table"("table_id");
+ALTER TABLE "order" ADD CONSTRAINT "order_fk1" FOREIGN KEY ("user_id") REFERENCES "user"("user_id");
+
+ALTER TABLE "order_dish" ADD CONSTRAINT "order_dish_fk0" FOREIGN KEY ("order_id") REFERENCES "order"("order_id");
+ALTER TABLE "order_dish" ADD CONSTRAINT "order_dish_fk1" FOREIGN KEY ("dish_id") REFERENCES "dish"("dish_id");
+
+ALTER TABLE "bill" ADD CONSTRAINT "bill_fk0" FOREIGN KEY ("order_id") REFERENCES "order"("order_id");
+ALTER TABLE "bill" ADD CONSTRAINT "bill_fk1" FOREIGN KEY ("user_id") REFERENCES "user"("user_id");
+
+
+ALTER TABLE "dish_discount" ADD CONSTRAINT "dish_discount_fk0" FOREIGN KEY ("dish_id") REFERENCES "dish"("dish_id");
+ALTER TABLE "dish_discount" ADD CONSTRAINT "dish_discount_fk1" FOREIGN KEY ("discount_id") REFERENCES "discount"("discount_id");
+
+
+ALTER TABLE "token" ADD CONSTRAINT "token_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("user_id");
+
+
+ALTER TABLE "album_image" ADD CONSTRAINT "album_image_fk0" FOREIGN KEY ("album_id") REFERENCES "album"("album_id");
+ALTER TABLE "album_image" ADD CONSTRAINT "album_image_fk1" FOREIGN KEY ("image_id") REFERENCES "image"("image_id");
