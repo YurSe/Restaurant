@@ -1,6 +1,6 @@
 package by.restaurant.service;
 
-import by.restaurant.entity.Dish;
+import by.restaurant.model.Dish;
 import java.util.List;
 
 public interface IDishService {

@@ -1,6 +1,7 @@
 package by.restaurant.service.implementation;
 
-import by.restaurant.entity.Dish;
+
+import by.restaurant.model.Dish;
 import by.restaurant.repository.IDishRepository;
 import by.restaurant.service.IDishService;
 import org.springframework.beans.factory.annotation.Autowired;

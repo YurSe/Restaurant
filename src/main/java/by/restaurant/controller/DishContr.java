@@ -1,6 +1,6 @@
 package by.restaurant.controller;
 
-import by.restaurant.entity.Dish;
+import by.restaurant.model.Dish;
 import by.restaurant.service.IDishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
