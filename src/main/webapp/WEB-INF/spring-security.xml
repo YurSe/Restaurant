@@ -18,11 +18,15 @@
                          username-parameter="username"
                          password-parameter="password"
                           />
-        <bean:csrf disabled="true"/>
-        <bean:logout logout-success-url="/pages/login.xhtml?status=logout"/>
+        <bean:logout logout-success-url="/pages/login.xhtml?status=logout"
+                     delete-cookies="JSESSIONID"
+                     />
+        <bean:remember-me key="uniqueAndSecret"
+                          token-validity-seconds="${jsessionId.valid.seconds}"/>
+        <bean:csrf/>
     </bean:http>
 
-    <bean:authentication-manager >
+    <bean:authentication-manager>
         <bean:authentication-provider user-service-ref="customUserDetailsService">
         </bean:authentication-provider>
     </bean:authentication-manager>
