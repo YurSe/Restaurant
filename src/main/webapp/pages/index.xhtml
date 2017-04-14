@@ -10,9 +10,13 @@
 </h:head>
 
 <h:body>
-    <ui:include src="/pages/composition/mainMenu.xhtml"/>
+    <ui:include src="composition/mainMenu.xhtml"/>
+
+    <div style="margin-top: 1%;">
+        <ui:include src="composition/popularDishes.xhtml"/>
+    </div>
     <div style="margin-top: 25%; margin-left: 35%;">
-        <ui:include src="/pages/composition/GMap.xhtml"/>
+        <ui:include src="composition/GMap.xhtml"/>
     </div>
 </h:body>
 </html>

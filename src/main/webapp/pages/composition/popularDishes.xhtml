@@ -1,0 +1,23 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+    <h:form>
+        <p:carousel value="#{dishContr.dishes}" headerText="Популярные блюда    " var="dish" itemStyle="text-align:center"
+                    responsive="true">
+            <p:panelGrid columns="2" style="width:100%;">
+
+                <h:outputText value="Title: "/>
+                <h:outputText value="#{dish.name}"/>
+
+                <h:outputText value="Price: "/>
+                <h:outputText value="#{dish.price}"/>
+
+                <h:outputText value="Category: "/>
+                <h:outputText value="#{dish.category.name}"/>
+
+            </p:panelGrid>
+        </p:carousel>
+    </h:form>
+</ui:composition>
