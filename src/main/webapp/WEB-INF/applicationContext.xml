@@ -5,13 +5,15 @@
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-    <mvc:resources location= "/" mapping="/resources/**"/>
+    <mvc:resources location="/" mapping="/resources/**"/>
 
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
-    <context:component-scan base-package="by.restaurant" />
+    <context:annotation-config/>
 
-    <context:property-placeholder location="classpath:application.properties" />
+    <context:component-scan base-package="by.restaurant"/>
+
+    <context:property-placeholder location="classpath:application.properties"/>
 
     <tx:annotation-driven mode="proxy" transaction-manager="transactionManager"/>
 
@@ -39,7 +41,7 @@
     </bean>
 
     <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-        <property name="database" value="MYSQL"/>
+        <property name="database" value="POSTGRESQL"/>
         <property name="databasePlatform" value="${hibernate.dialect}"/>
         <property name="generateDdl" value="${hibernate.generate_ddl}"/>
         <property name="showSql" value="${hibernate.show_sql}"/>
@@ -47,7 +49,7 @@
 
     <bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
 
-    <jpa:repositories base-package="by.restaurant"/>
+    <jpa:repositories base-package="by.restaurant.repository"/>
 
 </beans>
 
