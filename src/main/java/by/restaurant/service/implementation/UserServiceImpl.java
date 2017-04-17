@@ -5,6 +5,7 @@ import by.restaurant.model.User;
 import by.restaurant.repository.UserRepository;
 import by.restaurant.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,8 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public void registerUser(UserContr userContrModel) throws Exception {
@@ -26,7 +29,7 @@ public class UserServiceImpl implements UserService{
         user.setPhoneNumber(userContrModel.getPhoneNumber());
         user.setName(userContrModel.getName());
         user.setAddress(userContrModel.getAddress());
-        user.setPassword(userContrModel.getPassword());
+        user.setPassword(bCryptPasswordEncoder.encode(userContrModel.getPassword()));
         user.setEmail(userContrModel.getEmail());
         userRepository.save(user);
     }
