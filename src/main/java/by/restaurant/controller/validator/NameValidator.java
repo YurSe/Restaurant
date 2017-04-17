@@ -1,4 +1,4 @@
-package by.restaurant.validator;
+package by.restaurant.controller.validator;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;

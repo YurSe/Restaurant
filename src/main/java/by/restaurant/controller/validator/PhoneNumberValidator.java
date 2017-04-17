@@ -1,9 +1,13 @@
-package by.restaurant.validator;
+package by.restaurant.controller.validator;
+
+import by.restaurant.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import java.util.regex.Pattern;
@@ -11,9 +15,12 @@ import java.util.regex.Pattern;
 /**
  * Created by Pavel on 17.04.2017.
  */
-@FacesValidator
+@Component()
+@Scope("request")
 public class PhoneNumberValidator implements Validator{
 
+    @Autowired
+    private UserRepository userRepository;
 
     private Pattern pattern;
 
@@ -31,6 +38,10 @@ public class PhoneNumberValidator implements Validator{
 
         if(!pattern.matcher(value.toString()).matches()) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Validation Error","Phone number is not valid. Example: +375XXxxxxxxx"));
+        }
+
+        if(userRepository.findByPhoneNumber(value.toString()) != null){
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Validation Error", "User with this number phone already exists."));
         }
     }
 }

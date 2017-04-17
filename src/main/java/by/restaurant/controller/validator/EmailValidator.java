@@ -1,4 +1,4 @@
-package by.restaurant.validator;
+package by.restaurant.controller.validator;
 
 import by.restaurant.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

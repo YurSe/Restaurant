@@ -17,13 +17,13 @@ import java.io.IOException;
 public class Registration {
 
     @Autowired
-    private User user;
+    private UserContr userContr;
     @Autowired
     private UserService userService;
 
     public void register() throws IOException {
         try {
-            userService.registerUser(user);
+            userService.registerUser(userContr);
         } catch (Exception e) {
             e.printStackTrace();
         }

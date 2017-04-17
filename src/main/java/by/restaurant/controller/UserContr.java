@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Component
 @Scope("request")
-public class User implements Serializable{
+public class UserContr implements Serializable{
 
     private String email;
 
@@ -27,7 +27,7 @@ public class User implements Serializable{
 
     private boolean hasSubscription;
 
-    public User() {
+    public UserContr() {
     }
 
     public String getEmail() {
