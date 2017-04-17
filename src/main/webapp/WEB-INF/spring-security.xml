@@ -10,6 +10,7 @@
     <bean:http auto-config="true" use-expressions="true" >
         <bean:intercept-url pattern="/pages/main.xhtml" access="permitAll" />
         <bean:intercept-url pattern="/pages/login.xhtml" access="permitAll"/>
+        <bean:intercept-url pattern="/pages/register.xhtml" access="permitAll"/>
         <bean:intercept-url pattern="/admin**" access="hasAuthority('ADMIN')" />
         <bean:form-login login-page="/pages/login.xhtml"
                      default-target-url="/pages/main.xhtml"
@@ -18,11 +19,15 @@
                          username-parameter="username"
                          password-parameter="password"
                           />
-        <bean:csrf disabled="true"/>
-        <bean:logout logout-success-url="/pages/login.xhtml?status=logout"/>
+        <bean:logout logout-success-url="/pages/login.xhtml?status=logout"
+                     delete-cookies="JSESSIONID"
+                     />
+        <bean:remember-me key="uniqueAndSecret"
+                          token-validity-seconds="${jsessionId.valid.seconds}"/>
+        <bean:csrf/>
     </bean:http>
 
-    <bean:authentication-manager >
+    <bean:authentication-manager>
         <bean:authentication-provider user-service-ref="customUserDetailsService">
         </bean:authentication-provider>
     </bean:authentication-manager>

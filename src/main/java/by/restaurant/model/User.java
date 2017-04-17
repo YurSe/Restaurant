@@ -1,6 +1,7 @@
 package by.restaurant.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,10 +16,22 @@ public class User extends SuperClass {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> authorities = new HashSet<>();
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String password;
     @Column(unique = true, nullable = false)
     private String email;
+    @Column(unique = true, nullable = false)
+    private String phoneNumber;
+    @Column(unique = true, nullable = false)
+    private String name;
+    @Column(nullable = false)
+    private String address;
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
+    private Date birthday;
+    @Column
+    private boolean subscription = false;
+
 
     public User() {
     }
@@ -45,5 +58,45 @@ public class User extends SuperClass {
 
     public void setAuthorities(Set<Role> authorities) {
         this.authorities = authorities;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public boolean isSubscription() {
+        return subscription;
+    }
+
+    public void setSubscription(boolean subscription) {
+        this.subscription = subscription;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 }

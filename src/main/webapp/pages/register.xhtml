@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui" xmlns:a="http://java.sun.com/jsf/composite">
+    <h:head>
+        <title>Welcome</title>
+        <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/resources/css/register-form.css"/>
+    </h:head>
+     <h:body>
+         <div class="container" id="register-form">
+         <div class="form-horizontal span4 offset4 well">
+            <h:form>
+                <div class="form-group ">
+                    <h:outputLabel for="name" value="Name:" styleClass="col-md-4 control-label"/>
+                <div class="col-md-4">
+                    <p:inputText id="name" value="#{userContr.name}" required="true" label="Name" autocomplete="off"
+                                 requiredMessage="'Name' can't be empty." a:placeholder="Vasya Pupkin">
+                        <f:validator validatorId="nameValidator" />
+                        <p:ajax update="msgName" event="blur" />
+                    </p:inputText>
+                </div>
+                       <div class="col-md-4">
+                    <p:message for="name" id="msgName"/>
+                       </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="email" value="Email:" styleClass="col-md-4 control-label"/>
+                <div class="col-md-4">
+                    <p:inputText id="email" value="#{userContr.email}" required="true" label="Email" autocomplete="off"
+                                 requiredMessage="'Email' can't be empty." a:placeholder="email@gmail.com">
+                        <p:ajax update="msgEmail" event="blur"/>
+                        <f:validator binding="#{emailValidator}" />
+                    </p:inputText>
+                </div>
+                    <div class="col-md-4">
+                        <p:message for="email" id="msgEmail"/>
+                </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="number" value="Phone number:" styleClass="col-md-4 control-label"/>
+                <div class="col-md-4">
+                    <p:inputText id="number" value="#{userContr.phoneNumber}" required="true" label="Number" autocomplete="off"
+                                 requiredMessage="'Phone namber' can't be empty." a:placeholder="+375333333333">
+                        <f:validator binding="#{phoneNumberValidator}" />
+                        <p:ajax update="msgNumber" event="blur" />
+                    </p:inputText>
+                </div>
+                    <div class="col-md-4">
+                    <p:message for="number" id="msgNumber" />
+                </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="birthday" value="Birthday:" styleClass="col-md-4 control-label"/>
+                    <div class="col-md-4">
+                        <p:calendar id="birthday" value="#{userContr.birthday}" required="true" label="Birthday" autocomplete="off"
+                                    requiredMessage="'Birthday' can't be empty.">
+                            <p:ajax update="msgBirthday" event="blur" />
+                        </p:calendar>
+                    </div>
+                    <div class="col-md-4">
+                        <p:message for="birthday" id="msgBirthday"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="address" value="Address:" styleClass="col-md-4 control-label"/>
+                    <div class="col-md-4">
+                        <p:inputText id="address" value="#{userContr.address}" required="true" label="Address" autocomplete="off"
+                                     requiredMessage="'Address' can't be empty.">
+                            <p:ajax update="msgAddress" event="blur" />
+                        </p:inputText>
+                    </div>
+                    <div class="col-md-4">
+                        <p:message for="address" id="msgAddress"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="pwd1" value="Password:" styleClass="col-md-4 control-label"/>
+                <div class="col-md-4">
+                    <p:password id="pwd1" value="#{userContr.password}" label="'Password'" required="true" feedback="true" autocomplete="off"
+                                requiredMessage="'Password' can't be empty.">
+                        <f:validator validatorId="passwordValidator"/>
+                        <f:attribute name="pwd2" value="#{pwd2}" />
+                        <p:ajax update="msgPassword1" event="blur"/>
+                    </p:password>
+                </div>
+                    <div class="col-md-4">
+                        <p:message for="pwd1" id="msgPassword1"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="pwd2" value="Confirm password:" styleClass="col-md-4 control-label"/>
+                <div class="col-md-4">
+                    <p:password id="pwd2" label="'Confirm password'" required="true" binding="#{pwd2}" autocomplete="off"
+                    requiredMessage="'Confirm password' can't be empty.">
+                        <p:ajax update="msgPassword2" event="blur"/>
+                    </p:password>
+                </div>
+                    <div class="col-md-4">
+                        <p:message for="pwd2" id="msgPassword2"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p:selectBooleanCheckbox value="#{userContr.hasSubscription}" type="checkbox" styleClass="col-md-4 control-label"/>
+                <div class="col-md-4">
+                    Allow the site to notify the user about promotions via email
+                </div>
+                </div>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                    <h:commandButton action="#{registration.register}" type="submit"
+                                          styleClass="btn btn-success btn-block" value="Sign up">
+                        </h:commandButton>
+                </div>
+                </div>
+                </div>
+            </h:form>
+         </div>
+ </div>
+</h:body>
+</f:view>
