@@ -29,8 +29,12 @@
 
     <bean:authentication-manager>
         <bean:authentication-provider user-service-ref="customUserDetailsService">
+            <bean:password-encoder ref="encoder"/>
         </bean:authentication-provider>
     </bean:authentication-manager>
+
+    <bean id="encoder"
+          class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
     <context:component-scan base-package="by.restaurant.security"/>
 
