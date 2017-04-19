@@ -1,5 +1,6 @@
 package by.restaurant.controller;
 
+import org.primefaces.event.SelectEvent;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +27,10 @@ public class UserContr implements Serializable{
     private Date birthday;
 
     private boolean hasSubscription;
+
+    public void dateChange(SelectEvent event) {
+        Date date = (Date)event.getObject();
+    }
 
     public UserContr() {
     }

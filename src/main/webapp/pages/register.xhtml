@@ -54,9 +54,10 @@
                 <div class="form-group">
                     <h:outputLabel for="birthday" value="Birthday:" styleClass="col-md-4 control-label"/>
                     <div class="col-md-4">
-                        <p:calendar id="birthday" value="#{userContr.birthday}" required="true" label="Birthday" autocomplete="off"
-                                    requiredMessage="'Birthday' can't be empty.">
-                            <p:ajax update="msgBirthday" event="blur" />
+                        <p:calendar id="birthday" value="#{userContr.birthday}" required="true" label="Birthday"
+                                    requiredMessage="'Birthday' can't be empty." autocomplete="off">
+                            <p:ajax event="dateSelect" update="msgBirthday" listener="#{userContr.dateChange}"/>
+                            <p:ajax event="blur" update="msgBirthday"/>
                         </p:calendar>
                     </div>
                     <div class="col-md-4">
