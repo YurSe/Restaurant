@@ -7,3 +7,8 @@
     margin-top: -9em;
     margin-left: -15em;
 }
+#btn-close {
+    color: red;
+    border: none;
+    background-color: transparent;
+}
