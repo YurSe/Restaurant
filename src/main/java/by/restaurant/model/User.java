@@ -1,6 +1,7 @@
 package by.restaurant.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,10 +16,16 @@ public class User extends SuperClass {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> authorities = new HashSet<>();
+
     @Column(unique = true, nullable = false)
     private String password;
+
     @Column(unique = true, nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Collection<Order> orders;
+
 
     public User() {
     }
@@ -45,5 +52,13 @@ public class User extends SuperClass {
 
     public void setAuthorities(Set<Role> authorities) {
         this.authorities = authorities;
+    }
+
+    public Collection<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Collection<Order> orders) {
+        this.orders = orders;
     }
 }
