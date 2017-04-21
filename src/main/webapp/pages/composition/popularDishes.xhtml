@@ -4,17 +4,17 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:p="http://primefaces.org/ui">
     <h:form>
-        <p:carousel value="#{dishContr.dishes}" headerText="Популярные блюда    " var="dish" itemStyle="text-align:center"
-                    responsive="true">
+        <p:carousel value="#{dishController.popularDishes}" headerText="Популярные блюда" var="dish"
+                    itemStyle="text-align:center" responsive="true">
             <p:panelGrid columns="2" style="width:100%;">
 
-                <h:outputText value="Title: "/>
+                <h:outputText value="Название: "/>
                 <h:outputText value="#{dish.name}"/>
 
-                <h:outputText value="Price: "/>
+                <h:outputText value="Цена: "/>
                 <h:outputText value="#{dish.price}"/>
 
-                <h:outputText value="Category: "/>
+                <h:outputText value="Категория: "/>
                 <h:outputText value="#{dish.category.name}"/>
 
             </p:panelGrid>
