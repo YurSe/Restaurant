@@ -1,6 +1,5 @@
 package by.restaurant.service.implementation;
 
-
 import by.restaurant.model.Dish;
 import by.restaurant.repository.IDishRepository;
 import by.restaurant.service.IDishService;
@@ -21,8 +20,8 @@ public class DishService implements IDishService {
     }
 
     @Override
-    public Dish save(Dish film) {
-        return iDishRepository.save(film);
+    public Dish save(Dish dish) {
+        return iDishRepository.save(dish);
     }
 
     @Override
