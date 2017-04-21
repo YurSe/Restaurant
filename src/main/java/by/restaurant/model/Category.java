@@ -3,9 +3,7 @@ package by.restaurant.model;
 import javax.persistence.*;
 import java.util.Collection;
 
-/**
- * Created by MIKL on 13.04.2017.
- */
+
 @Entity
 public class Category {
     @Id
@@ -17,7 +15,7 @@ public class Category {
     @Column(name = "name", nullable = false, length = 255)
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "category", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
     private Collection<Dish> dishes;
 
     public Category() {

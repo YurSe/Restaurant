@@ -2,9 +2,7 @@ package by.restaurant.model;
 
 import javax.persistence.*;
 
-/**
- * Created by MIKL on 11.04.2017.
- */
+
 @Entity
 public class Dish { //TODO image
 
