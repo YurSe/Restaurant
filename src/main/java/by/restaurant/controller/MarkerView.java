@@ -7,25 +7,28 @@ import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 
-import java.util.Properties;
 
 @Controller
 @Scope("singleton")
+@PropertySource("classpath:gmap.properties")
 public class MarkerView implements Serializable {
+
+    @Autowired
+    private Environment env;
 
     private MapModel simpleModel;
 
     @PostConstruct
     public void init() {
         simpleModel = new DefaultMapModel();
-
-        Properties property = new Properties();
-
-        LatLng coordinates = new LatLng(Integer.parseInt(property.getProperty("lat")),
-                Integer.parseInt(property.getProperty("lng")));
+        LatLng coordinates = new LatLng(Double.parseDouble(env.getProperty("lat")),
+                Double.parseDouble(env.getProperty("lng")));
 
         simpleModel.addOverlay(new Marker(coordinates, "Restaurant"));
     }
@@ -33,4 +36,5 @@ public class MarkerView implements Serializable {
     public MapModel getSimpleModel() {
         return simpleModel;
     }
+
 }
