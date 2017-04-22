@@ -24,7 +24,7 @@
                      />
         <bean:remember-me key="uniqueAndSecret"
                           token-validity-seconds="${jsessionId.valid.seconds}"/>
-        <bean:csrf/>
+        <bean:csrf disabled="true"/>
     </bean:http>
 
     <bean:authentication-manager>

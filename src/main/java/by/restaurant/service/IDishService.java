@@ -1,6 +1,7 @@
 package by.restaurant.service;
 
 import by.restaurant.model.Dish;
+
 import java.util.List;
 
 public interface IDishService {
@@ -11,4 +12,8 @@ public interface IDishService {
     void delete(Long id);
 
     List<Dish> getAll();
+
+    List<Dish> getByCategoryName(String categoryName);
+
+    List<Dish> getByCategoryNameAndSearchToken(String categoryName, String searchToken);
 }
