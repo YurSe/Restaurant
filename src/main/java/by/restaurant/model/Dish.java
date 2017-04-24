@@ -17,7 +17,8 @@ public class Dish { //TODO image
 
     @Column(name = "price", nullable = false)
     private double price;
-
+    @Column(name = "image", nullable = false)
+    private String image;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
@@ -61,5 +62,13 @@ public class Dish { //TODO image
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
