@@ -2,6 +2,7 @@ package by.restaurant.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,6 +27,17 @@ public class User extends SuperClass {
     @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Collection<Order> orders;
 
+    @Column(unique = true, nullable = false)
+    private String phoneNumber;
+    @Column(unique = true, nullable = false)
+    private String name;
+    @Column(nullable = false)
+    private String address;
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
+    private Date birthday;
+    @Column
+    private boolean subscription = false;
 
     public User() {
     }
@@ -60,5 +72,45 @@ public class User extends SuperClass {
 
     public void setOrders(Collection<Order> orders) {
         this.orders = orders;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public boolean isSubscription() {
+        return subscription;
+    }
+
+    public void setSubscription(boolean subscription) {
+        this.subscription = subscription;
     }
 }

@@ -9,10 +9,12 @@
                 type="text/javascript"></script>
     </h:head>
     <h:form>
-        <f:loadBundle basename="gmap" var="gmap"/>
+        <p:cache>
+            <f:loadBundle basename="gmap" var="gmap"/>
 
-        <p:gmap id="gmap" center="#{gmap['lat']},#{gmap['lng']}" zoom="17" type="terrain"
-                style="width:50ch; height:50vh;"
-                streetView="true" model="#{markerView.simpleModel}"/>
+            <p:gmap id="gmap" center="#{gmap['lat']},#{gmap['lng']}" zoom="17" type="terrain"
+                    style="width:50ch; height:50vh;"
+                    streetView="true" model="#{markerView.simpleModel}"/>
+        </p:cache>
     </h:form>
 </ui:composition>
