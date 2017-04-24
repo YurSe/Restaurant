@@ -47,4 +47,9 @@ public class DishService implements IDishService {
         return iDishRepository.findByCategoryNameAndSearchToken(categoryName, "%" + searchToken + "%");
     }
 
+    @Override
+    public List<Dish> getBySearchToken(String searchToken) {
+        return iDishRepository.findBySearchToken("%"+searchToken+"%");
+    }
+
 }

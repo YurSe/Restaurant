@@ -16,4 +16,6 @@ public interface IDishService {
     List<Dish> getByCategoryName(String categoryName);
 
     List<Dish> getByCategoryNameAndSearchToken(String categoryName, String searchToken);
+
+    List<Dish> getBySearchToken(String searchToken);
 }

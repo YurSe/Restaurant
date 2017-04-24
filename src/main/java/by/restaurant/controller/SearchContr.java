@@ -53,8 +53,11 @@ public class SearchContr implements Serializable{
         else if (!categoryName.equals("") && searchToken.equals("")){
             searchedDishes = iDishService.getByCategoryName(categoryName);
         }
+        else if (categoryName.equals("") && !searchToken.equals("")) {
+            searchedDishes = iDishService.getBySearchToken(searchToken);
+        }
         else {
-            searchedDishes = iDishService.getByCategoryNameAndSearchToken(categoryName, searchToken);
+            searchedDishes = iDishService.getByCategoryNameAndSearchToken(categoryName,searchToken);
         }
     }
 
