@@ -2,13 +2,15 @@
 <f:view xmlns="http://www.w3.org/1999/xhtml"
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:h="http://java.sun.com/jsf/html"
-        xmlns:p="http://primefaces.org/ui" xmlns:a="http://java.sun.com/jsf/composite">
+        xmlns:p="http://primefaces.org/ui" xmlns:a="http://java.sun.com/jsf/composite"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Welcome</title>
         <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="/resources/css/register-form.css"/>
     </h:head>
      <h:body>
+         <ui:include src="composition/mainMenu.xhtml"/>
          <div class="container" id="register-form">
          <div class="form-horizontal span4 offset4 well">
             <h:form>
@@ -121,5 +123,6 @@
             </h:form>
          </div>
  </div>
+         <ui:include src="composition/footer.xhtml"/>
 </h:body>
 </f:view>

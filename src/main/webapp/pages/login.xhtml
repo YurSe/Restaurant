@@ -2,14 +2,14 @@
 <f:view xmlns="http://www.w3.org/1999/xhtml"
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:h="http://java.sun.com/jsf/html"
-        xmlns:c="http://java.sun.com/jsp/jstl/core"
-        >
+        xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:ui="http://java.sun.com/jsf/facelets"
 >
     <h:head>
         <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="/resources/css/login-form.css"/>
         <title>Welcome</title>
     </h:head>
+    <ui:include src="composition/mainMenu.xhtml"/>
         <div class="container" id="login-form">
             <div class="row">
                 <div class="span4 offset4 well">
@@ -41,5 +41,6 @@
                 </div>
             </div>
         </div>
+    <ui:include src="composition/footer.xhtml"/>
 </f:view>
 
