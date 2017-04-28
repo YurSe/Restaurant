@@ -64,7 +64,7 @@ public class SearchContr implements Serializable{
     public void test() {
         try {
             ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-            context.redirect(context.getRequestContextPath() + "/pages/index.xhtml");
+            context.redirect(context.getRequestContextPath() + "/pages/login.xhtml");
         }catch (Exception e) {
             e.printStackTrace();
     }

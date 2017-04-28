@@ -1,11 +1,7 @@
 #login-form {
-    position:fixed;
-    top: 50%;
-    left: 50%;
-    width:30em;
-    height:18em;
-    margin-top: -9em;
-    margin-left: -15em;
+    margin-left:29%;
+    margin-top: 3%;
+    width: 40%;
 }
 #btn-close {
     color: red;

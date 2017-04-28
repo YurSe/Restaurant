@@ -7,6 +7,7 @@
         <p:menubar>
             <p:menuitem value="Главная" action="/pages/index?faces-redirect=true"/>
             <p:menuitem value="Меню" action="/pages/menu?faces-redirect=true"/>
+            <p:menuitem value="Поиск" action="/pages/search?faces-redirect=true"/>
             <p:menuitem value="Галерея" action="/pages/gallery?faces-redirect=true"/>
             <p:menuitem value="События" action="/pages/events?faces-redirect=true"/>
             <p:menuitem value="Услуги" action="/pages/services?faces-redirect=true"/>
@@ -15,7 +16,7 @@
 
             <p:menuitem id="LogIn" value="Войти" action="login?faces-redirect=true"
                         style="position: absolute; right: 9%;"/>
-            <p:menuitem id="Registration" value="Регистрация" style="position: absolute; right: 1%;"/>
+            <p:menuitem id="Registration" value="Регистрация" action="register?faces-redirect=true" style="position: absolute; right: 1%;"/>
         </p:menubar>
     </h:form>
 </ui:composition>
