@@ -18,7 +18,7 @@
                     <h:outputLabel for="name" value="Name:" styleClass="col-md-4 control-label"/>
                 <div class="col-md-4">
                     <p:inputText id="name" value="#{userContr.name}" required="true" label="Name" autocomplete="off"
-                                 requiredMessage="'Name' can't be empty." a:placeholder="Vasya Pupkin">
+                                 requiredMessage="'Name' can't be empty." a:placeholder="Vasya Pupkin" maxlength="50">
                         <f:validator validatorId="nameValidator" />
                         <p:ajax update="msgName" event="blur" />
                     </p:inputText>
@@ -31,7 +31,7 @@
                     <h:outputLabel for="email" value="Email:" styleClass="col-md-4 control-label"/>
                 <div class="col-md-4">
                     <p:inputText id="email" value="#{userContr.email}" required="true" label="Email" autocomplete="off"
-                                 requiredMessage="'Email' can't be empty." a:placeholder="email@gmail.com">
+                                 requiredMessage="'Email' can't be empty." a:placeholder="email@gmail.com" maxlength="50">
                         <p:ajax update="msgEmail" event="blur"/>
                         <f:validator binding="#{emailValidator}" />
                     </p:inputText>
@@ -44,7 +44,7 @@
                     <h:outputLabel for="number" value="Phone number:" styleClass="col-md-4 control-label"/>
                 <div class="col-md-4">
                     <p:inputText id="number" value="#{userContr.phoneNumber}" required="true" label="Number" autocomplete="off"
-                                 requiredMessage="'Phone namber' can't be empty." a:placeholder="+375333333333">
+                                 requiredMessage="'Phone namber' can't be empty." a:placeholder="+375333333333" maxlength="13">
                         <f:validator binding="#{phoneNumberValidator}" />
                         <p:ajax update="msgNumber" event="blur" />
                     </p:inputText>
@@ -57,7 +57,7 @@
                     <h:outputLabel for="birthday" value="Birthday:" styleClass="col-md-4 control-label"/>
                     <div class="col-md-4">
                         <p:calendar id="birthday" value="#{userContr.birthday}" required="true" label="Birthday"
-                                    requiredMessage="'Birthday' can't be empty." autocomplete="off">
+                                    requiredMessage="'Birthday' can't be empty." autocomplete="off" maxlength="8">
                             <p:ajax event="dateSelect" update="msgBirthday" listener="#{userContr.dateChange}"/>
                             <p:ajax event="blur" update="msgBirthday"/>
                         </p:calendar>
@@ -70,7 +70,7 @@
                     <h:outputLabel for="address" value="Address:" styleClass="col-md-4 control-label"/>
                     <div class="col-md-4">
                         <p:inputText id="address" value="#{userContr.address}" required="true" label="Address" autocomplete="off"
-                                     requiredMessage="'Address' can't be empty.">
+                                     requiredMessage="'Address' can't be empty." maxlength="70">
                             <p:ajax update="msgAddress" event="blur" />
                         </p:inputText>
                     </div>
@@ -82,7 +82,7 @@
                     <h:outputLabel for="pwd1" value="Password:" styleClass="col-md-4 control-label"/>
                 <div class="col-md-4">
                     <p:password id="pwd1" value="#{userContr.password}" label="'Password'" required="true" feedback="true" autocomplete="off"
-                                requiredMessage="'Password' can't be empty.">
+                                requiredMessage="'Password' can't be empty." maxlength="50">
                         <f:validator validatorId="passwordValidator"/>
                         <f:attribute name="pwd2" value="#{pwd2}" />
                         <p:ajax update="msgPassword1" event="blur"/>
@@ -96,7 +96,7 @@
                     <h:outputLabel for="pwd2" value="Confirm password:" styleClass="col-md-4 control-label"/>
                 <div class="col-md-4">
                     <p:password id="pwd2" label="'Confirm password'" required="true" binding="#{pwd2}" autocomplete="off"
-                    requiredMessage="'Confirm password' can't be empty.">
+                    requiredMessage="'Confirm password' can't be empty." maxlength="50">
                         <p:ajax update="msgPassword2" event="blur"/>
                     </p:password>
                 </div>
