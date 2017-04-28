@@ -1,19 +1,22 @@
 package by.restaurant.controller;
 
+import by.restaurant.model.Category;
 import by.restaurant.model.Dish;
 import by.restaurant.model.Order;
+import by.restaurant.service.ICategoryService;
 import by.restaurant.service.IDishService;
 import by.restaurant.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.*;
 
 @Controller
-@Scope("request")
+@Scope("session")
 public class DishController implements Serializable {
 
     @Autowired
@@ -22,8 +25,41 @@ public class DishController implements Serializable {
     @Autowired
     private IOrderService orderService;
 
-    public List<Dish> getDishes() {
+    @Autowired
+    private ICategoryService categoryService;
+
+    private Dish dish = new Dish();
+
+    private Map<String, String> categories = new HashMap<String, String>();
+
+
+    private String selectCategory;
+
+    @PostConstruct
+    public void init() {
+        List<Category> allCategories = categoryService.getAll();
+
+        for (Category category : allCategories) {
+            String name = category.getName();
+            categories.put(name, name);
+        }
+    }
+
+    public void Clear() {
+        dish = new Dish();
+    }
+
+    public List<Dish> getAllDishes() {
         return dishService.getAll();
+    }
+
+    public void SaveDish() {
+        dish.setCategory(categoryService.getCategoryByName(selectCategory));
+        dishService.save(dish);
+    }
+
+    public void DeleteDish(Long id) {
+        dishService.delete(id);
     }
 
     public Set<Dish> getPopularDishes() {
@@ -79,5 +115,27 @@ public class DishController implements Serializable {
         return sortedMap;
     }
 
+    public Dish getDish() {
+        return dish;
+    }
 
+    public void setDish(Dish dish) {
+        this.dish = dish;
+    }
+
+    public String getSelectCategory() {
+        return selectCategory;
+    }
+
+    public void setSelectCategory(String selectCategory) {
+        this.selectCategory = selectCategory;
+    }
+
+    public Map<String, String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Map<String, String> categories) {
+        this.categories = categories;
+    }
 }

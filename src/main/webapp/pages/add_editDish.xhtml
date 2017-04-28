@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Добавление/Редактирование блюда</title>
+</h:head>
+
+
+<h:body>
+    <ui:include src="composition/mainMenu.xhtml"/>
+
+    <h:form>
+        <p:panel header="Добавление/Редактирование блюда">
+            <h:panelGrid columns="2" cellpadding="5">
+
+                <p:outputLabel value="Название:" for="name"/>
+                <p:inputText id="name" maxlength="255" value="#{dishController.dish.name}"
+                             required="true" size="50"/>
+
+                <p:outputLabel value="Описание:" for="description"/>
+                <p:inputText id="description" maxlength="255" value="#{dishController.dish.description}"
+                             required="true" size="50"/>
+
+                <p:outputLabel value="Цена:" for="price"/>
+                <p:inputNumber id="price" value="#{dishController.dish.price}" minValue="1" required="true"/>
+
+                <p:outputLabel value="Вес:" for="mass"/>
+                <p:inputNumber id="mass" value="#{dishController.dish.mass}" minValue="1" required="true"/>
+
+                <p:outputLabel value="Ссылка на изображение:" for="image"/>
+                <p:inputText id="image" maxlength="255" value="#{dishController.dish.image}"
+                             required="true" size="50"/>
+
+                <p:outputLabel value="Категория:" for="category"/>
+                <p:selectOneMenu id="category" value="#{dishController.selectCategory}" required="true">
+                    <f:selectItems value="#{dishController.categories}"/>
+                </p:selectOneMenu>
+
+                <p:commandButton value="Сохранить" id="add" actionListener="#{dishController.SaveDish()}"
+                                 ajax="false"
+                                 action="/pages/menu?faces-redirect=true"/>
+
+            </h:panelGrid>
+        </p:panel>
+    </h:form>
+
+    <ui:include src="composition/footer.xhtml"/>
+
+</h:body>
+</html>

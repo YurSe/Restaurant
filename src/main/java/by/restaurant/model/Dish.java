@@ -4,21 +4,29 @@ import javax.persistence.*;
 
 
 @Entity
-public class Dish { //TODO image
+public class Dish {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @PrimaryKeyJoinColumn
-    private int id;
+    private Long id;
 
     @Column(name = "name", nullable = false, length = 255)
     private String name;
 
     @Column(name = "price", nullable = false)
     private double price;
+
     @Column(name = "image", nullable = false)
     private String image;
+
+    @Column(name = "description", nullable = false)
+    private String description;
+
+    @Column(name = "mass", nullable = false)
+    private Double mass;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
@@ -26,17 +34,20 @@ public class Dish { //TODO image
     public Dish() {
     }
 
-    public Dish(String name, double price, Category category) {
+    public Dish(String name, double price, String image, String description, Double mass, Category category) {
         this.name = name;
         this.price = price;
+        this.image = image;
+        this.description = description;
+        this.mass = mass;
         this.category = category;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,5 +81,21 @@ public class Dish { //TODO image
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getMass() {
+        return mass;
+    }
+
+    public void setMass(Double mass) {
+        this.mass = mass;
     }
 }
