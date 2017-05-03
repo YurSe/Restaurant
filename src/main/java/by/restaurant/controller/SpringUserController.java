@@ -25,29 +25,32 @@ public class SpringUserController implements Serializable {
             user = (org.springframework.security.core.userdetails.User) SecurityContextHolder
                     .getContext().getAuthentication().getPrincipal();
         } catch (Exception ex) {
-            return "ROLE_ANONYMOUS";
+            return "ANONYMOUS";
         }
-        return user.getAuthorities().iterator().next().toString();
+        if(user.getAuthorities().isEmpty()){
+            return "USER";
+        }
+        return user.getAuthorities().iterator().next().getAuthority();
     }
 
     public boolean IsAdmin() {
-        if (CurrentUserRole().equals("ROLE_ADMIN")) {
+        if (CurrentUserRole().equals("ADMIN")) {
             return true;
         }
         return false;
     }
 
     public boolean IsAuthorized() {
-        if (CurrentUserRole().equals("ROLE_ADMIN")
-                || CurrentUserRole().equals("ROLE_USER")) {
+        if (CurrentUserRole().equals("ADMIN")
+                || CurrentUserRole().equals("USER")) {
             return true;
         }
         return false;
     }
 
     public String Account() {
-        if (CurrentUserRole().equals("ROLE_ADMIN")
-                || CurrentUserRole().equals("ROLE_USER")) {
+        if (CurrentUserRole().equals("ADMIN")
+                || CurrentUserRole().equals("USER")) {
             return "/view/user/account?faces-redirect=true";
         }
         return "";

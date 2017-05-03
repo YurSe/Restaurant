@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Добавление/Редактирование блюда</title>
+</h:head>
+
+
+<h:body>
+    <ui:include src="composition/mainMenu.xhtml"/>
+
+    <h:form>
+        <p:panel header="Add/edit zone">
+            <h:panelGrid columns="3" cellpadding="5">
+
+                <p:outputLabel value="Title:" for="name"/>
+                <p:inputText id="name" maxlength="255" value="#{zoneContr.zone.title}"
+                             required="true" size="50">
+                    <p:ajax update="msgTitle" event="blur"/>
+                </p:inputText>
+                <p:message for="name" id="msgTitle"/>
+
+                <p:outputLabel value="Description:" for="description"/>
+                <p:inputText id="description" maxlength="255" value="#{zoneContr.zone.description}"
+                             required="true" size="50">
+                    <p:ajax update="msgDescription" event="blur"/>
+                </p:inputText>
+                <p:message for="description" id="msgDescription"/>
+
+                <p:outputLabel value="Image link:" for="image"/>
+                <p:inputText id="image" maxlength="255" value="#{zoneContr.zone.image}"
+                             required="true" size="50">
+                    <p:ajax update="msgImage" event="blur"/>
+                </p:inputText>
+                <p:message for="description" id="msgImage"/>
+
+                <p:commandButton value="Save" id="add" actionListener="#{zoneContr.saveZone()}"
+                                 ajax="false"
+                                 action="/pages/zones?faces-redirect=true">
+                    <f:actionListener binding="#{zoneContr.init()}"/>
+                </p:commandButton>
+            </h:panelGrid>
+        </p:panel>
+    </h:form>
+
+    <ui:include src="composition/footer.xhtml"/>
+
+</h:body>
+</html>
