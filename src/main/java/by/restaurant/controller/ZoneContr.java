@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,18 +18,7 @@ public class ZoneContr {
     @Autowired
     private ZoneService zoneService;
 
-    private List<Zone> zones;
-
-    private Zone zone;
-
-    @PostConstruct
-    public void init() {
-        zone = new Zone();
-        zones = zoneService.getAll();
-        if (zones == null) {
-            zones = new ArrayList<>();
-        }
-    }
+    private Zone zone = new Zone();
 
     public void deleteZone(Long id) {
         zoneService.delete(id);
@@ -42,15 +29,11 @@ public class ZoneContr {
     }
 
     public List<Zone> getZones() {
-        return zones;
+        return zoneService.getAll();
     }
 
     public void saveZone() {
         zoneService.save(zone);
-    }
-
-    public void setZones(List<Zone> zones) {
-        this.zones = zones;
     }
 
     public Zone getZone() {
