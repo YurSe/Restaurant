@@ -15,7 +15,7 @@
             <p:menuitem value="Контакты" action="/pages/contacts?faces-redirect=true"/>
             <p:menuitem value="О ресторане" action="/pages/about?faces-redirect=true"/>
             <p:menuitem ajax="false" value="Выйти" url="/logout"
-                        style="position: absolute; right: 9%;" rendered="#{springUserController.IsAuthorized()}"/>
+                        style="position: absolute; right: 1%;" rendered="#{springUserController.IsAuthorized()}"/>
 
             <p:menuitem id="LogIn" value="Войти" action="login?faces-redirect=true"
                         style="position: absolute; right: 9%;" rendered="#{!springUserController.IsAuthorized()}"/>
