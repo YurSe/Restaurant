@@ -29,11 +29,11 @@
                 <p:outputLabel value="Цена:" for="price"/>
                 <p:inputNumber id="price" value="#{dishController.dish.price}" minValue="1" required="true"/>
 
-                <p:outputLabel value="Вес:" for="mass"/>
+                <p:outputLabel value="Вес(г):" for="mass"/>
                 <p:inputNumber id="mass" value="#{dishController.dish.mass}" minValue="1" required="true"/>
 
                 <p:outputLabel value="Ссылка на изображение:" for="image"/>
-                <p:inputText id="image" maxlength="255" value="#{dishController.dish.image}"
+                <p:inputText id="image" value="#{dishController.dish.image}"
                              required="true" size="50"/>
 
                 <p:outputLabel value="Категория:" for="category"/>
