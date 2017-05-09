@@ -20,6 +20,7 @@
             <p:menuitem id="LogIn" value="Войти" action="login?faces-redirect=true"
                         style="position: absolute; right: 9%;" rendered="#{!springUserController.IsAuthorized()}"/>
             <p:menuitem id="Registration" value="Регистрация" action="register?faces-redirect=true"
+                        rendered="#{!springUserController.IsAuthorized()}"
                         style="position: absolute; right: 1%;"/>
         </p:menubar>
     </h:form>
