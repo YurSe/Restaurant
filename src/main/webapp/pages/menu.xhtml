@@ -41,12 +41,12 @@
 
                     <h:outputText value="Масса: #{dish.mass}"/>
 
-                    <p:commandButton value="Редактировать блюдо"
+                    <p:commandButton value="Редактировать блюдо" rendered="#{springUserController.IsAdmin()}"
                                      action="/pages/add_editDish?faces-redirect=true">
                         <f:setPropertyActionListener target="#{dishController.dish}" value="#{dish}"/>
                     </p:commandButton>
 
-                    <p:commandButton value="Удалить блюдо" update="menuForm"
+                    <p:commandButton value="Удалить блюдо" update="menuForm" rendered="#{springUserController.IsAdmin()}"
                                      action="#{dishController.DeleteDish(dish.id)}">
                         <p:confirm header="Подтверждение" message="Вы уверены, что хотите удалить это блюдо?"
                                    icon="ui-icon-alert"/>
@@ -63,8 +63,8 @@
                          icon="ui-icon-close"/>
     </p:confirmDialog>
 
-    <!--rendered="#{springUserController.IsAdmin()}"-->
     <p:commandButton value="Добавить блюдо" style="margin-left: 17%; margin-top: 1%;"
+                     rendered="#{springUserController.IsAdmin()}"
                      actionListener="#{dishController.Clear()}"
                      action="/pages/add_editDish?faces-redirect=true"/>
 
