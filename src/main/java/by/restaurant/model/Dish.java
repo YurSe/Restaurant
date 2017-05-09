@@ -1,5 +1,7 @@
 package by.restaurant.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 
 
@@ -18,6 +20,7 @@ public class Dish {
     @Column(name = "price", nullable = false)
     private double price;
 
+    @Type(type="text")
     @Column(name = "image", nullable = false)
     private String image;
 
