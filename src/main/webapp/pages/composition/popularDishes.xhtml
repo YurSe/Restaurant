@@ -6,10 +6,11 @@
     <h:form>
         <p:cache>
             <p:carousel value="#{dishController.popularDishes}" headerText="Популярные блюда" var="dish"
-                        itemStyle="text-align:center" responsive="true">
+                        responsive="true">
                 <h:graphicImage url="#{dish.image}"
-                                style="min-height:200px;max-height: 200px;width: 100%"/>
-                <p:panelGrid columns="2" style="width:100%;">
+                                style="min-height: 300px; max-height: 300px; width: 100%"/>
+
+                <p:panelGrid columns="2" style="width:100%; height: 100%;">
 
                     <h:outputText value="Название: "/>
                     <h:outputText value="#{dish.name}"/>
