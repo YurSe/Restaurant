@@ -22,15 +22,15 @@
     </bean>
 
 
-    <!--<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"-->
-    <!--id="dataSource">-->
-    <!--<property name="driverClassName" value="org.postgresql.Driver"></property>-->
-    <!--<property name="url" value="${database.url}"></property>-->
-    <!--<property name="username" value="${database.user}"></property>-->
-    <!--<property name="password" value="${database.password}"></property>-->
-    <!--</bean>-->
+    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+    id="dataSource">
+    <property name="driverClassName" value="org.postgresql.Driver"></property>
+    <property name="url" value="${database.url}"></property>
+    <property name="username" value="${database.user}"></property>
+    <property name="password" value="${database.password}"></property>
+    </bean>
 
-    <bean class="java.net.URI" id="dbUrl">
+   <!-- <bean class="java.net.URI" id="dbUrl">
         <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
     </bean>
 
@@ -39,7 +39,7 @@
                   value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }"/>
         <property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
         <property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
-    </bean>
+    </bean>-->
 
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -56,6 +56,11 @@
         <property name="databasePlatform" value="${hibernate.dialect}"/>
         <property name="generateDdl" value="${hibernate.generate_ddl}"/>
         <property name="showSql" value="${hibernate.show_sql}"/>
+    </bean>
+
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource" />
+        <property name="changeLog" value="classpath:liquibase/db.changelog-master.xml" />
     </bean>
 
     <bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
