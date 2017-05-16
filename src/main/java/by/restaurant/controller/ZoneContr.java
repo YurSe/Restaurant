@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -16,9 +20,26 @@ import java.util.List;
 public class ZoneContr {
 
     @Autowired
+    private SpringUserController springUserController;
+
+    @Autowired
     private ZoneService zoneService;
 
     private Zone zone = new Zone();
+
+    public void redirectToPageWithTableReservation() throws IOException {
+        if (springUserController.IsAuthorized()) {
+            ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+            context.redirect(context.getRequestContextPath() + "/pages/reservation.xhtml?faces-redirect=true");
+        } else {
+            showAuthorizationNotification();
+        }
+    }
+
+    private void showAuthorizationNotification() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage("messageAuth", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Warning", "For reserve a table you need to be authorized."));
+    }
 
     public void deleteZone(Long id) {
         zoneService.delete(id);

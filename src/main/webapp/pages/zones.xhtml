@@ -15,7 +15,7 @@
 <h:body>
     <h:outputStylesheet name="css/overridePrimefaces.css"/>
     <ui:include src="composition/mainMenu.xhtml"/>
-
+    <p:growl id="growl" for="messageAuth" showDetail="true" autoUpdate="true"/>
     <h:form id="zoneForm">
         <div id="search-form">
             <p:dataGrid var="zone" value="#{zoneContr.zones}" columns="3" layout="grid"
@@ -41,9 +41,10 @@
                     <div class="form-group">
                         <div style="text-align: center">
                             <h:commandButton value="Reserve table"
-                                             action="/pages/reservation?faces-redirect=true"
+                                             actionListener="#{zoneContr.redirectToPageWithTableReservation}"
                                              styleClass="btn btn-success">
                                 <f:setPropertyActionListener target="#{zoneContr.zone}" value="#{zone}"/>
+                                <f:ajax render="growl" />
                             </h:commandButton>
                         </div>
                     </div>

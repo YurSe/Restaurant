@@ -16,7 +16,8 @@
 <h:body>
 
     <ui:include src="composition/mainMenu.xhtml"/>
-
+    <p:growl for="messageCreatedOrder" id="growl" autoUpdate="true" showDetail="true"/>
+    <f:event type="preRenderView" listener="#{reservation.showCreatedOrderNotification}" />
     <h:form id="menuForm">
         <p:dataGrid var="dish" value="#{dishController.allDishes}" columns="3" layout="grid"
                     rows="12" paginator="true" style="margin-top: 1%; margin-left: 17%; width: 60%;"

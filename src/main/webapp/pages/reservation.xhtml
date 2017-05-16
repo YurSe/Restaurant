@@ -11,13 +11,92 @@
     <h:outputScript library="js" name="jquery.elevatezoom.js" target="body"/>
     <h:outputScript library="js" name="jquery.elevateZoom-3.0.8.min.js" target="body"/>
     <h:outputScript library="js" name="imageZoom.js" target="body"/>
-    <link rel="stylesheet" href="/resources/css/search-form.css"/>
+    <link rel="stylesheet" href="/resources/css/register-form.css"/>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
 </h:head>
 
 <h:body>
-
     <ui:include src="composition/mainMenu.xhtml"/>
+    <div class="container" id="register-form">
+        <div class="form-group" style="padding-left: 35%">
+        <p:graphicImage value="/resources/images/Reserve_a_table.gif" width="45%" height="120%"/>
+        </div>
+        <div class="form-horizontal span4 offset4 well">
+            <p:growl id="growl" for="messageNotFoundUser" showDetail="true" autoUpdate="true"/>
+            <h:form>
+                <div class="form-group">
+                    <h:outputLabel for="date" value="Date:" styleClass="col-md-4 control-label"/>
+                    <div class="col-md-4">
+                        <p:calendar id="date" value="#{reservation.date}" required="true" label="Date"
+                                    requiredMessage="'Date' can't be empty." autocomplete="off" maxlength="8">
+                            <p:ajax event="dateSelect" update="msgDate" listener="#{reservation.dateChange}"/>
+                            <p:ajax event="blur" update="msgDate"/>
+                        </p:calendar>
+                    </div>
+                    <div class="col-md-4">
+                        <p:message for="date" id="msgDate"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <h:outputLabel for="time" value="Time:" styleClass="col-md-4 control-label"/>
+                    <div class="col-md-4">
+                        <p:calendar id="time" value="#{reservation.time}" required="true" label="Time"
+                                    requiredMessage="'Time' can't be empty." autocomplete="off" maxlength="8" pattern="HH:mm:ss" timeOnly="true">
+
+                            <p:ajax event="dateSelect" update="msgTime" listener="#{reservation.timeChange}"/>
+                            <p:ajax event="blur" update="msgTime"/>
+                        </p:calendar>
+                    </div>
+                    <div class="col-md-4">
+                        <p:message for="time" id="msgTime"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="guestsNumber" value="Number of guests:" styleClass="col-md-4 control-label"/>
+                    <div class="col-md-4">
+                        <p:inputText id="guestsNumber" value="#{reservation.guestCount}" required="true" label="Number of guests" autocomplete="off"
+                                       requiredMessage="'Number of guests' can't be empty." converterMessage="Please enter only integers only.">
+                            <f:validateDoubleRange minimum="1" maximum="50" />
+                            <p:ajax update="msgGuestsNumber" event="blur"/>
+                        </p:inputText>
+                    </div>
+                    <div class="col-md-4">
+                        <p:message for="guestsNumber" id="msgGuestsNumber"/>
+                    </div>
+                </div>
+
+                <div class="form-group" style="padding-left: 28%">
+                    <h:commandButton immediate="true"
+                                  styleClass="btn btn-primary btn-block" value="Select goods" style="width: 62%;"
+                    action="/pages/dishesSelect.xhtml?faces-redirect=true">
+                    </h:commandButton>
+                </div>
+                <div class="form-group" style="padding-left: 25%">
+                    <div class="col-md-4">
+                        <h:commandButton styleClass="btn btn-success btn-block" value="Ok"
+                        actionListener="#{reservation.createOrder}">
+                        </h:commandButton>
+                    </div>
+                    <div class="col-md-4">
+                        <h:commandButton type="button"
+                                          styleClass="btn btn-danger btn-block" value="Cancel"
+                        onclick="PF('dlg').show();" immediate="true">
+                        </h:commandButton>
+                        <p:confirmDialog header="Confirm" severity="alert" message="Are you sure you want to cancel a table reservation?"
+                                widgetVar="dlg" showEffect="fade" hideEffect="explode" modal="true" icon="ui-icon-alert">
+                                <p:commandButton value="Yes" action="/pages/zones.xhtml?faces-redirect=true"
+                                oncomplete="PF('dlg').hide();" process="@this" icon="ui-icon-check"/>
+                            <p:commandButton value="No" oncomplete="PF('dlg').hide();" icon="ui-icon-close"/>
+                        </p:confirmDialog>
+                    </div>
+                </div>
+
+            </h:form>
+        </div>
+    </div>
 
     <ui:include src="composition/footer.xhtml"/>
 
