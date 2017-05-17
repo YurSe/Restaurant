@@ -5,15 +5,15 @@
         xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:form>
         <p:menubar>
-            <p:menuitem value="Главная" action="/pages/index?faces-redirect=true"/>
-            <p:menuitem value="Меню" action="/pages/menu?faces-redirect=true"/>
-            <p:menuitem value="Забронировать столик" action="/pages/zones?faces-redirect=true"/>
-            <p:menuitem value="Поиск" action="/pages/search?faces-redirect=true"/>
-            <p:menuitem value="Галерея" action="/pages/gallery?faces-redirect=true"/>
-            <p:menuitem value="События" action="/pages/events?faces-redirect=true"/>
-            <p:menuitem value="Услуги" action="/pages/services?faces-redirect=true"/>
-            <p:menuitem value="Контакты" action="/pages/contacts?faces-redirect=true"/>
-            <p:menuitem value="О ресторане" action="/pages/about?faces-redirect=true"/>
+            <p:menuitem value="Главная" outcome="/pages/index?faces-redirect=true"/>
+            <p:menuitem value="Меню" outcome="/pages/menu?faces-redirect=true"/>
+            <p:menuitem value="Забронировать столик" outcome="/pages/zones?faces-redirect=true"/>
+            <p:menuitem value="Поиск" outcome="/pages/search?faces-redirect=true"/>
+            <p:menuitem value="Галерея" outcome="/pages/gallery?faces-redirect=true"/>
+            <p:menuitem value="События" outcome="/pages/events?faces-redirect=true"/>
+            <p:menuitem value="Услуги" outcome="/pages/services?faces-redirect=true"/>
+            <p:menuitem value="Контакты" outcome="/pages/contacts?faces-redirect=true"/>
+            <p:menuitem value="О ресторане" outcome="/pages/about?faces-redirect=true"/>
             <p:menuitem ajax="false" value="Выйти" url="/logout"
                         style="position: absolute; right: 1%;" rendered="#{springUserController.IsAuthorized()}"/>
 
