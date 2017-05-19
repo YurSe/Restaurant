@@ -58,7 +58,7 @@
                     <h:outputLabel for="guestsNumber" value="Number of guests:" styleClass="col-md-4 control-label"/>
                     <div class="col-md-4">
                         <p:inputText id="guestsNumber" value="#{reservation.guestCount}" required="true" label="Number of guests" autocomplete="off"
-                                       requiredMessage="'Number of guests' can't be empty." converterMessage="Please enter only integers only.">
+                                       requiredMessage="'Number of guests' can't be empty." converterMessage="Please enter only integers.">
                             <f:validateDoubleRange minimum="1" maximum="50" />
                             <p:ajax update="msgGuestsNumber" event="blur"/>
                         </p:inputText>
