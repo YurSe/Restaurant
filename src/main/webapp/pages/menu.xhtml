@@ -16,6 +16,20 @@
 <h:body>
 
     <ui:include src="composition/mainMenu.xhtml"/>
+
+    <p:commandButton id="movieBtn" value="Корзина" type="button" />
+    <p:overlayPanel id="moviePanel" for="movieBtn" hideEffect="fade" dynamic="true" style="width:50%;">
+        <p:dataTable var="dishes" value="#{orderController.order.dishes}" rows="5" paginator="true">
+            <p:column headerText="Movie">
+                <h:outputText value="#{dishes.name}" />
+            </p:column>
+
+            <p:column headerText="Directed By">
+                <h:outputText value="#{dishes.price}" />
+            </p:column>
+        </p:dataTable>
+    </p:overlayPanel>
+
     <p:growl for="messageCreatedOrder" id="growl" autoUpdate="true" showDetail="true"/>
     <f:event type="preRenderView" listener="#{reservation.showCreatedOrderNotification}"/>
     <h:form id="menuForm">
