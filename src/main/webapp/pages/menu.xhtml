@@ -17,7 +17,11 @@
 
     <ui:include src="composition/mainMenu.xhtml"/>
 
-    <h:form id="basketForm">
+    <p:growl for="messageCreatedOrder" id="growl" autoUpdate="true" showDetail="true"/>
+    <f:event type="preRenderView" listener="#{reservation.showCreatedOrderNotification}"/>
+
+    <h:form id="menuForm">
+
         <p:commandButton id="basketButton" value="Корзина" type="button"/>
         <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="false" style="width:50%;">
             <p:dataTable id="basketDataTable" var="dishes" value="#{orderController.order.dishes}" rows="5" paginator="true">
@@ -30,11 +34,7 @@
                 </p:column>
             </p:dataTable>
         </p:overlayPanel>
-    </h:form>
 
-    <p:growl for="messageCreatedOrder" id="growl" autoUpdate="true" showDetail="true"/>
-    <f:event type="preRenderView" listener="#{reservation.showCreatedOrderNotification}"/>
-    <h:form id="menuForm">
         <p:dataGrid var="dish" value="#{dishController.allDishes}" columns="3" layout="grid"
                     rows="12" paginator="true" style="margin-top: 1%; margin-left: 17%; width: 60%;"
                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
