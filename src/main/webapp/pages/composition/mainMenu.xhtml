@@ -47,7 +47,7 @@
                                      action="#{orderController.RemoveDish(dishe)}"/>
                 </p:column>
             </p:dataTable>
-            <p:commandButton value="Заказать" actionListener="#{orderController.MakeOrder()}"/>
+            <p:commandButton value="Заказать" rendered="#{!orderController.IsDishesEmpty()}" actionListener="#{orderController.MakeOrder()}"/>
         </p:overlayPanel>
 
     </h:form>

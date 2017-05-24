@@ -70,4 +70,9 @@ public class OrderController implements Serializable {
         }
     }
 
+    public boolean IsDishesEmpty() {
+        return order.getDishes().isEmpty();
+    }
+
+
 }
