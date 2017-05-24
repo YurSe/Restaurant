@@ -17,7 +17,7 @@
 
     <ui:include src="composition/mainMenu.xhtml"/>
     <p:growl for="messageCreatedOrder" id="growl" autoUpdate="true" showDetail="true"/>
-    <f:event type="preRenderView" listener="#{reservation.showCreatedOrderNotification}" />
+    <f:event type="preRenderView" listener="#{reservation.showCreatedOrderNotification}"/>
     <h:form id="menuForm">
         <p:dataGrid var="dish" value="#{dishController.allDishes}" columns="3" layout="grid"
                     rows="12" paginator="true" style="margin-top: 1%; margin-left: 17%; width: 60%;"
@@ -47,11 +47,16 @@
                         <f:setPropertyActionListener target="#{dishController.dish}" value="#{dish}"/>
                     </p:commandButton>
 
-                    <p:commandButton value="Удалить блюдо" update="menuForm" rendered="#{springUserController.IsAdmin()}"
+                    <p:commandButton value="Удалить блюдо" update="menuForm"
+                                     rendered="#{springUserController.IsAdmin()}"
                                      action="#{dishController.DeleteDish(dish.id)}">
                         <p:confirm header="Подтверждение" message="Вы уверены, что хотите удалить это блюдо?"
                                    icon="ui-icon-alert"/>
                     </p:commandButton>
+
+                    <p:commandButton value="Добавить к заказу" rendered="#{springUserController.IsAuthorized()}"
+                                     action="#{orderController.AddDish(dish)}"/>
+
                 </h:panelGrid>
             </p:panel>
         </p:dataGrid>
