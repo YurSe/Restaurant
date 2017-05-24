@@ -24,14 +24,17 @@
 
         <p:commandButton id="basketButton" value="Корзина" type="button" onclick="PF('basketPanelVar').loadContents()"/>
         <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="false" style="width:50%;" widgetVar="basketPanelVar">
-            <p:dataTable id="basketDataTable" var="dishes" value="#{orderController.order.dishes}" rows="5"
+            <p:dataTable id="basketDataTable" var="dishe" value="#{orderController.order.dishes}" rows="5"
                          paginator="true">
-                <p:column headerText="Name">
-                    <h:outputText value="#{dishes.name}"/>
+                <p:column headerText="Название">
+                    <h:outputText value="#{dishe.name}"/>
                 </p:column>
 
-                <p:column headerText="Price">
-                    <h:outputText value="#{dishes.price}"/>
+                <p:column headerText="Цена">
+                    <h:outputText value="#{dishe.price}"/>
+                </p:column>
+                <p:column headerText="Удалить">
+                    <p:commandButton icon="fa fa-fw fa-remove" action="#{orderController.RemoveDish(dishe)}"/>
                 </p:column>
             </p:dataTable>
         </p:overlayPanel>
@@ -72,8 +75,7 @@
                     </p:commandButton>
 
                     <p:commandButton value="Добавить к заказу" rendered="#{springUserController.IsAuthorized()}"
-                                     action="#{orderController.AddDish(dish)}"
-                                     />
+                                     action="#{orderController.AddDish(dish)}"/>
                 </h:panelGrid>
             </p:panel>
         </p:dataGrid>

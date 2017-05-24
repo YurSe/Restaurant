@@ -39,6 +39,10 @@ public class OrderController implements Serializable {
         order.getDishes().add(dish);
     }
 
+    public void RemoveDish(Dish dish) {
+        order.getDishes().remove(dish);
+    }
+
     public Order getOrder() {
         return order;
     }
