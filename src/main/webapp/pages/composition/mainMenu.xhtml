@@ -15,7 +15,8 @@
             <p:menuitem value="Контакты" outcome="/pages/contacts?faces-redirect=true"/>
             <p:menuitem value="О ресторане" outcome="/pages/about?faces-redirect=true"/>
 
-            <p:menuitem id="basketButton" value="Корзина" type="button" onclick="PF('basketPanelVar').loadContents()"/>
+            <p:menuitem id="basketButton" value="Корзина" type="button" style="position: absolute; right: 13%;"
+                        onclick="PF('basketPanelVar').loadContents()"/>
 
             <p:menuitem ajax="false" value="Выйти" url="/logout"
                         style="position: absolute; right: 1%;" rendered="#{springUserController.IsAuthorized()}"/>
