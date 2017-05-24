@@ -28,7 +28,8 @@
                     <h:outputLabel for="date" value="Date:" styleClass="col-md-4 control-label"/>
                     <div class="col-md-4">
                         <p:calendar id="date" value="#{reservation.date}" required="true" label="Date"
-                                    requiredMessage="'Date' can't be empty." autocomplete="off" maxlength="8">
+                                    requiredMessage="'Date' can't be empty." autocomplete="off" maxlength="8"
+                        mindate="#{reservation.minDate}">
                             <p:ajax event="dateSelect" update="msgDate" listener="#{reservation.dateChange}"/>
                             <p:ajax event="blur" update="msgDate"/>
                         </p:calendar>
@@ -43,7 +44,8 @@
                     <h:outputLabel for="time" value="Time:" styleClass="col-md-4 control-label"/>
                     <div class="col-md-4">
                         <p:calendar id="time" value="#{reservation.time}" required="true" label="Time"
-                                    requiredMessage="'Time' can't be empty." autocomplete="off" maxlength="8" pattern="HH:mm:ss" timeOnly="true">
+                                    requiredMessage="'Time' can't be empty." autocomplete="off" maxlength="8" pattern="HH:mm:ss" timeOnly="true"
+                        minHour="#{reservation.hoursFromTime}" minMinute="#{reservation.minutesFromTime}" minSecond="#{reservation.secondsFromTime}">
 
                             <p:ajax event="dateSelect" update="msgTime" listener="#{reservation.timeChange}"/>
                             <p:ajax event="blur" update="msgTime"/>

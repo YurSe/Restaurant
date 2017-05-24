@@ -31,6 +31,8 @@ public class Reservation implements Serializable{
     @Autowired
     private UserRepository userRepository;
 
+    private Date minDate = new Date();
+
     private Date date;
 
     private Date time;
@@ -40,11 +42,36 @@ public class Reservation implements Serializable{
     public Reservation() {
     }
 
+    public int getHoursFromTime () {
+        minDate = new Date();
+        return minDate.getHours();
+    }
+
+    public int getMinutesFromTime() {
+        minDate = new Date();
+        return minDate.getMinutes();
+    }
+
+    public int getSecondsFromTime() {
+        minDate = new Date();
+        return minDate.getSeconds();
+    }
+
+
+
     private Date dateTime(Date date, Date time) {
         return new Date(
                 date.getYear(), date.getMonth(), date.getDay(),
                 time.getHours(), time.getMinutes(), time.getSeconds()
         );
+    }
+
+    public Date getMinDate() {
+        return minDate;
+    }
+
+    public void setMinDate(Date minDate) {
+        this.minDate = minDate;
     }
 
     public void dateChange(SelectEvent event) {
