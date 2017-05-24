@@ -35,8 +35,9 @@
                 <p:column headerText="Цена">
                     <h:outputText value="#{dishe.price}"/>
                 </p:column>
-                <p:column headerText="Удалить" style="width: 15%;">
+                <p:column headerText="Удалить" style="width: 20%;">
                     <p:commandButton value="X" style="background-color: red;"
+                                     update="basketDataTable"
                                      action="#{orderController.RemoveDish(dishe)}"/>
                 </p:column>
             </p:dataTable>
