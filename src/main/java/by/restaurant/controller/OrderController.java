@@ -3,6 +3,7 @@ package by.restaurant.controller;
 import by.restaurant.model.Dish;
 import by.restaurant.model.Order;
 import by.restaurant.service.IOrderService;
+import by.restaurant.service.IUserService;
 import by.restaurant.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -22,7 +23,7 @@ import java.util.Set;
 public class OrderController implements Serializable {
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @Autowired
     private IOrderService orderService;
