@@ -14,6 +14,21 @@
             <p:menuitem value="Услуги" outcome="/pages/services?faces-redirect=true"/>
             <p:menuitem value="Контакты" outcome="/pages/contacts?faces-redirect=true"/>
             <p:menuitem value="О ресторане" outcome="/pages/about?faces-redirect=true"/>
+
+            <p:commandButton id="movieBtn" value="Корзина" type="button" />
+            <p:overlayPanel id="moviePanel" for="movieBtn" hideEffect="fade" dynamic="true" style="width:50%;">
+                <p:dataTable var="dishes" value="#{orderController.order.dishes}" rows="5" paginator="true">
+                    <p:column headerText="Movie">
+                        <h:outputText value="#{dishes.name}" />
+                    </p:column>
+
+                    <p:column headerText="Directed By">
+                        <h:outputText value="#{dishes.price}" />
+                    </p:column>
+                </p:dataTable>
+            </p:overlayPanel>
+
+
             <p:menuitem ajax="false" value="Выйти" url="/logout"
                         style="position: absolute; right: 1%;" rendered="#{springUserController.IsAuthorized()}"/>
 
