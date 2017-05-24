@@ -26,6 +26,7 @@
         <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="true" style="width:50%;"
                         widgetVar="basketPanelVar">
             <p:dataTable id="basketDataTable" var="dishe" value="#{orderController.order.dishes}" rows="5"
+                         emptyMessage="Корзина пуста"
                          paginator="true">
                 <p:column headerText="Название">
                     <h:outputText value="#{dishe.name}"/>
@@ -35,7 +36,7 @@
                     <h:outputText value="#{dishe.price}"/>
                 </p:column>
                 <p:column headerText="Удалить" style="width: 15%;">
-                    <p:commandButton value="X" style="background-color: red;" onclick="PF('basketPanelVar').loadContents()"
+                    <p:commandButton value="X" style="background-color: red;"
                                      action="#{orderController.RemoveDish(dishe)}"/>
                 </p:column>
             </p:dataTable>
