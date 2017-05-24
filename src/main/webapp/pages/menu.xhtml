@@ -19,7 +19,7 @@
 
     <h:form id="basketForm">
         <p:commandButton id="basketButton" value="Корзина" type="button"/>
-        <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="true" style="width:50%;">
+        <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="false" style="width:50%;">
             <p:dataTable id="basketDataTable" var="dishes" value="#{orderController.order.dishes}" rows="5" paginator="true">
                 <p:column headerText="Name">
                     <h:outputText value="#{dishes.name}"/>
