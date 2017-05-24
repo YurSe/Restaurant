@@ -24,7 +24,8 @@
 
         <p:commandButton id="basketButton" value="Корзина" type="button"/>
         <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="false" style="width:50%;">
-            <p:dataTable id="basketDataTable" var="dishes" value="#{orderController.order.dishes}" rows="5" paginator="true">
+            <p:dataTable id="basketDataTable" var="dishes" value="#{orderController.order.dishes}" rows="5"
+                         paginator="true">
                 <p:column headerText="Name">
                     <h:outputText value="#{dishes.name}"/>
                 </p:column>
@@ -71,9 +72,7 @@
                     </p:commandButton>
 
                     <p:commandButton value="Добавить к заказу" rendered="#{springUserController.IsAuthorized()}"
-                                     action="#{orderController.AddDish(dish)}"
-                                     update="basketPanel"/>
-
+                                     action="#{orderController.AddDish(dish)}"/>
                 </h:panelGrid>
             </p:panel>
         </p:dataGrid>
