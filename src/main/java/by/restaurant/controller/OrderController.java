@@ -34,11 +34,6 @@ public class OrderController implements Serializable {
     private void init() {
         order = new Order();
 
-        User userSpring = (org.springframework.security.core.userdetails.User) SecurityContextHolder
-                .getContext().getAuthentication().getPrincipal();
-        by.restaurant.model.User user = userService.getUserByName(userSpring.getUsername());
-        order.setUser(user);
-
         order.setGuestCount(1);
 
         Set<Dish> dishes = new HashSet<>();
@@ -64,6 +59,10 @@ public class OrderController implements Serializable {
 
     public void MakeOrder() {
         if (!order.getDishes().isEmpty()) {
+            User userSpring = (org.springframework.security.core.userdetails.User) SecurityContextHolder
+                    .getContext().getAuthentication().getPrincipal();
+            by.restaurant.model.User user = userService.getUserByName(userSpring.getUsername());
+            order.setUser(user);
             order.setTimestamp(new Timestamp(new Date().getTime()));
             orderService.save(order);
             init();
