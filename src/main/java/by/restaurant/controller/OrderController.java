@@ -2,8 +2,8 @@ package by.restaurant.controller;
 
 import by.restaurant.model.Dish;
 import by.restaurant.model.Order;
+import by.restaurant.service.IOrderService;
 import by.restaurant.service.UserService;
-import by.restaurant.service.implementation.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,7 +25,7 @@ public class OrderController implements Serializable {
     private UserService userService;
 
     @Autowired
-    private OrderService orderService;
+    private IOrderService orderService;
 
     private Order order = new Order();
 
