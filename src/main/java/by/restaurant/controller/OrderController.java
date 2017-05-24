@@ -27,7 +27,7 @@ public class OrderController implements Serializable {
     @Autowired
     private OrderService orderService;
 
-    private Order order;
+    private Order order = new Order();
 
     @PostConstruct
     private void init() {
@@ -62,9 +62,11 @@ public class OrderController implements Serializable {
     }
 
     public void MakeOrder() {
-        order.setTimestamp(new Timestamp(new Date().getTime()));
-        orderService.save(order);
-        init();
+        if (!order.getDishes().isEmpty()) {
+            order.setTimestamp(new Timestamp(new Date().getTime()));
+            orderService.save(order);
+            init();
+        }
     }
 
 }
