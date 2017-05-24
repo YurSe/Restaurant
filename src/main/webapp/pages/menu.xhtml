@@ -23,7 +23,7 @@
     <h:form id="menuForm">
 
         <p:commandButton id="basketButton" value="Корзина" type="button" onclick="PF('basketPanelVar').loadContents()"/>
-        <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="false" style="width:50%;"
+        <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="true" style="width:50%;"
                         widgetVar="basketPanelVar">
             <p:dataTable id="basketDataTable" var="dishe" value="#{orderController.order.dishes}" rows="5"
                          paginator="true">
@@ -34,7 +34,7 @@
                 <p:column headerText="Цена">
                     <h:outputText value="#{dishe.price}"/>
                 </p:column>
-                <p:column headerText="Удалить" style="width: 10%;">
+                <p:column headerText="Удалить" style="width: 15%;">
                     <p:commandButton value="X" style="background-color: red;" onclick="PF('basketPanelVar').loadContents()"
                                      action="#{orderController.RemoveDish(dishe)}"/>
                 </p:column>
