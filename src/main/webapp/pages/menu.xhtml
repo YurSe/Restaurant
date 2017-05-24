@@ -21,11 +21,11 @@
         <p:commandButton id="basketButton" value="Корзина" type="button"/>
         <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="true" style="width:50%;">
             <p:dataTable var="dishes" value="#{orderController.order.dishes}" rows="5" paginator="true">
-                <p:column headerText="Movie">
+                <p:column headerText="Name">
                     <h:outputText value="#{dishes.name}"/>
                 </p:column>
 
-                <p:column headerText="Directed By">
+                <p:column headerText="Price">
                     <h:outputText value="#{dishes.price}"/>
                 </p:column>
             </p:dataTable>
@@ -72,7 +72,7 @@
 
                     <p:commandButton value="Добавить к заказу"
                                      action="#{orderController.AddDish(dish)}"
-                                     update="basketForm"/>
+                                     />
 
                 </h:panelGrid>
             </p:panel>
