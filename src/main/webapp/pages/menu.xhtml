@@ -11,6 +11,7 @@
     <h:outputScript library="js" name="jquery.elevatezoom.js" target="body"/>
     <h:outputScript library="js" name="jquery.elevateZoom-3.0.8.min.js" target="body"/>
     <h:outputScript library="js" name="imageZoom.js" target="body"/>
+    <link rel="stylesheet" href="/resources/css/search-form.css"/>
 </h:head>
 
 <h:body>
@@ -19,14 +20,15 @@
     <p:growl for="messageCreatedOrder" id="growl" autoUpdate="true" showDetail="true"/>
     <f:event type="preRenderView" listener="#{reservation.showCreatedOrderNotification}" />
     <h:form id="menuForm">
+        <div id="search-form">
         <p:dataGrid var="dish" value="#{dishController.allDishes}" columns="3" layout="grid"
-                    rows="12" paginator="true" style="margin-top: 1%; margin-left: 17%; width: 60%;"
+                    rows="12" paginator="true" style="margin-top: 1%; margin-left: 17%; width: 75%;"
                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
             <f:facet name="header">
                 Меню блюд
             </f:facet>
 
-            <p:panel header="#{dish.name}" style="height: 98%">
+            <p:panel header="#{dish.name}" style="height: 98%;width: 96%">
                 <h:panelGrid columns="1" style="width:100%">
 
                     <h:graphicImage styleClass="ZoomImage"
@@ -55,6 +57,7 @@
                 </h:panelGrid>
             </p:panel>
         </p:dataGrid>
+        </div>
     </h:form>
 
     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
