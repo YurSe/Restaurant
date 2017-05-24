@@ -70,9 +70,9 @@
                                    icon="ui-icon-alert"/>
                     </p:commandButton>
 
-                    <p:commandButton value="Добавить к заказу"
+                    <p:commandButton value="Добавить к заказу" rendered="#{springUserController.IsAuthorized()}"
                                      action="#{orderController.AddDish(dish)}"
-                                     />
+                                     update="basketForm"/>
 
                 </h:panelGrid>
             </p:panel>
