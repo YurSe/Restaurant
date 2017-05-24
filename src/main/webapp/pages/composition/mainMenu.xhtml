@@ -16,25 +16,6 @@
             <p:menuitem value="О ресторане" outcome="/pages/about?faces-redirect=true"/>
 
             <p:menuitem id="basketButton" value="Корзина" type="button" onclick="PF('basketPanelVar').loadContents()"/>
-            <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="true" style="width:50%;"
-                            widgetVar="basketPanelVar">
-                <p:dataTable id="basketDataTable" var="dishe" value="#{orderController.order.dishes}" rows="5"
-                             emptyMessage="Корзина пуста"
-                             paginator="true">
-                    <p:column headerText="Название">
-                        <h:outputText value="#{dishe.name}"/>
-                    </p:column>
-
-                    <p:column headerText="Цена">
-                        <h:outputText value="#{dishe.price}"/>
-                    </p:column>
-                    <p:column headerText="Удалить" style="width: 20%;">
-                        <p:commandButton value="X" style="background-color: red;"
-                                         update="basketDataTable"
-                                         action="#{orderController.RemoveDish(dishe)}"/>
-                    </p:column>
-                </p:dataTable>
-            </p:overlayPanel>
 
             <p:menuitem ajax="false" value="Выйти" url="/logout"
                         style="position: absolute; right: 1%;" rendered="#{springUserController.IsAuthorized()}"/>
@@ -45,5 +26,26 @@
                         rendered="#{!springUserController.IsAuthorized()}"
                         style="position: absolute; right: 1%;"/>
         </p:menubar>
+
+        <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="true" style="width:50%;"
+                        widgetVar="basketPanelVar">
+            <p:dataTable id="basketDataTable" var="dishe" value="#{orderController.order.dishes}" rows="5"
+                         emptyMessage="Корзина пуста"
+                         paginator="true">
+                <p:column headerText="Название">
+                    <h:outputText value="#{dishe.name}"/>
+                </p:column>
+
+                <p:column headerText="Цена">
+                    <h:outputText value="#{dishe.price}"/>
+                </p:column>
+                <p:column headerText="Удалить" style="width: 20%;">
+                    <p:commandButton value="X" style="background-color: red;"
+                                     update="basketDataTable"
+                                     action="#{orderController.RemoveDish(dishe)}"/>
+                </p:column>
+            </p:dataTable>
+        </p:overlayPanel>
+
     </h:form>
 </ui:composition>
