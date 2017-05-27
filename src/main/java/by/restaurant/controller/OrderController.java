@@ -3,7 +3,6 @@ package by.restaurant.controller;
 import by.restaurant.model.Dish;
 import by.restaurant.model.Order;
 import by.restaurant.service.IOrderService;
-import by.restaurant.service.IUserService;
 import by.restaurant.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -23,7 +22,7 @@ import java.util.Set;
 public class OrderController implements Serializable {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @Autowired
     private IOrderService orderService;
@@ -61,7 +60,7 @@ public class OrderController implements Serializable {
         if (!order.getDishes().isEmpty()) {
             User userSpring = (org.springframework.security.core.userdetails.User) SecurityContextHolder
                     .getContext().getAuthentication().getPrincipal();
-            by.restaurant.model.User user = userService.getUserByName(userSpring.getUsername());
+            by.restaurant.model.User user = userService.findByName(userSpring.getUsername());
             order.setUser(user);
             order.setTimestamp(new Timestamp(new Date().getTime()));
             orderService.save(order);
