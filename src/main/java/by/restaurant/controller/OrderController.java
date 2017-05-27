@@ -7,7 +7,6 @@ import by.restaurant.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.PostConstruct;
@@ -58,9 +57,7 @@ public class OrderController implements Serializable {
 
     public void MakeOrder() {
         if (!order.getDishes().isEmpty()) {
-            User userSpring = (org.springframework.security.core.userdetails.User) SecurityContextHolder
-                    .getContext().getAuthentication().getPrincipal();
-            by.restaurant.model.User user = userService.findByName(userSpring.getUsername());
+            by.restaurant.model.User user = userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
             order.setUser(user);
             order.setTimestamp(new Timestamp(new Date().getTime()));
             orderService.save(order);
