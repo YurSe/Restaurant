@@ -30,7 +30,7 @@
                         <p:calendar id="date" value="#{reservation.date}" required="true" label="Date"
                                     requiredMessage="'Date' can't be empty." autocomplete="off" maxlength="8"
                         mindate="#{reservation.minDate}">
-                            <p:ajax event="dateSelect" update="msgDate" listener="#{reservation.dateChange}"/>
+                            <p:ajax event="dateSelect" update="msgDate,time" listener="#{reservation.dateChange}"/>
                             <p:ajax event="blur" update="msgDate"/>
                         </p:calendar>
                     </div>
@@ -45,8 +45,8 @@
                     <div class="col-md-4">
                         <p:calendar id="time" value="#{reservation.time}" required="true" label="Time"
                                     requiredMessage="'Time' can't be empty." autocomplete="off" maxlength="8" pattern="HH:mm:ss" timeOnly="true"
-                        minHour="#{reservation.hoursFromTime}" minMinute="#{reservation.minutesFromTime}" minSecond="#{reservation.secondsFromTime}">
-
+                        minHour="#{reservation.hoursFromTime}" minMinute="#{reservation.minutesFromTime}" minSecond="#{reservation.secondsFromTime}"
+                        maxHour="20">
                             <p:ajax event="dateSelect" update="msgTime" listener="#{reservation.timeChange}"/>
                             <p:ajax event="blur" update="msgTime"/>
                         </p:calendar>

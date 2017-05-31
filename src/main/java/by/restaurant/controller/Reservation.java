@@ -39,20 +39,35 @@ public class Reservation implements Serializable{
 
     private Integer guestCount;
 
+    private final int MIN_HOUR = 9;
+
+    private final int MIN_MINUTE = 0;
+
+    private final int MIN_SECOND = 0;
+
     public Reservation() {
     }
 
     public int getHoursFromTime () {
+        if(date!= null && date.after(new Date())) {
+            return MIN_HOUR;
+        }
         minDate = new Date();
         return minDate.getHours();
     }
 
     public int getMinutesFromTime() {
+        if(date!= null && date.after(new Date())) {
+            return MIN_MINUTE;
+        }
         minDate = new Date();
         return minDate.getMinutes();
     }
 
     public int getSecondsFromTime() {
+        if(date!= null && date.after(new Date())) {
+            return MIN_SECOND;
+        }
         minDate = new Date();
         return minDate.getSeconds();
     }
@@ -75,11 +90,11 @@ public class Reservation implements Serializable{
     }
 
     public void dateChange(SelectEvent event) {
-        Date date = (Date)event.getObject();
+         date = (Date)event.getObject();
     }
 
     public void timeChange(SelectEvent event) {
-        Date date = (Date)event.getObject();
+        time = (Date)event.getObject();
     }
 
     public void showCreatedOrderNotification(){
