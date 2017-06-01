@@ -44,6 +44,7 @@ public class Reservation implements Serializable{
     private final int MIN_MINUTE = 0;
 
     private final int MIN_SECOND = 0;
+
     private Set<Dish> dishes = new HashSet<>();
 
     public Reservation() {
@@ -151,6 +152,9 @@ public class Reservation implements Serializable{
         order.setUser(user);
         order.setDishes(dishes);
         iOrderService.save(order);
+
+        dishes = new HashSet<>();
+
         goToMenuPage();
     }
 
