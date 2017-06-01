@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
-@Scope("request")
+@Scope("session")
 public class Reservation implements Serializable{
 
     @Autowired
@@ -139,7 +139,7 @@ public class Reservation implements Serializable{
         iOrderService.save(order);
         goToMenuPage();
     }
-    
+
     public Date getDate() {
         return date;
     }
