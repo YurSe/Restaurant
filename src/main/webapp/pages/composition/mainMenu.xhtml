@@ -31,7 +31,7 @@
 
         <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="true" style="width:50%;"
                         widgetVar="basketPanelVar">
-            <p:dataTable id="basketDataTable" var="dishe" value="#{orderController.order.dishes}" rows="5"
+            <p:dataTable id="basketDataTable" var="dishe" value="#{reservation.dishes}" rows="5"
                          emptyMessage="Корзина пуста"
                          paginator="true">
                 <p:column headerText="Название">
@@ -44,10 +44,11 @@
                 <p:column headerText="Удалить" style="width: 20%;">
                     <p:commandButton value="X" style="background-color: red;"
                                      update="basketDataTable"
-                                     action="#{orderController.RemoveDish(dishe)}"/>
+                                     action="#{reservation.RemoveDish(dishe)}"/>
                 </p:column>
             </p:dataTable>
-            <p:commandButton value="Заказать" rendered="#{!orderController.IsDishesEmpty()}" actionListener="#{orderController.MakeOrder()}"/>
+            <p:commandButton value="Заказать" rendered="#{!reservation.IsDishesEmpty()}"
+                             actionListener="#{reservation.createOrder()}"/>
         </p:overlayPanel>
 
     </h:form>

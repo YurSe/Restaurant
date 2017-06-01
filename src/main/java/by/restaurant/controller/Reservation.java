@@ -1,5 +1,6 @@
 package by.restaurant.controller;
 
+import by.restaurant.model.Dish;
 import by.restaurant.model.Order;
 import by.restaurant.model.User;
 import by.restaurant.repository.UserRepository;
@@ -17,10 +18,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-/**
- * Created by Pavel on 15.05.2017.
- */
 @Component
 @Scope("request")
 public class Reservation implements Serializable{
@@ -38,6 +38,8 @@ public class Reservation implements Serializable{
     private Date time;
 
     private Integer guestCount;
+
+    private Set<Dish> dishes = new HashSet<>();
 
     public Reservation() {
     }
@@ -57,6 +59,26 @@ public class Reservation implements Serializable{
         return minDate.getSeconds();
     }
 
+    public Set<Dish> getDishes() {
+        return dishes;
+    }
+
+    public void setDishes(Set<Dish> dishes) {
+        this.dishes = dishes;
+    }
+
+    public void AddDish(Dish dish) {
+        dishes.add(dish);
+    }
+
+    public void RemoveDish(Dish dish) {
+        dishes.remove(dish);
+    }
+
+
+    public boolean IsDishesEmpty() {
+        return dishes.isEmpty();
+    }
 
 
     private Date dateTime(Date date, Date time) {
@@ -97,7 +119,6 @@ public class Reservation implements Serializable{
         context.addMessage("messageNotFoundUser", new FacesMessage(FacesMessage.SEVERITY_ERROR,  "Error","User not found") );
     }
 
-
     private void goToMenuPage() throws IOException{
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         context.getSessionMap().put("createdWithSuccess","true");
@@ -114,9 +135,11 @@ public class Reservation implements Serializable{
         order.setTimestamp(new Timestamp(dateTime(date, time).getTime()));
         order.setGuestCount(guestCount);
         order.setUser(user);
+        order.setDishes(dishes);
         iOrderService.save(order);
         goToMenuPage();
     }
+    
     public Date getDate() {
         return date;
     }
