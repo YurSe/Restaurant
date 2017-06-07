@@ -6,9 +6,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by Pavel on 09.04.2017.
- */
 @Entity
 @Table(name = "users")
 public class User extends SuperClass {
