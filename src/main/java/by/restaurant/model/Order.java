@@ -12,7 +12,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     @PrimaryKeyJoinColumn
-    private int id;
+    private Long id;
 
     @Column(name = "date_time", nullable = false)
     private Timestamp timestamp;
@@ -29,11 +29,11 @@ public class Order {
     public Order() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
