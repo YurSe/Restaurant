@@ -106,4 +106,33 @@ public class Dish implements Serializable {
     public void setOrders(List<Order_dish> orders) {
         this.orders = orders;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Dish dish = (Dish) o;
+
+        if (Double.compare(dish.price, price) != 0) return false;
+        if (id != null ? !id.equals(dish.id) : dish.id != null) return false;
+        if (name != null ? !name.equals(dish.name) : dish.name != null) return false;
+        if (image != null ? !image.equals(dish.image) : dish.image != null) return false;
+        if (description != null ? !description.equals(dish.description) : dish.description != null) return false;
+        return mass != null ? mass.equals(dish.mass) : dish.mass == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (image != null ? image.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (mass != null ? mass.hashCode() : 0);
+        return result;
+    }
 }
