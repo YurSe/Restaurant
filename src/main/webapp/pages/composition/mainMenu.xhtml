@@ -43,7 +43,7 @@
                 </p:column>
 
                 <p:column headerText="Кол-во">
-                    <h:outputText value="#{reservation.dishes[dish]}"/>
+                    <h:outputText value="#{reservation.dishes.get(dish)}"/>
                 </p:column>
 
                 <p:column headerText="Удалить" style="width: 20%;">
