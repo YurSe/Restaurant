@@ -44,7 +44,7 @@ public class Reservation implements Serializable {
 
     private final int MIN_SECOND = 0;
 
-    private Set<Dish> dishes = new HashSet<>();
+    private List<Dish> dishes = new ArrayList<>();
 
     public Reservation() {
     }
@@ -73,11 +73,11 @@ public class Reservation implements Serializable {
         return minDate.getSeconds();
     }
 
-    public Set<Dish> getDishes() {
+    public List<Dish> getDishes() {
         return dishes;
     }
 
-    public void setDishes(Set<Dish> dishes) {
+    public void setDishes(List<Dish> dishes) {
         this.dishes = dishes;
     }
 
@@ -89,11 +89,9 @@ public class Reservation implements Serializable {
         dishes.remove(dish);
     }
 
-
     public boolean IsDishesEmpty() {
         return dishes.isEmpty();
     }
-
 
     private Date dateTime(Date date, Date time) {
         return new Date(
@@ -159,12 +157,12 @@ public class Reservation implements Serializable {
         iOrderService.save(order);
 
 
-        dishes = new HashSet<>();
+        dishes = new ArrayList<>();
 
         goToMenuPage();
     }
 
-    private Map<Dish, Integer> createMap(Set<Dish> dishes) {
+    private Map<Dish, Integer> createMap(List<Dish> dishes) {
         Map<Dish, Integer> map = new HashMap<>();
 
         for (Dish dish : dishes) {
