@@ -56,6 +56,10 @@
             <p:commandButton value="Заказать" rendered="#{!reservation.IsDishesEmpty()}"
                              actionListener="#{reservation.createOrder()}"/>
 
+            <p:commandButton value="Очистить" rendered="#{!reservation.IsDishesEmpty()}"
+                             onclick="PF('basketPanelVar').update()"
+                             actionListener="#{reservation.Clear()}"/>
+
             <h:outputText value="Итого = #{reservation.fullPrice}" style="position:relative; float:right;"/>
 
         </p:overlayPanel>

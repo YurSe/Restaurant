@@ -103,6 +103,10 @@ public class Reservation implements Serializable {
         return dishes.isEmpty();
     }
 
+    public void Clear(){
+        dishes = new HashMap<>();
+    }
+
     public Double getFullPrice() {
         double fullPrice = 0;
         for (Map.Entry<Dish, Integer> entry : dishes.entrySet())
@@ -176,9 +180,7 @@ public class Reservation implements Serializable {
         order.setOrder_dishes(order_dishes);
         iOrderService.save(order);
 
-
-        dishes = new HashMap<>();
-
+        Clear();
         goToMenuPage();
     }
 
