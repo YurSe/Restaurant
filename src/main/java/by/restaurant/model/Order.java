@@ -1,14 +1,13 @@
 package by.restaurant.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "orders")
-public class Order implements Serializable {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
@@ -24,7 +23,7 @@ public class Order implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Order_dish> order_dishes = new HashSet<>();
 
     public Order() {

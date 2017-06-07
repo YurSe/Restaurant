@@ -37,7 +37,7 @@ public class Dish implements Serializable {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "dish", cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "dish", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<Order_dish> orders;
 
     public Dish() {
