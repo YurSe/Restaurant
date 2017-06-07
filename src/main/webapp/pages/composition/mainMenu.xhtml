@@ -31,20 +31,25 @@
 
         <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="true" style="width:50%;"
                         widgetVar="basketPanelVar">
-            <p:dataTable id="basketDataTable" var="dishe" value="#{reservation.dishes}" rows="5"
+            <p:dataTable id="basketDataTable" var="dish" value="#{reservation.dishList}" rows="5"
                          emptyMessage="Корзина пуста"
                          paginator="true">
                 <p:column headerText="Название">
-                    <h:outputText value="#{dishe.name}"/>
+                    <h:outputText value="#{dish.name}"/>
                 </p:column>
 
                 <p:column headerText="Цена">
-                    <h:outputText value="#{dishe.price}"/>
+                    <h:outputText value="#{dish.price}"/>
                 </p:column>
+
+                <p:column headerText="Кол-во">
+                    <h:outputText value="#{reservation.dishes[dish]}"/>
+                </p:column>
+
                 <p:column headerText="Удалить" style="width: 20%;">
                     <p:commandButton value="X" style="background-color: red;"
                                      update="basketDataTable"
-                                     action="#{reservation.RemoveDish(dishe)}"/>
+                                     action="#{reservation.RemoveDish(dish)}"/>
                 </p:column>
             </p:dataTable>
             <p:commandButton value="Заказать" rendered="#{!reservation.IsDishesEmpty()}"

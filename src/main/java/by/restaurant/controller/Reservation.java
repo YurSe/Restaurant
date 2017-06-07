@@ -44,7 +44,7 @@ public class Reservation implements Serializable {
 
     private final int MIN_SECOND = 0;
 
-    private List<Dish> dishes = new ArrayList<>();
+    private Map<Dish, Integer> dishes = new HashMap<>();
 
     public Reservation() {
     }
@@ -73,16 +73,23 @@ public class Reservation implements Serializable {
         return minDate.getSeconds();
     }
 
-    public List<Dish> getDishes() {
+    public List<Dish> getDishList(){
+        return (List<Dish>) dishes.keySet();
+    }
+
+    public Map<Dish, Integer> getDishes() {
         return dishes;
     }
 
-    public void setDishes(List<Dish> dishes) {
+    public void setDishes(Map<Dish, Integer> dishes) {
         this.dishes = dishes;
     }
 
     public void AddDish(Dish dish) {
-        dishes.add(dish);
+        if (!dishes.containsKey(dish))
+            dishes.put(dish, 1);
+        else
+            dishes.put(dish, dishes.get(dish) + 1);
     }
 
     public void RemoveDish(Dish dish) {
@@ -149,30 +156,16 @@ public class Reservation implements Serializable {
         order.setUser(user);
 
         Set<Order_dish> order_dishes = new HashSet<>();
-        for (Map.Entry<Dish, Integer> entry : createMap(dishes).entrySet()) {
+        for (Map.Entry<Dish, Integer> entry : dishes.entrySet()) {
             order_dishes.add(new Order_dish(order.getId(), entry.getKey().getId(), order, entry.getKey(), entry.getValue()));
         }
         order.setOrder_dishes(order_dishes);
         iOrderService.save(order);
 
 
-        dishes = new ArrayList<>();
+        dishes = new HashMap<>();
 
         goToMenuPage();
-    }
-
-    private Map<Dish, Integer> createMap(List<Dish> dishes) {
-        Map<Dish, Integer> map = new HashMap<>();
-
-        for (Dish dish : dishes) {
-            Integer i = 1;
-            if (map.containsKey(dish)) {
-                i = map.get(dish) + 1;
-            }
-            map.put(dish, i);
-        }
-
-        return map;
     }
 
     public Date getDate() {
