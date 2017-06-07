@@ -24,7 +24,7 @@ public class Order implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "order", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST})
     private Set<Order_dish> order_dishes = new HashSet<>();
 
     public Order() {
