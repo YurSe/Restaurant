@@ -5,50 +5,46 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "order_dish")
+@IdClass(Order_dishPK.class)
 public class Order_dish implements Serializable {
 
     @Id
-    private long orderId;
+    @Column(name = "order_id", nullable = false)
+    private Long orderId;
 
     @Id
-    private long dishId;
-
-    @Column(name="Count")
-    private Integer count;
+    @Column(name = "dish_id", nullable = false)
+    private Long dishId;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn(name="ORDERID", referencedColumnName="ID")
+    @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false, insertable = false, updatable = false)
     private Order order;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn(name="DISHID", referencedColumnName="ID")
+    @JoinColumn(name = "dish_id", referencedColumnName = "dish_id", nullable = false, insertable = false, updatable = false)
     private Dish dish;
+
+    @Column(name = "Count")
+    private Integer count;
+
 
     public Order_dish() {
     }
 
-    public long getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(long orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 
-    public long getDishId() {
+    public Long getDishId() {
         return dishId;
     }
 
-    public void setDishId(long dishId) {
+    public void setDishId(Long dishId) {
         this.dishId = dishId;
-    }
-
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
     }
 
     public Order getOrder() {
@@ -67,4 +63,11 @@ public class Order_dish implements Serializable {
         this.dish = dish;
     }
 
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 }

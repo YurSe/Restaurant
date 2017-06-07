@@ -12,7 +12,7 @@ public class Dish implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "dish_id")
     @PrimaryKeyJoinColumn
     private Long id;
 
@@ -36,7 +36,7 @@ public class Dish implements Serializable {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "dish")
+    @OneToMany(mappedBy = "dish", cascade = CascadeType.ALL)
     private List<Order> orders;
 
     public Dish() {

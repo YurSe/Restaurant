@@ -99,14 +99,15 @@ public class DishController implements Serializable {
         Map<Dish, Integer> map = new HashMap<Dish, Integer>();
 
         for (Order order : orders) {
-            Set<Dish> dishes = order.getDishes();
-            for (Dish dish : dishes) {
+            // TODO ДОДЕЛАТЬ!!!
+            // Set<Dish> dishes = order.getDishes();
+          /*  for (Dish dish : dishes) {
                 Integer i = 1;
                 if (map.containsKey(dish)) {
                     i = map.get(dish) + 1;
                 }
                 map.put(dish, i);
-            }
+            }*/
         }
         return map;
     }

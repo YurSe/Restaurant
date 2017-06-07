@@ -10,7 +10,7 @@ import java.util.Set;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "order_id")
     @PrimaryKeyJoinColumn
     private int id;
 
@@ -23,8 +23,8 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy="order")
-    private Set<Dish> dishes = new HashSet<>();
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private Set<Order_dish> order_dishes = new HashSet<>();
 
     public Order() {
     }
@@ -53,12 +53,12 @@ public class Order {
         this.user = user;
     }
 
-    public Set<Dish> getDishes() {
-        return dishes;
+    public Set<Order_dish> getOrder_dishes() {
+        return order_dishes;
     }
 
-    public void setDishes(Set<Dish> dishes) {
-        this.dishes = dishes;
+    public void setOrder_dishes(Set<Order_dish> order_dishes) {
+        this.order_dishes = order_dishes;
     }
 
     public Integer getGuestCount() {
