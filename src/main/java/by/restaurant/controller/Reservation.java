@@ -147,7 +147,6 @@ public class Reservation implements Serializable {
         order.setTimestamp(new Timestamp(dateTime(date, time).getTime()));
         order.setGuestCount(guestCount);
         order.setUser(user);
-        iOrderService.save(order);
 
         Set<Order_dish> order_dishes = new HashSet<>();
         for (Map.Entry<Dish, Integer> entry : createMap(dishes).entrySet()) {
