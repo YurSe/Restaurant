@@ -52,6 +52,7 @@
                                      action="#{reservation.RemoveDish(dish)}"/>
                 </p:column>
             </p:dataTable>
+            <h:outputText value="Итого = #{reservation.fullPrice}"/>
             <p:commandButton value="Заказать" rendered="#{!reservation.IsDishesEmpty()}"
                              actionListener="#{reservation.createOrder()}"/>
         </p:overlayPanel>

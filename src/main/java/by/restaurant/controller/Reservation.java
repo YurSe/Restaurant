@@ -103,6 +103,14 @@ public class Reservation implements Serializable {
         return dishes.isEmpty();
     }
 
+    public Double getFullPrice() {
+        double fullPrice = 0;
+        for (Map.Entry<Dish, Integer> entry : dishes.entrySet())
+            for (int i = 0; i < entry.getValue(); i++)
+                fullPrice += entry.getKey().getPrice();
+        return fullPrice;
+    }
+
     private Date dateTime(Date date, Date time) {
         return new Date(
                 date.getYear(), date.getMonth(), date.getDay(),
