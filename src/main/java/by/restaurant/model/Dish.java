@@ -8,6 +8,7 @@ import java.util.List;
 
 
 @Entity
+@Table(name = "dish")
 public class Dish implements Serializable {
 
     @Id
@@ -37,7 +38,7 @@ public class Dish implements Serializable {
     private Category category;
 
     @OneToMany(mappedBy = "dish", cascade = CascadeType.ALL)
-    private List<Order> orders;
+    private List<Order_dish> orders;
 
     public Dish() {
     }
@@ -98,11 +99,11 @@ public class Dish implements Serializable {
         this.mass = mass;
     }
 
-    public List<Order> getOrders() {
+    public List<Order_dish> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(List<Order_dish> orders) {
         this.orders = orders;
     }
 }
