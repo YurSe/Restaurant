@@ -2,6 +2,7 @@ package by.restaurant.controller;
 
 import by.restaurant.model.Dish;
 import by.restaurant.model.Order;
+import by.restaurant.model.Order_dish;
 import by.restaurant.model.User;
 import by.restaurant.repository.UserRepository;
 import by.restaurant.service.IOrderService;
@@ -17,13 +18,11 @@ import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Component
 @Scope("session")
-public class Reservation implements Serializable{
+public class Reservation implements Serializable {
 
     @Autowired
     private IOrderService iOrderService;
@@ -50,8 +49,8 @@ public class Reservation implements Serializable{
     public Reservation() {
     }
 
-    public int getHoursFromTime () {
-        if(date!= null && date.after(new Date())) {
+    public int getHoursFromTime() {
+        if (date != null && date.after(new Date())) {
             return MIN_HOUR;
         }
         minDate = new Date();
@@ -59,7 +58,7 @@ public class Reservation implements Serializable{
     }
 
     public int getMinutesFromTime() {
-        if(date!= null && date.after(new Date())) {
+        if (date != null && date.after(new Date())) {
             return MIN_MINUTE;
         }
         minDate = new Date();
@@ -67,7 +66,7 @@ public class Reservation implements Serializable{
     }
 
     public int getSecondsFromTime() {
-        if(date!= null && date.after(new Date())) {
+        if (date != null && date.after(new Date())) {
             return MIN_SECOND;
         }
         minDate = new Date();
@@ -112,37 +111,37 @@ public class Reservation implements Serializable{
     }
 
     public void dateChange(SelectEvent event) {
-         date = (Date)event.getObject();
+        date = (Date) event.getObject();
     }
 
     public void timeChange(SelectEvent event) {
-        time = (Date)event.getObject();
+        time = (Date) event.getObject();
     }
 
-    public void showCreatedOrderNotification(){
+    public void showCreatedOrderNotification() {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         String labelCreatedWithSuccess = (String) ec.getSessionMap().get("createdWithSuccess");
-        if (labelCreatedWithSuccess!=null && labelCreatedWithSuccess.equals("true")) {
+        if (labelCreatedWithSuccess != null && labelCreatedWithSuccess.equals("true")) {
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage("messageCreatedOrder", new FacesMessage("Successful",  "Thank you very much, the order will be reviewed within 3 minutes") );
+            context.addMessage("messageCreatedOrder", new FacesMessage("Successful", "Thank you very much, the order will be reviewed within 3 minutes"));
             ec.getSessionMap().remove("createdWithSuccess");
         }
     }
 
     private void showUserNotFoundNotification() {
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage("messageNotFoundUser", new FacesMessage(FacesMessage.SEVERITY_ERROR,  "Error","User not found") );
+        context.addMessage("messageNotFoundUser", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "User not found"));
     }
 
-    private void goToMenuPage() throws IOException{
+    private void goToMenuPage() throws IOException {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        context.getSessionMap().put("createdWithSuccess","true");
+        context.getSessionMap().put("createdWithSuccess", "true");
         context.redirect(context.getRequestContextPath() + "/pages/menu.xhtml");
     }
 
     public void createOrder() throws IOException {
         User user = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        if(user == null) {
+        if (user == null) {
             showUserNotFoundNotification();
             return;
         }
@@ -150,13 +149,33 @@ public class Reservation implements Serializable{
         order.setTimestamp(new Timestamp(dateTime(date, time).getTime()));
         order.setGuestCount(guestCount);
         order.setUser(user);
-        // TODO ДОДЕЛАТЬ!!!
-        // order.setDishes(dishes);
         iOrderService.save(order);
+
+        Set<Order_dish> order_dishes = new HashSet<>();
+        for (Map.Entry<Dish, Integer> entry : createMap(dishes).entrySet()) {
+            order_dishes.add(new Order_dish(order.getId(), entry.getKey().getId(), order, entry.getKey(), entry.getValue()));
+        }
+        order.setOrder_dishes(order_dishes);
+        iOrderService.save(order);
+
 
         dishes = new HashSet<>();
 
         goToMenuPage();
+    }
+
+    private Map<Dish, Integer> createMap(Set<Dish> dishes) {
+        Map<Dish, Integer> map = new HashMap<>();
+
+        for (Dish dish : dishes) {
+            Integer i = 1;
+            if (map.containsKey(dish)) {
+                i = map.get(dish) + 1;
+            }
+            map.put(dish, i);
+        }
+
+        return map;
     }
 
     public Date getDate() {

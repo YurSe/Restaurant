@@ -3,6 +3,7 @@ package by.restaurant.controller;
 import by.restaurant.model.Category;
 import by.restaurant.model.Dish;
 import by.restaurant.model.Order;
+import by.restaurant.model.Order_dish;
 import by.restaurant.service.ICategoryService;
 import by.restaurant.service.IDishService;
 import by.restaurant.service.IOrderService;
@@ -57,19 +58,17 @@ public class DishController implements Serializable {
 
     public void SaveDish() {
         dish.setCategory(categoryService.getCategoryByName(selectCategory));
-        dish.setDescription(insertPeriodically(dish.getDescription()," ", SPACE_PERIOD));
+        dish.setDescription(insertPeriodically(dish.getDescription(), " ", SPACE_PERIOD));
         dishService.save(dish);
     }
 
     private String insertPeriodically(
-            String text, String insert, int period)
-    {
+            String text, String insert, int period) {
         StringBuilder builder = new StringBuilder(
-                text.length() + insert.length() * (text.length()/period)+1);
+                text.length() + insert.length() * (text.length() / period) + 1);
         int index = 0;
         String prefix = "";
-        while (index < text.length())
-        {
+        while (index < text.length()) {
             builder.append(prefix);
             prefix = insert;
             builder.append(text.substring(index,
@@ -78,6 +77,7 @@ public class DishController implements Serializable {
         }
         return builder.toString();
     }
+
     public void DeleteDish(Long id) {
         dishService.delete(id);
     }
@@ -96,18 +96,25 @@ public class DishController implements Serializable {
     }
 
     private Map<Dish, Integer> createMap(List<Order> orders) {
-        Map<Dish, Integer> map = new HashMap<Dish, Integer>();
+
+        Map<Dish, Integer> map = new HashMap<>();
 
         for (Order order : orders) {
-            // TODO ДОДЕЛАТЬ!!!
-            // Set<Dish> dishes = order.getDishes();
-          /*  for (Dish dish : dishes) {
+            Set<Dish> dishes = new HashSet<>();
+            Set<Order_dish> order_dishes = order.getOrder_dishes();
+
+            for (Order_dish order_dish : order_dishes) {
+                for (int i = 0; i < order_dish.getCount(); i++)
+                    dishes.add(order_dish.getDish());
+            }
+
+            for (Dish dish : dishes) {
                 Integer i = 1;
                 if (map.containsKey(dish)) {
                     i = map.get(dish) + 1;
                 }
                 map.put(dish, i);
-            }*/
+            }
         }
         return map;
     }
