@@ -23,10 +23,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "order_dish",
-            joinColumns = {@JoinColumn(name = "order_id")},
-            inverseJoinColumns = {@JoinColumn(name = "dish_id")})
+    @OneToMany(mappedBy="order")
     private Set<Dish> dishes = new HashSet<>();
 
     public Order() {

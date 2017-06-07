@@ -3,10 +3,12 @@ package by.restaurant.model;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
-public class Dish {
+public class Dish implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +22,7 @@ public class Dish {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @Type(type="text")
+    @Type(type = "text")
     @Column(name = "image", nullable = false)
     private String image;
 
@@ -34,16 +36,10 @@ public class Dish {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public Dish() {
-    }
+    @OneToMany(mappedBy = "dish")
+    private List<Order> orders;
 
-    public Dish(String name, double price, String image, String description, Double mass, Category category) {
-        this.name = name;
-        this.price = price;
-        this.image = image;
-        this.description = description;
-        this.mass = mass;
-        this.category = category;
+    public Dish() {
     }
 
     public Long getId() {
@@ -100,5 +96,13 @@ public class Dish {
 
     public void setMass(Double mass) {
         this.mass = mass;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
