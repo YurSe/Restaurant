@@ -31,6 +31,14 @@ public class Order_dish implements Serializable {
     public Order_dish() {
     }
 
+    public Order_dish(Long orderId, Long dishId, Order order, Dish dish, Integer count) {
+        this.orderId = orderId;
+        this.dishId = dishId;
+        this.order = order;
+        this.dish = dish;
+        this.count = count;
+    }
+
     public Long getOrderId() {
         return orderId;
     }
