@@ -86,10 +86,11 @@ public class Reservation implements Serializable {
     }
 
     public void AddDish(Dish dish) {
-        if (!dishes.containsKey(dish))
+        if (!dishes.containsKey(dish)) {
             dishes.put(dish, 1);
-        else
+        } else {
             dishes.put(dish, dishes.get(dish) + 1);
+        }
     }
 
     public void RemoveDish(Dish dish) {
@@ -155,6 +156,8 @@ public class Reservation implements Serializable {
         order.setGuestCount(guestCount);
         order.setUser(user);
         iOrderService.save(order);
+
+        order = iOrderService.getById(order.getId());
 
         Set<Order_dish> order_dishes = new HashSet<>();
         for (Map.Entry<Dish, Integer> entry : dishes.entrySet()) {
