@@ -86,10 +86,12 @@ public class Reservation implements Serializable {
     }
 
     public void AddDish(Dish dish) {
-        if (dishes.containsKey(dish)) {
+        if (!dishes.containsKey(dish)) {
             dishes.put(dish, 1);
         } else {
-            dishes.put(dish, dishes.get(dish) + 1);
+            int v = dishes.get(dish) + 1;
+            dishes.remove(dish);
+            dishes.put(dish, v);
         }
     }
 
