@@ -73,8 +73,8 @@ public class Reservation implements Serializable {
         return minDate.getSeconds();
     }
 
-    public List<Dish> getDishList(){
-        return (List<Dish>) dishes.keySet();
+    public List<Dish> getDishList() {
+        return new ArrayList<>(dishes.keySet());
     }
 
     public Map<Dish, Integer> getDishes() {
