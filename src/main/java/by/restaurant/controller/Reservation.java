@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.*;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 @Component
 @Scope("session")
@@ -44,9 +45,17 @@ public class Reservation implements Serializable {
 
     private final int MIN_SECOND = 0;
 
-    private Map<Dish, Integer> dishes = new HashMap<>();
+    private Map<Dish, String> dishes = new HashMap<>();
 
     public Reservation() {
+    }
+
+    public Map<Dish, String> getDishes() {
+        return dishes;
+    }
+
+    public void setDishes(Map<Dish, String> dishes) {
+        this.dishes = dishes;
     }
 
     public int getHoursFromTime() {
@@ -77,21 +86,13 @@ public class Reservation implements Serializable {
         return new ArrayList<>(dishes.keySet());
     }
 
-    public Map<Dish, Integer> getDishes() {
-        return dishes;
-    }
-
-    public void setDishes(Map<Dish, Integer> dishes) {
-        this.dishes = dishes;
-    }
-
     public void AddDish(Dish dish) {
         if (!dishes.containsKey(dish)) {
-            dishes.put(dish, 1);
+            dishes.put(dish, "1");
         } else {
-            int v = dishes.get(dish) + 1;
+            Integer v = Integer.parseInt(dishes.get(dish)) + 1;
             dishes.remove(dish);
-            dishes.put(dish, v);
+            dishes.put(dish, v.toString());
         }
     }
 
@@ -103,16 +104,16 @@ public class Reservation implements Serializable {
         return dishes.isEmpty();
     }
 
-    public void Clear(){
+    public void Clear() {
         dishes = new HashMap<>();
     }
 
     public Double getFullPrice() {
         double fullPrice = 0;
-        for (Map.Entry<Dish, Integer> entry : dishes.entrySet())
-            for (int i = 0; i < entry.getValue(); i++)
+        for (Map.Entry<Dish, String> entry : dishes.entrySet())
+            for (int i = 0; i < Integer.parseInt(entry.getValue()); i++)
                 fullPrice += entry.getKey().getPrice();
-        return fullPrice;
+        return Math.round(fullPrice * 100.0) / 100.0;
     }
 
     private Date dateTime(Date date, Date time) {
@@ -174,8 +175,9 @@ public class Reservation implements Serializable {
         order = iOrderService.getById(order.getId());
 
         Set<Order_dish> order_dishes = new HashSet<>();
-        for (Map.Entry<Dish, Integer> entry : dishes.entrySet()) {
-            order_dishes.add(new Order_dish(order.getId(), entry.getKey().getId(), order, entry.getKey(), entry.getValue()));
+        for (Map.Entry<Dish, String> entry : dishes.entrySet()) {
+            order_dishes.add(new Order_dish(order.getId(), entry.getKey().getId(), order, entry.getKey(),
+                    Integer.parseInt(entry.getValue())));
         }
         order.setOrder_dishes(order_dishes);
         iOrderService.save(order);
