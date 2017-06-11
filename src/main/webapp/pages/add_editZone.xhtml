@@ -19,21 +19,21 @@
             <h:panelGrid columns="3" cellpadding="5">
 
                 <p:outputLabel value="Title:" for="name"/>
-                <p:inputText id="name" maxlength="255" value="#{zoneContr.zone.title}"
+                <p:inputText id="name" maxlength="254" value="#{zoneContr.zone.title}"
                              required="true" size="50" autocomplete="off">
                     <p:ajax update="msgTitle" event="blur"/>
                 </p:inputText>
                 <p:message for="name" id="msgTitle"/>
 
                 <p:outputLabel value="Description:" for="description"/>
-                <p:inputText id="description" maxlength="255" value="#{zoneContr.zone.description}"
+                <p:inputText id="description" maxlength="254" value="#{zoneContr.zone.description}"
                              required="true" size="50" autocomplete="off">
                     <p:ajax update="msgDescription" event="blur"/>
                 </p:inputText>
                 <p:message for="description" id="msgDescription"/>
 
                 <p:outputLabel value="Image link:" for="image"/>
-                <p:inputText id="image" maxlength="255" value="#{zoneContr.zone.image}"
+                <p:inputText id="image" maxlength="254" value="#{zoneContr.zone.image}"
                              required="true" size="50" autocomplete="off">
                     <p:ajax update="msgImage" event="blur"/>
                 </p:inputText>

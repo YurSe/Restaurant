@@ -6,6 +6,7 @@ import by.restaurant.model.Order;
 import by.restaurant.service.ICategoryService;
 import by.restaurant.service.IDishService;
 import by.restaurant.service.IOrderService;
+import by.restaurant.util.StringParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -57,27 +58,11 @@ public class DishController implements Serializable {
 
     public void SaveDish() {
         dish.setCategory(categoryService.getCategoryByName(selectCategory));
-        dish.setDescription(insertPeriodically(dish.getDescription()," ", SPACE_PERIOD));
+        dish.setDescription(StringParser.insertPeriodically(dish.getDescription()," ", SPACE_PERIOD));
         dishService.save(dish);
     }
 
-    private String insertPeriodically(
-            String text, String insert, int period)
-    {
-        StringBuilder builder = new StringBuilder(
-                text.length() + insert.length() * (text.length()/period)+1);
-        int index = 0;
-        String prefix = "";
-        while (index < text.length())
-        {
-            builder.append(prefix);
-            prefix = insert;
-            builder.append(text.substring(index,
-                    Math.min(index + period, text.length())));
-            index += period;
-        }
-        return builder.toString();
-    }
+
     public void DeleteDish(Long id) {
         dishService.delete(id);
     }

@@ -2,6 +2,7 @@ package by.restaurant.controller;
 
 import by.restaurant.model.Zone;
 import by.restaurant.service.ZoneService;
+import by.restaurant.util.StringParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ import java.util.List;
 @Controller
 @Scope("session")
 public class ZoneContr {
+
+    private final int SPACE_PERIOD_ZONE_DESCRIPTION = 32;
 
     @Autowired
     private SpringUserController springUserController;
@@ -54,6 +57,7 @@ public class ZoneContr {
     }
 
     public void saveZone() {
+        zone.setDescription(StringParser.insertPeriodically(zone.getDescription(), " ", SPACE_PERIOD_ZONE_DESCRIPTION));
         zoneService.save(zone);
     }
 
