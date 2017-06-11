@@ -12,6 +12,8 @@
         <bean:intercept-url pattern="/pages/register.xhtml" access="permitAll"/>
         <bean:intercept-url pattern="/pages/menu.xhtml" access="permitAll"/>
         <bean:intercept-url pattern="/pages/add_editZone.xhtml" access="hasAuthority('ADMIN')"/>
+        <bean:intercept-url pattern="/pages/add_editDish.xhtml" access="hasAuthority('ADMIN')"/>
+        <bean:intercept-url pattern="/pages/reservation.xhtml" access="isAuthenticated()"/>
         <bean:form-login login-page="/pages/login.xhtml"
                      default-target-url="/pages/menu.xhtml"
                          login-processing-url="/j_spring_security_check"
