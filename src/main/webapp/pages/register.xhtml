@@ -44,7 +44,7 @@
                     <h:outputLabel for="number" value="Phone number:" styleClass="col-md-4 control-label"/>
                 <div class="col-md-4">
                     <p:inputText id="number" value="#{userContr.phoneNumber}" required="true" label="Number" autocomplete="off"
-                                 requiredMessage="'Phone namber' can't be empty." a:placeholder="+375333333333" maxlength="13">
+                                 requiredMessage="'Phone namber' can't be empty." a:placeholder="+123 123456" maxlength="40">
                         <f:validator binding="#{phoneNumberValidator}" />
                         <p:ajax update="msgNumber" event="blur" />
                     </p:inputText>
