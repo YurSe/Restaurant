@@ -22,6 +22,8 @@ public class ZoneContr {
 
     private final int SPACE_PERIOD_ZONE_DESCRIPTION = 32;
 
+    private final int SPACE_PERIOD_ZONE_TITLE = 37;
+
     @Autowired
     private SpringUserController springUserController;
 
@@ -57,6 +59,7 @@ public class ZoneContr {
     }
 
     public void saveZone() {
+        zone.setTitle(StringParser.insertPeriodically(zone.getTitle(), " ", SPACE_PERIOD_ZONE_TITLE));
         zone.setDescription(StringParser.insertPeriodically(zone.getDescription(), " ", SPACE_PERIOD_ZONE_DESCRIPTION));
         zoneService.save(zone);
     }
