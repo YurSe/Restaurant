@@ -57,7 +57,9 @@
                     <h:outputLabel for="birthday" value="Birthday:" styleClass="col-md-4 control-label"/>
                     <div class="col-md-4">
                         <p:calendar id="birthday" value="#{userContr.birthday}" required="true" label="Birthday"
-                                    requiredMessage="'Birthday' can't be empty." autocomplete="off" maxlength="8">
+                                    yearRange="-90:-0"
+                                    requiredMessage="'Birthday' can't be empty." autocomplete="off" maxlength="8"
+                        maxdate="#{userContr.maxDate}" navigator="true">
                             <p:ajax event="dateSelect" update="msgBirthday" listener="#{userContr.dateChange}"/>
                             <p:ajax event="blur" update="msgBirthday"/>
                         </p:calendar>
