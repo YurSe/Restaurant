@@ -4,7 +4,6 @@ import by.restaurant.model.User;
 import by.restaurant.repository.UserRepository;
 import by.restaurant.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void registerUser(User user) throws Exception {
+    public void registerUser(User user) {
         userRepository.save(user);
     }
 }

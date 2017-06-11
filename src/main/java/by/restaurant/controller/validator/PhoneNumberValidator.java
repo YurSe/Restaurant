@@ -24,7 +24,7 @@ public class PhoneNumberValidator implements Validator{
 
     private Pattern pattern;
 
-    private static final String NAME_PATTERN = "\\+375(\\d){9}";
+    private static final String NAME_PATTERN = "^\\+(?:[0-9] ?){6,14}[0-9]$";
 
     public PhoneNumberValidator() {
         pattern = Pattern.compile(NAME_PATTERN);
@@ -37,7 +37,7 @@ public class PhoneNumberValidator implements Validator{
         }
 
         if(!pattern.matcher(value.toString()).matches()) {
-            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Validation Error","Phone number is not valid. Example: +375XXxxxxxxx"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Validation Error","Phone number is not valid. Example: +375 XX xxxxxxx"));
         }
 
         if(userRepository.findByPhoneNumber(value.toString()) != null){

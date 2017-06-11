@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
@@ -26,21 +27,34 @@ public class Registration {
     @Autowired
     private UserService userService;
 
-    public void register() throws IOException {
-        try {
-            User user = new User();
-            user.setBirthday(userContr.getBirthday());
-            user.setSubscription(userContr.isHasSubscription());
-            user.setPhoneNumber(userContr.getPhoneNumber());
-            user.setName(userContr.getName());
-            user.setAddress(userContr.getAddress());
-            user.setPassword(bCryptPasswordEncoder.encode(userContr.getPassword()));
-            user.setEmail(userContr.getEmail());
-            userService.registerUser(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-            context.redirect(context.getRequestContextPath() + "/pages/login.xhtml");
+    public void showRegisteredUserNotification() {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        String labelCreatedWithSuccess = (String) ec.getSessionMap().get("registeredUserWithSuccess");
+        if (labelCreatedWithSuccess != null && labelCreatedWithSuccess.equals("true")) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage("messageRegisteredUser", new FacesMessage("Successful", "Thank you very much, registration was successful." +
+                    " Please log in now!"));
+            ec.getSessionMap().remove("registeredUserWithSuccess");
         }
     }
+
+    private void goToAuthorizationPage() throws IOException {
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        context.getSessionMap().put("registeredUserWithSuccess", "true");
+        context.redirect(context.getRequestContextPath() + "/pages/login.xhtml");
+    }
+
+    public void register() throws IOException {
+        User user = new User();
+        user.setBirthday(userContr.getBirthday());
+        user.setSubscription(userContr.isHasSubscription());
+        user.setPhoneNumber(userContr.getPhoneNumber());
+        user.setName(userContr.getName());
+        user.setAddress(userContr.getAddress());
+        user.setPassword(bCryptPasswordEncoder.encode(userContr.getPassword()));
+        user.setEmail(userContr.getEmail());
+        userService.registerUser(user);
+        goToAuthorizationPage();
+    }
+}
+

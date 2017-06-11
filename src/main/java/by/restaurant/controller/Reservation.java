@@ -23,7 +23,8 @@ import java.util.concurrent.ConcurrentSkipListMap;
 
 @Component
 @Scope("session")
-public class Reservation implements Serializable {
+@SuppressWarnings( "deprecation" )
+public class Reservation implements Serializable{
 
     @Autowired
     private IOrderService iOrderService;
@@ -115,6 +116,7 @@ public class Reservation implements Serializable {
                 fullPrice += entry.getKey().getPrice();
         return Math.round(fullPrice * 100.0) / 100.0;
     }
+
 
     private Date dateTime(Date date, Date time) {
         return new Date(

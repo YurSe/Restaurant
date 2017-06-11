@@ -8,5 +8,5 @@ public interface UserService {
 
     User findByEmail(String email);
 
-    void registerUser(User user) throws Exception;
+    void registerUser(User user);
 }

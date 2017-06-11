@@ -28,6 +28,16 @@ public class UserContr implements Serializable{
 
     private boolean hasSubscription;
 
+    private Date maxDate = new Date();
+
+    public Date getMaxDate() {
+        return maxDate;
+    }
+
+    public void setMaxDate(Date maxDate) {
+        this.maxDate = maxDate;
+    }
+
     public void dateChange(SelectEvent event) {
         Date date = (Date)event.getObject();
     }

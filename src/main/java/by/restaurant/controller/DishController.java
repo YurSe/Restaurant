@@ -7,6 +7,7 @@ import by.restaurant.model.Order_dish;
 import by.restaurant.service.ICategoryService;
 import by.restaurant.service.IDishService;
 import by.restaurant.service.IOrderService;
+import by.restaurant.util.StringParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,9 @@ import java.util.*;
 @Scope("session")
 public class DishController implements Serializable {
 
-    private final Integer SPACE_PERIOD = 23;
+    private final int SPACE_PERIOD_DISH_DESCRIPTION = 23;
+
+    private final int SPACE_PERIOD_DISH_NAME = 20;
 
     @Autowired
     private IDishService dishService;
@@ -59,6 +62,8 @@ public class DishController implements Serializable {
     public void SaveDish() {
         dish.setCategory(categoryService.getCategoryByName(selectCategory));
         dish.setDescription(insertPeriodically(dish.getDescription(), " ", SPACE_PERIOD));
+        dish.setName(StringParser.insertPeriodically(dish.getName()," ", SPACE_PERIOD_DISH_NAME));
+        dish.setDescription(StringParser.insertPeriodically(dish.getDescription()," ", SPACE_PERIOD_DISH_DESCRIPTION));
         dishService.save(dish);
     }
 
@@ -77,6 +82,7 @@ public class DishController implements Serializable {
         }
         return builder.toString();
     }
+
 
     public void DeleteDish(Long id) {
         dishService.delete(id);

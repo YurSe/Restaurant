@@ -18,7 +18,7 @@
                     <h:outputLabel for="name" value="Name:" styleClass="col-md-4 control-label"/>
                 <div class="col-md-4">
                     <p:inputText id="name" value="#{userContr.name}" required="true" label="Name" autocomplete="off"
-                                 requiredMessage="'Name' can't be empty." a:placeholder="Vasya Pupkin" maxlength="50">
+                                 requiredMessage="'Name' can't be empty." a:placeholder="John Smith" maxlength="50">
                         <f:validator validatorId="nameValidator" />
                         <p:ajax update="msgName" event="blur" />
                     </p:inputText>
@@ -44,7 +44,7 @@
                     <h:outputLabel for="number" value="Phone number:" styleClass="col-md-4 control-label"/>
                 <div class="col-md-4">
                     <p:inputText id="number" value="#{userContr.phoneNumber}" required="true" label="Number" autocomplete="off"
-                                 requiredMessage="'Phone namber' can't be empty." a:placeholder="+375333333333" maxlength="13">
+                                 requiredMessage="'Phone namber' can't be empty." a:placeholder="+123 123456" maxlength="40">
                         <f:validator binding="#{phoneNumberValidator}" />
                         <p:ajax update="msgNumber" event="blur" />
                     </p:inputText>
@@ -57,7 +57,9 @@
                     <h:outputLabel for="birthday" value="Birthday:" styleClass="col-md-4 control-label"/>
                     <div class="col-md-4">
                         <p:calendar id="birthday" value="#{userContr.birthday}" required="true" label="Birthday"
-                                    requiredMessage="'Birthday' can't be empty." autocomplete="off" maxlength="8">
+                                    yearRange="-90:-0"
+                                    requiredMessage="'Birthday' can't be empty." autocomplete="off" maxlength="8"
+                        maxdate="#{userContr.maxDate}" navigator="true">
                             <p:ajax event="dateSelect" update="msgBirthday" listener="#{userContr.dateChange}"/>
                             <p:ajax event="blur" update="msgBirthday"/>
                         </p:calendar>
