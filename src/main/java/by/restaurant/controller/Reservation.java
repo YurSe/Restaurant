@@ -23,6 +23,7 @@ import java.util.Set;
 
 @Component
 @Scope("session")
+@SuppressWarnings( "deprecation" )
 public class Reservation implements Serializable{
 
     @Autowired
@@ -94,8 +95,7 @@ public class Reservation implements Serializable{
     public boolean IsDishesEmpty() {
         return dishes.isEmpty();
     }
-
-
+    
     private Date dateTime(Date date, Date time) {
         return new Date(
                 date.getYear(), date.getMonth(), date.getDay(),
