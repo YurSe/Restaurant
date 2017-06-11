@@ -16,7 +16,7 @@ public class NameValidator implements Validator{
 
     private Pattern pattern;
 
-    private static final String NAME_PATTERN = "^([A-ZА-Я][a-zа-я]*((\\s)))+[A-ZА-Я][a-zа-я]*$";
+    private static final String NAME_PATTERN = "^([a-zA-Z]{2,}\\s[a-zA-z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)";
 
     public NameValidator() {
         pattern = Pattern.compile(NAME_PATTERN);
@@ -29,7 +29,7 @@ public class NameValidator implements Validator{
         }
 
         if(!pattern.matcher(value.toString()).matches()) {
-            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Validation Error","Name is not valid. Example: Vasya Pupkin"));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Validation Error","Name is not valid. Example: Hector Sausage-Hausen"));
         }
     }
 }

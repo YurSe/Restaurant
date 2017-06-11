@@ -18,7 +18,7 @@
                     <h:outputLabel for="name" value="Name:" styleClass="col-md-4 control-label"/>
                 <div class="col-md-4">
                     <p:inputText id="name" value="#{userContr.name}" required="true" label="Name" autocomplete="off"
-                                 requiredMessage="'Name' can't be empty." a:placeholder="Vasya Pupkin" maxlength="50">
+                                 requiredMessage="'Name' can't be empty." a:placeholder="John Smith" maxlength="50">
                         <f:validator validatorId="nameValidator" />
                         <p:ajax update="msgName" event="blur" />
                     </p:inputText>
