@@ -5,6 +5,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import java.io.IOException;
 import java.io.Serializable;
 
 @Component
@@ -54,6 +57,11 @@ public class SpringUserController implements Serializable {
             return "/view/user/account?faces-redirect=true";
         }
         return "";
+    }
+
+    public void logout() throws IOException {
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        context.redirect("/logout");
     }
 
 }
