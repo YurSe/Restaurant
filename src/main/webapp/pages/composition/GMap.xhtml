@@ -13,7 +13,7 @@
             <f:loadBundle basename="gmap" var="gmap"/>
 
             <p:gmap id="gmap" center="#{gmap['lat']},#{gmap['lng']}" zoom="17" type="terrain"
-                    style="width:50ch; height:50vh;"
+                    style="width:100%;height:400px; text-align: center;"
                     streetView="true" model="#{markerView.simpleModel}"/>
         </p:cache>
     </h:form>
