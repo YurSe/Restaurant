@@ -1,19 +1,23 @@
 package by.restaurant.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-/**
- * Created by Pavel on 02.05.2017.
- */
+
 @Entity
 @Table(name = "zones")
 public class Zone extends SuperClass {
+
     @Column(unique = true, nullable = false)
     private String title;
+
+    @Type(type = "text")
     @Column(nullable = false)
     private String image;
+    
     @Column(nullable = false)
     private String description;
 
