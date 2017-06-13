@@ -14,7 +14,7 @@ public interface IOrderRepository extends JpaRepository<Order, Long> {
     @Query("select o from Order o where o.timestamp >= :timestamp")
     List<Order> getAllOrdersAfter(@Param("timestamp") Timestamp timestamp);
 
-    @Query("select o from Order o where o.user = :user")
+    @Query("select o from Order o where o.user = :user ORDER BY o.timestamp DESC")
     List<Order> getOrdersByUser(@Param("user") User user);
 
 }
