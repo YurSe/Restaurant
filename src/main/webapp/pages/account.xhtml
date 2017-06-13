@@ -13,7 +13,7 @@
 <h:body>
     <ui:include src="composition/mainMenu.xhtml"/>
 
-    <h:form id="Orderds">
+    <h:form id="orderdsForm">
         <p:dataGrid var="order" value="#{orderController.userOrders}" columns="2" layout="grid" rows="12"
                     style="margin-top: 1%;"
                     paginator="false">
@@ -49,7 +49,8 @@
 
                     <p:commandButton value="Отменить заказ" style="background-color: red;"
                                      rendered="#{orderController.IsRemoved(order)}"
-                                     action="#{orderController.RemoveOrder(order)}">
+                                     action="#{orderController.RemoveOrder(order)}"
+                                     update="orderdsForm">
                         <p:confirm header="Подтверждение" message="Вы уверены, что хотите отменить этот заказ?"
                                    icon="ui-icon-alert"/>
                     </p:commandButton>
