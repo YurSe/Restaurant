@@ -23,6 +23,9 @@
                                 rendered="#{springUserController.IsAuthorized()}"
                                 onclick="PF('basketPanelVar').loadContents()"/>
 
+                    <p:commandButton id="Account" value="Личный кабинет" action="account?faces-redirect=true"
+                                     rendered="#{springUserController.IsAuthorized()}"/>
+
                     <p:commandButton ajax="false" value="Выйти" url="/logout"
                                 rendered="#{springUserController.IsAuthorized()}"/>
 
