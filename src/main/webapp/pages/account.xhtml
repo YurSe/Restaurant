@@ -47,9 +47,24 @@
 
                     <h:outputText value="Итого : #{orderController.TotalPrice(order)}"/>
 
+                    <p:commandButton value="Отменить заказ" style="background-color: red;"
+                                     rendered="#{orderController.IsRemoved(order)}"
+                                     action="#{orderController.RemoveOrder(order)}">
+                        <p:confirm header="Подтверждение" message="Вы уверены, что хотите отменить этот заказ?"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+
                 </h:panelGrid>
             </p:panel>
         </p:dataGrid>
+
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Да" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="Нет" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
     </h:form>
 
     <ui:include src="composition/footer.xhtml"/>

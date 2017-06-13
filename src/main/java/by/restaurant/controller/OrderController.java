@@ -12,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -36,6 +38,15 @@ public class OrderController implements Serializable {
                 fullPrice += order_dish.getDish().getPrice();
 
         return Math.round(fullPrice * 100.0) / 100.0;
+    }
+
+    public void RemoveOrder(Order order) {
+        orderService.delete(order.getId());
+    }
+
+    public boolean IsRemoved(Order order) {
+        Timestamp now = new Timestamp(new Date().getTime());
+        return order.getTimestamp().equals(now);
     }
 
 }
