@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Главная</title>
+</h:head>
+
+<h:body>
+    <ui:include src="composition/mainMenu.xhtml"/>
+
+    <h:form id="Orderds">
+        <p:dataGrid var="order" value="#{orderController.userOrders}" columns="2" layout="grid" rows="12"
+                    style="margin-top: 1%;"
+                    paginator="false">
+            <f:facet name="header">
+                Ваши заказы
+            </f:facet>
+            <p:panel style="height: 96%; width: 98%">
+                <h:panelGrid columns="1" style="width:100%">
+
+                    <h:outputText value="Количество людей : #{order.guestCount}"/>
+
+                    <h:outputText value="Время : #{order.timestamp}"/>
+
+                    <p:dataList value="#{order.order_dishes}" var="order_dish" type="definition"
+                                emptyMessage="Нет блюд.">
+                        <f:facet name="header">
+                            Блюда
+                        </f:facet>
+                        <p:panel style="height: 90%; width: 98%">
+                            <h:panelGrid columns="1" style="width:100%">
+
+                                <h:outputText value="Блюдо : #{order_dish.dish.name}"/>
+
+                                <h:outputText value="Цена : #{order_dish.dish.price}"/>
+
+                                <h:outputText value="Количество : #{order_dish.count}"/>
+
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:dataList>
+
+                    <h:outputText value="Итого : #{orderController.TotalPrice(order)}"/>
+
+                </h:panelGrid>
+            </p:panel>
+        </p:dataGrid>
+    </h:form>
+
+    <ui:include src="composition/footer.xhtml"/>
+
+</h:body>
+</html>
