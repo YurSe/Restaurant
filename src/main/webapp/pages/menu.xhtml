@@ -26,46 +26,50 @@
         <div id="search-form">
 
 
-        <p:dataGrid var="dish" value="#{dishController.allDishes}" columns="3" layout="grid"
-                    rows="12" paginator="true" style="width: 110%;"
-                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-            <f:facet name="header">
-                Меню блюд
-            </f:facet>
+            <p:dataGrid var="dish" value="#{dishController.allDishes}" columns="3" layout="grid"
+                        rows="12" paginator="true" style="width: 110%;"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                <f:facet name="header">
+                    Меню блюд
+                </f:facet>
 
-            <p:panel header="#{dish.name}" style="height: 100%" styleClass="form-horizontal">
-                <h:panelGrid columns="1" style="width:100%">
-                    <p:lightBox>
-                        <h:outputLink value="#{dish.image}">
-                            <h:graphicImage url="#{dish.image}"
-                                            style="min-height:200px;max-height: 200px;width: 100%"/>
-                        </h:outputLink>
-                    </p:lightBox>
+                <p:panel header="#{dish.name}" style="height: 100%" styleClass="form-horizontal">
+                    <h:panelGrid columns="1" style="width:100%">
+                        <p:lightBox>
+                            <h:outputLink value="#{dish.image}">
+                                <h:graphicImage url="#{dish.image}"
+                                                style="min-height:200px;max-height: 200px;width: 100%"/>
+                            </h:outputLink>
+                        </p:lightBox>
 
-                    <h:outputText value="Категория: #{dish.category.name}"/>
+                        <h:outputText value="Категория: #{dish.category.name}"/>
 
-                    <h:outputText value="Цена: #{dish.price}"/>
+                        <h:outputText value="Цена: #{dish.price}"/>
 
-                    <h:outputText value="Описание: #{dish.description}"/>
+                        <h:outputText value="Описание: #{dish.description}"/>
 
-                    <h:outputText value="Масса: #{dish.mass}"/>
-                    <div class="form-group">
-                    <p:commandButton value="Редактировать блюдо" rendered="#{springUserController.IsAdmin()}"
-                                     action="/pages/add_editDish?faces-redirect=true">
-                        <f:setPropertyActionListener target="#{dishController.dish}" value="#{dish}"/>
-                    </p:commandButton>
-                    </div>
-                    <div class="form-group">
-                    <p:commandButton value="Удалить блюдо" update="menuForm"
-                                     rendered="#{springUserController.IsAdmin()}"
-                                     action="#{dishController.DeleteDish(dish.id)}">
-                        <p:confirm header="Подтверждение" message="Вы уверены, что хотите удалить это блюдо?"
-                                   icon="ui-icon-alert"/>
-                    </p:commandButton>
-                    </div>
-                </h:panelGrid>
-            </p:panel>
-        </p:dataGrid>
+                        <h:outputText value="Масса: #{dish.mass}"/>
+                        <div class="form-group">
+                            <p:commandButton value="Редактировать блюдо" rendered="#{springUserController.IsAdmin()}"
+                                             action="/pages/add_editDish?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{dishController.dish}" value="#{dish}"/>
+                            </p:commandButton>
+                        </div>
+                        <div class="form-group">
+                            <p:commandButton value="Удалить блюдо" update="menuForm"
+                                             rendered="#{springUserController.IsAdmin()}"
+                                             action="#{dishController.DeleteDish(dish.id)}">
+                                <p:confirm header="Подтверждение" message="Вы уверены, что хотите удалить это блюдо?"
+                                           icon="ui-icon-alert"/>
+                            </p:commandButton>
+                        </div>
+                    </h:panelGrid>
+                </p:panel>
+            </p:dataGrid>
+            <p:commandButton value="Добавить блюдо" style="margin-top: 1%;"
+                             rendered="#{springUserController.IsAdmin()}"
+                             actionListener="#{dishController.Clear()}"
+                             action="/pages/add_editDish?faces-redirect=true"/>
         </div>
     </h:form>
 
@@ -75,12 +79,6 @@
         <p:commandButton value="Нет" type="button" styleClass="ui-confirmdialog-no"
                          icon="ui-icon-close"/>
     </p:confirmDialog>
-
-    <p:commandButton value="Добавить блюдо" style="margin-left: 17%; margin-top: 1%;"
-                     rendered="#{springUserController.IsAdmin()}"
-                     actionListener="#{dishController.Clear()}"
-                     action="/pages/add_editDish?faces-redirect=true"/>
-
 
     <ui:include src="composition/footer.xhtml"/>
 
