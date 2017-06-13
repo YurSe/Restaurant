@@ -16,7 +16,8 @@
     <h:form id="orderdsForm">
         <p:dataGrid var="order" value="#{orderController.userOrders}" columns="2" layout="grid" rows="12"
                     style="margin-top: 1%;"
-                    paginator="false">
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    paginator="true">
             <f:facet name="header">
                 Ваши заказы
             </f:facet>
