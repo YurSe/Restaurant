@@ -1,6 +1,7 @@
 package by.restaurant.service.implementation;
 
 import by.restaurant.model.Order;
+import by.restaurant.model.User;
 import by.restaurant.repository.IOrderRepository;
 import by.restaurant.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,10 @@ public class OrderService implements IOrderService {
     @Override
     public List<Order> getAllOrdersAfter(Timestamp timestamp) {
         return iOrderRepository.getAllOrdersAfter(timestamp);
+    }
+
+    @Override
+    public List<Order> getOrdersByUser(User user) {
+        return iOrderRepository.getOrdersByUser(user);
     }
 }
