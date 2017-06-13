@@ -33,7 +33,7 @@
                 <p:message for="description" id="msgDescription"/>
 
                 <p:outputLabel value="Image link:" for="image"/>
-                <p:inputText id="image" maxlength="254" value="#{zoneContr.zone.image}"
+                <p:inputText id="image" maxlength="60000" value="#{zoneContr.zone.image}"
                              required="true" size="50" autocomplete="off">
                     <p:ajax update="msgImage" event="blur"/>
                 </p:inputText>
