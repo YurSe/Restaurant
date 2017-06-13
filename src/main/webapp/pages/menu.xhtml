@@ -26,45 +26,44 @@
 
         <div id="search-form">
 
+            <p:dataGrid var="dish" value="#{dishController.allDishes}" columns="3" layout="grid"
+                        rows="12" paginator="true" style="margin-left: 17%; width: 75%;"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                <f:facet name="header">
+                    Меню блюд
+                </f:facet>
 
-        <p:dataGrid var="dish" value="#{dishController.allDishes}" columns="3" layout="grid"
-                    rows="12" paginator="true" style="margin-top: 1%; margin-left: 17%; width: 75%;"
-                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-            <f:facet name="header">
-                Меню блюд
-            </f:facet>
+                <p:panel header="#{dish.name}" style="height: 98%;width: 96%">
+                    <h:panelGrid columns="1" style="width:100%">
 
-            <p:panel header="#{dish.name}" style="height: 98%;width: 96%">
-                <h:panelGrid columns="1" style="width:100%">
-
-                    <h:graphicImage styleClass="ZoomImage"
-                                    url="#{dish.image}" data-zoom-image="#{dish.image}"
-                                    style="min-height:200px;max-height: 200px;width: 100%"/>
+                        <h:graphicImage styleClass="ZoomImage"
+                                        url="#{dish.image}" data-zoom-image="#{dish.image}"
+                                        style="min-height:200px;max-height: 200px;width: 100%"/>
 
 
-                    <h:outputText value="Категория: #{dish.category.name}"/>
+                        <h:outputText value="Категория: #{dish.category.name}"/>
 
-                    <h:outputText value="Цена: #{dish.price}"/>
+                        <h:outputText value="Цена: #{dish.price}"/>
 
-                    <h:outputText value="Описание: #{dish.description}"/>
+                        <h:outputText value="Описание: #{dish.description}"/>
 
-                    <h:outputText value="Масса: #{dish.mass}"/>
+                        <h:outputText value="Масса: #{dish.mass}"/>
 
-                    <p:commandButton value="Редактировать блюдо" rendered="#{springUserController.IsAdmin()}"
-                                     action="/pages/add_editDish?faces-redirect=true">
-                        <f:setPropertyActionListener target="#{dishController.dish}" value="#{dish}"/>
-                    </p:commandButton>
+                        <p:commandButton value="Редактировать блюдо" rendered="#{springUserController.IsAdmin()}"
+                                         action="/pages/add_editDish?faces-redirect=true">
+                            <f:setPropertyActionListener target="#{dishController.dish}" value="#{dish}"/>
+                        </p:commandButton>
 
-                    <p:commandButton value="Удалить блюдо" update="menuForm"
-                                     rendered="#{springUserController.IsAdmin()}"
-                                     action="#{dishController.DeleteDish(dish.id)}">
-                        <p:confirm header="Подтверждение" message="Вы уверены, что хотите удалить это блюдо?"
-                                   icon="ui-icon-alert"/>
-                    </p:commandButton>
+                        <p:commandButton value="Удалить блюдо" update="menuForm"
+                                         rendered="#{springUserController.IsAdmin()}"
+                                         action="#{dishController.DeleteDish(dish.id)}">
+                            <p:confirm header="Подтверждение" message="Вы уверены, что хотите удалить это блюдо?"
+                                       icon="ui-icon-alert"/>
+                        </p:commandButton>
 
-                </h:panelGrid>
-            </p:panel>
-        </p:dataGrid>
+                    </h:panelGrid>
+                </p:panel>
+            </p:dataGrid>
         </div>
     </h:form>
 
