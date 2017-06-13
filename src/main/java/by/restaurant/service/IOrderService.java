@@ -1,6 +1,7 @@
 package by.restaurant.service;
 
 import by.restaurant.model.Order;
+import by.restaurant.model.User;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -16,5 +17,7 @@ public interface IOrderService {
     List<Order> getAll();
 
     List<Order> getAllOrdersAfter(Timestamp timestamp);
+
+    List<Order> getOrdersByUser(User user);
 
 }
