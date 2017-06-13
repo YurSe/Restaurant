@@ -64,6 +64,7 @@ public class DishController implements Serializable {
         dish.setName(StringParser.insertPeriodically(dish.getName()," ", SPACE_PERIOD_DISH_NAME));
         dish.setDescription(StringParser.insertPeriodically(dish.getDescription()," ", SPACE_PERIOD_DISH_DESCRIPTION));
         dishService.save(dish);
+        dish = new Dish();
     }
 
     private String insertPeriodically(

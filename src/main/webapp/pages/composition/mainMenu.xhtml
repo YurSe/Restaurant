@@ -20,17 +20,20 @@
             <f:facet name="options">
                 <div style="float: right;">
                     <p:commandButton id="basketButton" value="Корзина" type="button"
-                                rendered="#{springUserController.IsAuthorized()}"
-                                onclick="PF('basketPanelVar').loadContents()"/>
+                                     rendered="#{springUserController.IsAuthorized()}"
+                                     onclick="PF('basketPanelVar').loadContents()"/>
+
+                    <p:commandButton id="Account" value="Личный кабинет" action="account?faces-redirect=true"
+                                     rendered="#{springUserController.IsAuthorized()}"/>
 
                     <p:commandButton ajax="false" value="Выйти" action="${springUserController.logout()}"
-                                rendered="#{springUserController.IsAuthorized()}"/>
+                                     rendered="#{springUserController.IsAuthorized()}"/>
 
                     <p:commandButton id="LogIn" value="Войти" action="login?faces-redirect=true"
-                                rendered="#{!springUserController.IsAuthorized()}"/>
+                                     rendered="#{!springUserController.IsAuthorized()}"/>
                     <p:commandButton id="Registration" value="Регистрация" action="register?faces-redirect=true"
-                                style="float: right;"
-                                rendered="#{!springUserController.IsAuthorized()}"/>
+                                     style="float: right;"
+                                     rendered="#{!springUserController.IsAuthorized()}"/>
                 </div>
             </f:facet>
         </p:menubar>
