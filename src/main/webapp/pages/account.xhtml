@@ -58,15 +58,14 @@
                 </h:panelGrid>
             </p:panel>
         </p:dataGrid>
-
-        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-            <p:commandButton value="Да" type="button" styleClass="ui-confirmdialog-yes"
-                             icon="ui-icon-check"/>
-            <p:commandButton value="Нет" type="button" styleClass="ui-confirmdialog-no"
-                             icon="ui-icon-close"/>
-        </p:confirmDialog>
-
     </h:form>
+
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Да" type="button" styleClass="ui-confirmdialog-yes"
+                         icon="ui-icon-check"/>
+        <p:commandButton value="Нет" type="button" styleClass="ui-confirmdialog-no"
+                         icon="ui-icon-close"/>
+    </p:confirmDialog>
 
     <ui:include src="composition/footer.xhtml"/>
 
