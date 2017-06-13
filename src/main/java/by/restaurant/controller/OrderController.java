@@ -46,7 +46,7 @@ public class OrderController implements Serializable {
 
     public boolean IsRemoved(Order order) {
         Timestamp now = new Timestamp(new Date().getTime());
-        return order.getTimestamp().equals(now);
+        return order.getTimestamp().after(now);
     }
 
 }
