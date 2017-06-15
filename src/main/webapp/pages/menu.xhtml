@@ -18,6 +18,8 @@
     <ui:include src="composition/mainMenu.xhtml"/>
 
     <p:growl for="messageCreatedOrder" id="growl" autoUpdate="true" showDetail="true"/>
+    <p:growl for="messageSaved" autoUpdate="true" showDetail="true"/>
+    <f:event type="preRenderView" listener="#{feedbackContr.showSentMessageNotification}"/>
     <f:event type="preRenderView" listener="#{reservation.showCreatedOrderNotification}"/>
 
     <h:form id="menuForm">
