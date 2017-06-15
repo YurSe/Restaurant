@@ -47,8 +47,8 @@
                     <div class="form-group">
                         <h:outputText value="Ваш телефон "/>
                         <h:inputText id="phoneNumber" value="#{feedbackContr.phoneNumber}" required="true" styleClass="form-control" autocomplete="off"
-                                     requiredMessage="'Phone number' can't be empty.">
-                            <f:validator binding="#{phoneNumberValidator}" />
+                                     requiredMessage="'Phone number' can't be empty." validatorMessage="Phone number is not valid. Example: +375 XX xxxxxxx">
+                            <f:validateRegex pattern="#{phoneNumberValidator.NUMBER_PATTERN}" />
                             <p:ajax update="msgNumber" event="blur" />
                         </h:inputText>
                     </div>
