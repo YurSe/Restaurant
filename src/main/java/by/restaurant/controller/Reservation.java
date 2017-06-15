@@ -120,7 +120,7 @@ public class Reservation implements Serializable{
 
     private Date dateTime(Date date, Date time) {
         return new Date(
-                date.getYear(), date.getMonth(), date.getDay(),
+                date.getYear(), date.getMonth(), date.getDate(),
                 time.getHours(), time.getMinutes(), time.getSeconds()
         );
     }
@@ -169,7 +169,7 @@ public class Reservation implements Serializable{
             return;
         }
         Order order = new Order();
-        order.setTimestamp(new Timestamp(time.getTime()));
+        order.setTimestamp(new Timestamp(dateTime(date,time).getTime()));
         order.setGuestCount(guestCount);
         order.setUser(user);
         iOrderService.save(order);

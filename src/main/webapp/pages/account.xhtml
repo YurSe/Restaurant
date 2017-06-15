@@ -26,7 +26,7 @@
 
                     <h:outputText value="Количество людей : #{order.guestCount}"/>
 
-                    <h:outputText value="Время : #{order.timestamp}"/>
+                    <h:outputText value="Дата и время : #{order.dateToString}"/>
 
                     <p:dataList value="#{order.order_dishes}" var="order_dish" type="definition"
                                 emptyMessage="Нет блюд.">
