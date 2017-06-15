@@ -2,9 +2,11 @@ package by.restaurant.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 @Entity
@@ -72,9 +74,10 @@ public class Order {
     }
 
     public String getDateToString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
-        return dateFormat.format(new Date(timestamp.getTime()));
+        Locale ru = new Locale("ru");
+        DateFormat sdf = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL, ru);
+       return sdf.format(new Date(timestamp.getTime()));
+       /* SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
+        return dateFormat.format();*/
     }
-
-
 }
