@@ -36,6 +36,9 @@
 
                     <h:outputText value="Статус : #{usersController.Status(user)}"/>
 
+                    <p:commandButton value="TEST" action="/pages/ordersHistory?faces-redirect=true"/>
+
+                    <p:commandButton value="История заказов" action="/pages/ordersHistory?faces-redirect=true">
                     <p:commandButton value="История заказов" action="/pages/ordersHistory?faces-redirect=true">
                         <f:setPropertyActionListener target="#{usersController.user}" value="#{user}"/>
                     </p:commandButton>
