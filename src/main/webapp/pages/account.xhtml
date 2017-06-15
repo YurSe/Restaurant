@@ -7,14 +7,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <title>Главная</title>
+    <title>Аккаунт</title>
 </h:head>
 
 <h:body>
     <ui:include src="composition/mainMenu.xhtml"/>
 
     <h:form id="orderdsForm">
-        <p:dataGrid var="order" value="#{orderController.userOrders}" columns="2" layout="grid" rows="12"
+        <p:dataGrid var="order" value="#{orderController.currentUserOrders}" columns="2" layout="grid" rows="12"
                     style="margin-top: 1%;" emptyMessage="У вас нет заказов."
                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                     paginator="true">
