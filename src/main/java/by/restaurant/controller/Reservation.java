@@ -169,7 +169,7 @@ public class Reservation implements Serializable{
             return;
         }
         Order order = new Order();
-        order.setTimestamp(new Timestamp(date.getTime()));
+        order.setTimestamp(new Timestamp(time.getTime()));
         order.setGuestCount(guestCount);
         order.setUser(user);
         iOrderService.save(order);
