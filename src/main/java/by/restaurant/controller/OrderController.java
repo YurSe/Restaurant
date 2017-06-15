@@ -26,8 +26,12 @@ public class OrderController implements Serializable {
     @Autowired
     private UserRepository userRepository;
 
-    public List<Order> getUserOrders() {
+    public List<Order> getCurrentUserOrders() {
         User user = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        return orderService.getOrdersByUser(user);
+    }
+
+    public List<Order> getUserOrders(User user) {
         return orderService.getOrdersByUser(user);
     }
 

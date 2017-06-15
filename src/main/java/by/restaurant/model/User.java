@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "users")
 public class User extends SuperClass {
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", 
+    @JoinTable(name = "user_role",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> authorities = new HashSet<>();
@@ -21,18 +21,22 @@ public class User extends SuperClass {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
     private Collection<Order> orders;
 
     @Column(unique = true, nullable = false)
     private String phoneNumber;
+
     @Column(nullable = false)
     private String name;
+
     @Column(nullable = false)
     private String address;
+
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date birthday;
+
     @Column
     private boolean subscription = false;
 
