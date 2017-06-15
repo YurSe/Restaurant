@@ -6,6 +6,9 @@
         xmlns:c="http://java.sun.com/jsp/jstl/core"
         xmlns:f="http://java.sun.com/jsf/core">
     <h:form>
+        <!-- <p:menuitem value="Услуги" outcome="/pages/services?faces-redirect=true"/>
+             Закоментил что бы не появлялся 2 уровень меню, у админа.
+          -->
         <p:menubar>
             <p:menuitem value="Главная" outcome="/pages/index?faces-redirect=true"/>
             <p:menuitem value="Меню" outcome="/pages/menu?faces-redirect=true"/>
@@ -13,7 +16,7 @@
             <p:menuitem value="Поиск" outcome="/pages/search?faces-redirect=true"/>
             <p:menuitem value="Галерея" outcome="/pages/gallery?faces-redirect=true"/>
             <p:menuitem value="События" outcome="/pages/events?faces-redirect=true"/>
-            <p:menuitem value="Услуги" outcome="/pages/services?faces-redirect=true"/>
+
             <p:menuitem value="Контакты" outcome="/pages/contacts?faces-redirect=true"/>
             <p:menuitem value="О ресторане" outcome="/pages/about?faces-redirect=true"/>
 
@@ -23,15 +26,18 @@
                                      rendered="#{springUserController.IsAuthorized()}"
                                      onclick="PF('basketPanelVar').loadContents()"/>
 
-                    <p:commandButton id="Account" value="Личный кабинет" action="account?faces-redirect=true"
+                    <p:commandButton id="Account" value="Личный кабинет" action="/pages/account?faces-redirect=true"
                                      rendered="#{springUserController.IsAuthorized()}"/>
+
+                    <p:commandButton id="AccountAdmin" value="Кабинет администратора" action="/pages/accountAdmin?faces-redirect=true"
+                                     rendered="#{springUserController.IsAdmin()}"/>
 
                     <p:commandButton ajax="false" value="Выйти" action="${springUserController.logout()}"
                                      rendered="#{springUserController.IsAuthorized()}"/>
 
-                    <p:commandButton id="LogIn" value="Войти" action="login?faces-redirect=true"
+                    <p:commandButton id="LogIn" value="Войти" action="/pages/login?faces-redirect=true"
                                      rendered="#{!springUserController.IsAuthorized()}"/>
-                    <p:commandButton id="Registration" value="Регистрация" action="register?faces-redirect=true"
+                    <p:commandButton id="Registration" value="Регистрация" action="/pages/register?faces-redirect=true"
                                      style="float: right;"
                                      rendered="#{!springUserController.IsAuthorized()}"/>
                 </div>
