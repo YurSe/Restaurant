@@ -16,7 +16,7 @@
 
     <h:form id="usersForm">
         <p:dataGrid var="user" value="#{usersController.users}" columns="2" layout="grid" rows="12"
-                    style="margin-top: 1%;" emptyMessage="Нет пользователей."
+                    style="width: 80%; margin-left: 10%; margin-top: 1%;" emptyMessage="Нет пользователей."
                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                     paginator="true">
             <f:facet name="header">

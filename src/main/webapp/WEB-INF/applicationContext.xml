@@ -23,11 +23,11 @@
 
 
     <!--<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"-->
-    <!--id="dataSource">-->
-    <!--<property name="driverClassName" value="org.postgresql.Driver"></property>-->
-    <!--<property name="url" value="${database.url}"></property>-->
-    <!--<property name="username" value="${database.user}"></property>-->
-    <!--<property name="password" value="${database.password}"></property>-->
+          <!--id="dataSource">-->
+        <!--<property name="driverClassName" value="org.postgresql.Driver"></property>-->
+        <!--<property name="url" value="${database.url}"></property>-->
+        <!--<property name="username" value="${database.user}"></property>-->
+        <!--<property name="password" value="${database.password}"></property>-->
     <!--</bean>-->
 
     <bean class="java.net.URI" id="dbUrl">

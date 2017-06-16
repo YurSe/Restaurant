@@ -8,7 +8,6 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Table reservation</title>
-    <link rel="stylesheet" href="/resources/css/search-form.css"/>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
 </h:head>
 
@@ -17,62 +16,62 @@
     <ui:include src="composition/mainMenu.xhtml"/>
     <p:growl id="growl" for="messageAuth" showDetail="true" autoUpdate="true"/>
     <h:form id="zoneForm">
-        <div id="search-form">
-            <p:dataGrid var="zone" value="#{zoneContr.zones}" columns="3" layout="grid"
-                        rows="12" paginator="true" style="width:110%;"
-                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-                <f:facet name="header">
-                    Zone selection
-                </f:facet>
 
-                <p:panel header="#{zone.title}" style="height: 100%" styleClass="form-horizontal">
-                    <div class="form-group">
-                        <p:lightBox id="u">
-                            <h:outputLink value="#{zone.image}">
-                                <h:graphicImage url="#{zone.image}"
-                                                style="min-height:200px;max-height: 200px;width: 100%"/>
-                            </h:outputLink>
-                        </p:lightBox>
+        <p:dataGrid var="zone" value="#{zoneContr.zones}" columns="3" layout="grid"
+                    rows="12" paginator="true" style="width:80%; margin-left: 10%; margin-top: 1%;"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+            <f:facet name="header">
+                Zone selection
+            </f:facet>
+
+            <p:panel header="#{zone.title}" style="height: 100%" styleClass="form-horizontal">
+                <div class="form-group">
+                    <p:lightBox id="u">
+                        <h:outputLink value="#{zone.image}">
+                            <h:graphicImage url="#{zone.image}"
+                                            style="min-height:200px;max-height: 200px;width: 100%"/>
+                        </h:outputLink>
+                    </p:lightBox>
+                </div>
+                <div class="form-group" style="min-height:150px">
+                    <h:outputText value="Description:"/>
+                    <h:outputText value="#{zone.description}" style="font-weight: bold"/>
+                </div>
+                <div class="form-group">
+                    <div style="text-align: center">
+                        <h:commandButton value="Reserve table"
+                                         actionListener="#{zoneContr.redirectToPageWithTableReservation}"
+                                         styleClass="btn btn-success">
+                            <f:setPropertyActionListener target="#{zoneContr.zone}" value="#{zone}"/>
+                            <f:ajax render="growl"/>
+                        </h:commandButton>
                     </div>
-                    <div class="form-group" style="min-height:150px">
-                        <h:outputText value="Description:"/>
-                        <h:outputText value="#{zone.description}" style="font-weight: bold"/>
+                </div>
+                <div class="form-group">
+                    <div style="text-align: center">
+                        <p:commandButton value="Edit zone"
+                                         action="/pages/add_editZone?faces-redirect=true"
+                                         styleClass="btn btn-success" rendered="#{springUserController.IsAdmin()}">
+                            <f:setPropertyActionListener target="#{zoneContr.zone}" value="#{zone}"/>
+                        </p:commandButton>
                     </div>
-                    <div class="form-group">
-                        <div style="text-align: center">
-                            <h:commandButton value="Reserve table"
-                                             actionListener="#{zoneContr.redirectToPageWithTableReservation}"
-                                             styleClass="btn btn-success">
-                                <f:setPropertyActionListener target="#{zoneContr.zone}" value="#{zone}"/>
-                                <f:ajax render="growl" />
-                            </h:commandButton>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div style="text-align: center">
-                            <p:commandButton value="Edit zone"
-                                             action="/pages/add_editZone?faces-redirect=true"
-                                             styleClass="btn btn-success" rendered="#{springUserController.IsAdmin()}">
-                                <f:setPropertyActionListener target="#{zoneContr.zone}" value="#{zone}"/>
-                            </p:commandButton>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div style="text-align: center">
-                            <p:commandButton value="Delete zone"
-                                             styleClass="btn btn-success"
-                                             style="width: 130px;"
-                                             update="zoneForm"
-                                             action="#{zoneContr.deleteZone(zone.id)}"
-                                             rendered="#{springUserController.IsAdmin()}">
+                </div>
+                <div class="form-group">
+                    <div style="text-align: center">
+                        <p:commandButton value="Delete zone"
+                                         styleClass="btn btn-success"
+                                         style="width: 130px;"
+                                         update="zoneForm"
+                                         action="#{zoneContr.deleteZone(zone.id)}"
+                                         rendered="#{springUserController.IsAdmin()}">
                             <p:confirm header="Confirmation" message="Are you sure you want to delete this zone?"
                                        icon="ui-icon-alert"/>
-                            </p:commandButton>
-                        </div>
+                        </p:commandButton>
                     </div>
-                </p:panel>
-            </p:dataGrid>
-        </div>
+                </div>
+            </p:panel>
+        </p:dataGrid>
+
     </h:form>
 
     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
