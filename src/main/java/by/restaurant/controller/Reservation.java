@@ -41,10 +41,6 @@ public class Reservation implements Serializable {
 
     private final int MIN_HOUR = 9;
 
-    private final int MIN_MINUTE = 0;
-
-    private final int MIN_SECOND = 0;
-
     private Map<Dish, String> dishes = new HashMap<>();
 
     public Reservation() {
@@ -68,22 +64,6 @@ public class Reservation implements Serializable {
         }
         minDate = new Date();
         return minDate.getHours();
-    }
-
-    public int getMinutesFromTime() {
-        if (date != null && date.after(new Date())) {
-            return MIN_MINUTE;
-        }
-        minDate = new Date();
-        return minDate.getMinutes();
-    }
-
-    public int getSecondsFromTime() {
-        if (date != null && date.after(new Date())) {
-            return MIN_SECOND;
-        }
-        minDate = new Date();
-        return minDate.getSeconds();
     }
 
     public List<Dish> getDishList() {
@@ -123,6 +103,7 @@ public class Reservation implements Serializable {
                 fullPrice += entry.getKey().getPrice();
         return Math.round(fullPrice * 100.0) / 100.0;
     }
+
 
     private Date dateTime(Date date, Date time) {
         return new Date(

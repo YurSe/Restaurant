@@ -47,9 +47,10 @@
                     <div class="col-md-4">
                         <p:calendar id="time" value="#{reservation.time}" required="true" label="Time"
                                     requiredMessage="'Time' can't be empty." autocomplete="off" maxlength="8" pattern="HH:mm:ss" timeOnly="true"
-                        minHour="#{reservation.hoursFromTime}" minMinute="#{reservation.minutesFromTime}" minSecond="#{reservation.secondsFromTime}"
+                        minHour="#{reservation.hoursFromTime}"
                         maxHour="20">
                             <p:ajax event="dateSelect" update="msgTime" listener="#{reservation.timeChange}"/>
+                            <f:validator validatorId="timeValidator"/>
                             <p:ajax event="blur" update="msgTime"/>
                         </p:calendar>
                     </div>
