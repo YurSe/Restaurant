@@ -106,7 +106,11 @@ public class Reservation implements Serializable{
     }
 
     public void Clear() {
+        date = null;
+        time = null;
+        guestCount = null;
         dishes = new HashMap<>();
+
     }
 
     public Double getFullPrice() {
