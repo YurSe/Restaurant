@@ -198,7 +198,7 @@
 
         <dependency>
             <groupId>org.primefaces.themes</groupId>
-            <artifactId>all-themes</artifactId>
+            <artifactId>bootstrap</artifactId>
             <version>1.0.10</version>
         </dependency>
 
