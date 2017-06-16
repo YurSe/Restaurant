@@ -22,8 +22,8 @@ import java.util.*;
 
 @Component
 @Scope("session")
-@SuppressWarnings( "deprecation" )
-public class Reservation implements Serializable{
+@SuppressWarnings("deprecation")
+public class Reservation implements Serializable {
 
     @Autowired
     private IOrderService iOrderService;
@@ -50,11 +50,8 @@ public class Reservation implements Serializable{
     public Reservation() {
     }
 
-    public boolean isDateValid(){
-        if(dateTime(date,time).before(new Date())){
-           return false;
-        }
-        return true;
+    private boolean isDateValid() {
+        return dateTime(date, time).before(new Date());
     }
 
     public Map<Dish, String> getDishes() {
@@ -127,7 +124,6 @@ public class Reservation implements Serializable{
         return Math.round(fullPrice * 100.0) / 100.0;
     }
 
-
     private Date dateTime(Date date, Date time) {
         return new Date(
                 date.getYear(), date.getMonth(), date.getDate(),
@@ -178,9 +174,14 @@ public class Reservation implements Serializable{
     }
 
     public void createOrder() throws IOException {
-        if(!isDateValid()) {
+        if (date == null && time == null && guestCount == null) {
+            date = new Date();
+            time = new Date();
+            guestCount = 1;
+        } else if (!isDateValid()) {
             showTimeIsUpNotification();
             return;
+
         }
         User user = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user == null) {
@@ -188,7 +189,7 @@ public class Reservation implements Serializable{
             return;
         }
         Order order = new Order();
-        order.setTimestamp(new Timestamp(dateTime(date,time).getTime()));
+        order.setTimestamp(new Timestamp(dateTime(date, time).getTime()));
         order.setGuestCount(guestCount);
         order.setUser(user);
         iOrderService.save(order);
@@ -204,7 +205,7 @@ public class Reservation implements Serializable{
         iOrderService.save(order);
 
         Clear();
-        goToMenuPage();
+        //goToMenuPage();
     }
 
     public Date getDate() {

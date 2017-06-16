@@ -22,7 +22,7 @@
             <f:facet name="header">
                 Ваши заказы
             </f:facet>
-            <p:panel style="height: 96%; width: 98%">
+            <p:panel style="height: 99%; width: 99%">
                 <h:panelGrid columns="1" style="width:100%">
 
                     <h:outputText value="Количество людей : #{order.guestCount}"/>
@@ -34,7 +34,7 @@
                         <f:facet name="header">
                             Блюда
                         </f:facet>
-                        <p:panel style="height: 90%; width: 98%">
+                        <p:panel style="height: 99%; width: 99%">
                             <h:panelGrid columns="1" style="width:100%">
 
                                 <h:outputText value="Блюдо : #{order_dish.dish.name}"/>
@@ -48,15 +48,15 @@
                     </p:dataList>
 
                     <h:outputText value="Итого : #{orderController.TotalPrice(order)}"/>
-
-                    <p:commandButton value="Отменить заказ" style="background-color: red;"
-                                     rendered="#{orderController.IsRemoved(order)}"
-                                     action="#{orderController.RemoveOrder(order)}"
-                                     update="orderdsForm">
-                        <p:confirm header="Подтверждение" message="Вы уверены, что хотите отменить этот заказ?"
-                                   icon="ui-icon-alert"/>
-                    </p:commandButton>
-
+                    <div class="form-group">
+                        <p:commandButton value="Отменить заказ" style="background-color: red;"
+                                         rendered="#{orderController.IsRemoved(order)}"
+                                         action="#{orderController.RemoveOrder(order)}"
+                                         update="orderdsForm">
+                            <p:confirm header="Подтверждение" message="Вы уверены, что хотите отменить этот заказ?"
+                                       icon="ui-icon-alert"/>
+                        </p:commandButton>
+                    </div>
                 </h:panelGrid>
             </p:panel>
         </p:dataGrid>

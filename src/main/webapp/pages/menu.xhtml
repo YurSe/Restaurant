@@ -23,7 +23,6 @@
 
     <h:form id="menuForm">
 
-
         <p:dataGrid var="dish" value="#{dishController.allDishes}" columns="3" layout="grid"
                     rows="12" paginator="true" style="width: 80%; margin-left: 10%; margin-top: 1%;"
                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
@@ -31,7 +30,7 @@
                 Меню блюд
             </f:facet>
 
-            <p:panel header="#{dish.name}" style="height: 97%; width:96%; margin-left: 1%; margin-top: 1%;"
+            <p:panel header="#{dish.name}" style="height: 99%; width: 99%; margin-left: 1%; margin-top: 1%;"
                      styleClass="form-horizontal">
                 <h:panelGrid columns="1" style="width:100%">
                     <p:lightBox>
@@ -61,6 +60,10 @@
                             <p:confirm header="Подтверждение" message="Вы уверены, что хотите удалить это блюдо?"
                                        icon="ui-icon-alert"/>
                         </p:commandButton>
+                    </div>
+                    <div class="form-group">
+                        <p:commandButton value="Добавить к заказу" rendered="#{springUserController.IsAuthorized()}"
+                                         action="#{reservation.AddDish(dish)}"/>
                     </div>
                 </h:panelGrid>
             </p:panel>

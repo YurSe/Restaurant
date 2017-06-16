@@ -16,13 +16,13 @@
 
     <h:form id="orderdsForm">
         <p:dataGrid var="order" value="#{orderController.getUserOrders(usersController.user)}" columns="2" layout="grid" rows="12"
-                    style="margin-top: 1%;" emptyMessage="Нет заказов."
+                    style="width: 80%; margin-left: 10%; margin-top: 1%;" emptyMessage="Нет заказов."
                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                     paginator="true">
             <f:facet name="header">
                 Заказы : #{usersController.user.name}
             </f:facet>
-            <p:panel style="height: 96%; width: 98%">
+            <p:panel style="height: 99%; width: 99%">
                 <h:panelGrid columns="1" style="width:100%">
 
                     <h:outputText value="Количество людей : #{order.guestCount}"/>

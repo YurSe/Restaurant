@@ -22,7 +22,7 @@
             <f:facet name="header">
                 Список пользователей
             </f:facet>
-            <p:panel style="height: 96%; width: 98%">
+            <p:panel style="height: 99%; width: 99%">
                 <h:panelGrid columns="1" style="width:100%">
 
                     <h:outputText value="Фамилия и имя : #{user.name}"/>
@@ -37,10 +37,11 @@
 
                     <h:outputText value="Статус : #{usersController.Status(user)}"/>
 
-                    <p:commandButton value="История заказов" action="/pages/ordersHistory?faces-redirect=true">
-                        <f:setPropertyActionListener target="#{usersController.user}" value="#{user}"/>
-                    </p:commandButton>
-
+                    <div class="form-group">
+                        <p:commandButton value="История заказов" action="/pages/ordersHistory?faces-redirect=true">
+                            <f:setPropertyActionListener target="#{usersController.user}" value="#{user}"/>
+                        </p:commandButton>
+                    </div>
                 </h:panelGrid>
             </p:panel>
         </p:dataGrid>
