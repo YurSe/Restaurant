@@ -8,6 +8,7 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Добавление/Редактирование блюда</title>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
 </h:head>
 
 
@@ -15,7 +16,7 @@
     <ui:include src="composition/mainMenu.xhtml"/>
 
     <h:form>
-        <p:panel header="Add/edit zone">
+        <p:panel header="Add/edit zone" style="width:80%; margin-left: 10%;">
             <h:panelGrid columns="3" cellpadding="5">
 
                 <p:outputLabel value="Title:" for="name"/>
