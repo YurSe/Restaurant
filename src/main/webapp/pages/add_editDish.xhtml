@@ -11,12 +11,11 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
 </h:head>
 
-
 <h:body>
     <ui:include src="composition/mainMenu.xhtml"/>
 
     <h:form>
-        <p:panel header="Добавление/Редактирование блюда" style="width:80%; margin-left: 10%;">
+        <p:panel header="Добавление/Редактирование блюда" style="width:80%; margin-left: 10%; margin-top:1%;">
             <h:panelGrid columns="2" cellpadding="5">
 
                 <p:outputLabel value="Название:" for="name"/>
@@ -42,8 +41,8 @@
                     <f:selectItems value="#{dishController.categories}"/>
                 </p:selectOneMenu>
 
-                <p:commandButton value="Сохранить" id="add" actionListener="#{dishController.SaveDish()}"
-                                 ajax="false"
+                <h:commandButton value="Сохранить" id="add" actionListener="#{dishController.SaveDish()}"
+                                 ajax="false" styleClass="btn btn-success"
                                  action="/pages/menu?faces-redirect=true"/>
 
             </h:panelGrid>

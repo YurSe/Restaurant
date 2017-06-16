@@ -69,7 +69,8 @@
                 </div>
                 <div class="form-group">
 
-                    <p:commandButton value="Добавить к заказу" rendered="#{springUserController.IsAuthorized()}"
+                    <h:commandButton value="Добавить к заказу" rendered="#{springUserController.IsAuthorized()}"
+                                     styleClass="btn btn-success"
                                      action="#{reservation.AddDish(dish)}"/>
                 </div>
 

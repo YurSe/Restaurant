@@ -38,9 +38,10 @@
                     <h:outputText value="Статус : #{usersController.Status(user)}"/>
 
                     <div class="form-group">
-                        <p:commandButton value="История заказов" action="/pages/ordersHistory?faces-redirect=true">
+                        <h:commandButton value="История заказов" styleClass="btn btn-link"
+                                         action="/pages/ordersHistory?faces-redirect=true">
                             <f:setPropertyActionListener target="#{usersController.user}" value="#{user}"/>
-                        </p:commandButton>
+                        </h:commandButton>
                     </div>
                 </h:panelGrid>
             </p:panel>

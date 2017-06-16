@@ -48,13 +48,14 @@
 
                     <h:outputText value="Масса: #{dish.mass}"/>
                     <div class="form-group">
-                        <p:commandButton value="Редактировать блюдо" rendered="#{springUserController.IsAdmin()}"
+                        <h:commandButton value="Редактировать блюдо" rendered="#{springUserController.IsAdmin()}"
+                                         styleClass="btn btn-warning"
                                          action="/pages/add_editDish?faces-redirect=true">
                             <f:setPropertyActionListener target="#{dishController.dish}" value="#{dish}"/>
-                        </p:commandButton>
+                        </h:commandButton>
                     </div>
                     <div class="form-group">
-                        <p:commandButton value="Удалить блюдо" update="menuForm"
+                        <p:commandButton value="Удалить блюдо" update="menuForm" styleClass="btn btn-danger"
                                          rendered="#{springUserController.IsAdmin()}"
                                          action="#{dishController.DeleteDish(dish.id)}">
                             <p:confirm header="Подтверждение" message="Вы уверены, что хотите удалить это блюдо?"
@@ -62,7 +63,8 @@
                         </p:commandButton>
                     </div>
                     <div class="form-group">
-                        <p:commandButton value="Добавить к заказу" rendered="#{springUserController.IsAuthorized()}"
+                        <h:commandButton value="Добавить к заказу" rendered="#{springUserController.IsAuthorized()}"
+                                         styleClass="btn btn-success"
                                          action="#{reservation.AddDish(dish)}"/>
                     </div>
                 </h:panelGrid>

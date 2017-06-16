@@ -49,7 +49,7 @@
 
                     <h:outputText value="Итого : #{orderController.TotalPrice(order)}"/>
                     <div class="form-group">
-                        <p:commandButton value="Отменить заказ" style="background-color: red;"
+                        <p:commandButton value="Отменить заказ" styleClass="btn btn-danger"
                                          rendered="#{orderController.IsRemoved(order)}"
                                          action="#{orderController.RemoveOrder(order)}"
                                          update="orderdsForm">

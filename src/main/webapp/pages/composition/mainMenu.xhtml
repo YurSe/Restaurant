@@ -10,35 +10,42 @@
              Закоментил что бы не появлялся 2 уровень меню, у админа.
           -->
         <p:menubar>
-            <p:menuitem value="Главная" outcome="/pages/index?faces-redirect=true"/>
-            <p:menuitem value="Меню" outcome="/pages/menu?faces-redirect=true"/>
-            <p:menuitem value="Забронировать столик" outcome="/pages/zones?faces-redirect=true"/>
-            <p:menuitem value="Поиск" outcome="/pages/search?faces-redirect=true"/>
-            <p:menuitem value="Галерея" outcome="/pages/gallery?faces-redirect=true"/>
-            <p:menuitem value="События" outcome="/pages/events?faces-redirect=true"/>
-
-            <p:menuitem value="Контакты" outcome="/pages/contacts?faces-redirect=true"/>
-            <p:menuitem value="О ресторане" outcome="/pages/about?faces-redirect=true"/>
+            <p:menuitem value="Главная" style="margin-right:0.5em" outcome="/pages/index?faces-redirect=true"/>
+            <p:menuitem value="Меню" style="margin-right:0.5em" outcome="/pages/menu?faces-redirect=true"/>
+            <p:menuitem value="Забронировать столик" style="margin-right:0.5em"
+                        outcome="/pages/zones?faces-redirect=true"/>
+            <p:menuitem value="Поиск" style="margin-right:0.5em" outcome="/pages/search?faces-redirect=true"/>
+            <p:menuitem value="Галерея" style="margin-right:0.5em" outcome="/pages/gallery?faces-redirect=true"/>
+            <p:menuitem value="События" style="margin-right:0.5em" outcome="/pages/events?faces-redirect=true"/>
+            <p:menuitem value="Контакты" style="margin-right:0.5em" outcome="/pages/contacts?faces-redirect=true"/>
+            <p:menuitem value="О ресторане" style="margin-right:0.5em" outcome="/pages/about?faces-redirect=true"/>
 
             <f:facet name="options">
                 <div style="float: right;">
-                    <p:commandButton id="basketButton" value="Корзина" type="button"
+                    <h:commandButton id="basketButton" value="Корзина" type="button"
+                                     styleClass="btn btn-success"
+                                     style="margin-right:1em"
                                      rendered="#{springUserController.IsAuthorized()}"
                                      onclick="PF('basketPanelVar').loadContents()"/>
 
-                    <p:commandButton id="Account" value="Личный кабинет" action="/pages/account?faces-redirect=true"
+                    <h:commandButton id="Account" value="Личный кабинет" action="/pages/account?faces-redirect=true"
+                                     styleClass="btn btn-info" style="margin-right:1em"
                                      rendered="#{springUserController.IsAuthorized()}"/>
 
-                    <p:commandButton id="AccountAdmin" value="Кабинет администратора" action="/pages/accountAdmin?faces-redirect=true"
+                    <h:commandButton id="AccountAdmin" value="Кабинет администратора"
+                                     styleClass="btn btn-warning" style="margin-right:1em"
+                                     action="/pages/accountAdmin?faces-redirect=true"
                                      rendered="#{springUserController.IsAdmin()}"/>
 
-                    <p:commandButton ajax="false" value="Выйти" action="${springUserController.logout()}"
+                    <h:commandButton ajax="false" value="Выйти" action="${springUserController.logout()}"
+                                     styleClass="btn btn-danger"
                                      rendered="#{springUserController.IsAuthorized()}"/>
 
-                    <p:commandButton id="LogIn" value="Войти" action="/pages/login?faces-redirect=true"
+                    <h:commandButton id="LogIn" value="Войти" action="/pages/login?faces-redirect=true"
+                                     styleClass="btn btn-success" style="margin-right:1em"
                                      rendered="#{!springUserController.IsAuthorized()}"/>
-                    <p:commandButton id="Registration" value="Регистрация" action="/pages/register?faces-redirect=true"
-                                     style="float: right;"
+                    <h:commandButton id="Registration" value="Регистрация" action="/pages/register?faces-redirect=true"
+                                     styleClass="btn btn-info"
                                      rendered="#{!springUserController.IsAuthorized()}"/>
                 </div>
             </f:facet>
@@ -46,9 +53,8 @@
 
         <p:overlayPanel id="basketPanel" for="basketButton" hideEffect="fade" dynamic="true" style="width:50%;"
                         widgetVar="basketPanelVar">
-            <p:dataTable id="basketDataTable" var="dish" value="#{reservation.dishes.entrySet()}" rows="5"
-                         emptyMessage="Корзина пуста"
-                         paginator="true">
+            <p:dataTable id="basketDataTable" var="dish" value="#{reservation.dishes.entrySet()}" rows="4"
+                         emptyMessage="Корзина пуста" paginator="true">
                 <p:column headerText="Название">
                     <h:outputText value="#{dish.key.name}"/>
                 </p:column>
@@ -63,7 +69,7 @@
                 </p:column>
 
                 <p:column headerText="Удалить" style="width: 20%;">
-                    <p:commandButton value="X" style="background-color: red;"
+                    <h:commandButton value="X" styleClass="btn btn-danger"
                                      update="basketDataTable"
                                      action="#{reservation.RemoveDish(dish.key)}"/>
                 </p:column>

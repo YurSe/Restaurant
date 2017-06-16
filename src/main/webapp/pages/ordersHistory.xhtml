@@ -15,7 +15,8 @@
     <ui:include src="composition/mainMenu.xhtml"/>
 
     <h:form id="orderdsForm">
-        <p:dataGrid var="order" value="#{orderController.getUserOrders(usersController.user)}" columns="2" layout="grid" rows="12"
+        <p:dataGrid var="order" value="#{orderController.getUserOrders(usersController.user)}" columns="2" layout="grid"
+                    rows="12"
                     style="width: 80%; margin-left: 10%; margin-top: 1%;" emptyMessage="Нет заказов."
                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                     paginator="true">
@@ -49,7 +50,7 @@
 
                     <h:outputText value="Итого : #{orderController.TotalPrice(order)}"/>
 
-                    <p:commandButton value="Удалить заказ" style="background-color: red;"
+                    <p:commandButton value="Удалить заказ" styleClass="btn btn-danger"
                                      action="#{orderController.RemoveOrder(order)}"
                                      update="orderdsForm">
                         <p:confirm header="Подтверждение" message="Вы уверены, что хотите удалить этот заказ?"

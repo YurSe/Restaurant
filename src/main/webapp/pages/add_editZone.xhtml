@@ -11,12 +11,11 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
 </h:head>
 
-
 <h:body>
     <ui:include src="composition/mainMenu.xhtml"/>
 
     <h:form>
-        <p:panel header="Add/edit zone" style="width:80%; margin-left: 10%;">
+        <p:panel header="Add/edit zone" style="width:80%; margin-left: 10%; margin-top: 1%;">
             <h:panelGrid columns="3" cellpadding="5">
 
                 <p:outputLabel value="Title:" for="name"/>
@@ -40,10 +39,10 @@
                 </p:inputText>
                 <p:message for="description" id="msgImage"/>
 
-                <p:commandButton value="Save" id="add" actionListener="#{zoneContr.saveZone()}"
-                                 ajax="false"
+                <h:commandButton value="Save" id="add" actionListener="#{zoneContr.saveZone()}"
+                                 ajax="false" styleClass="btn btn-success"
                                  action="/pages/zones?faces-redirect=true">
-                </p:commandButton>
+                </h:commandButton>
             </h:panelGrid>
         </p:panel>
     </h:form>
