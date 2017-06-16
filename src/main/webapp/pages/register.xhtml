@@ -61,6 +61,7 @@
                                     requiredMessage="'Birthday' can't be empty." autocomplete="off" maxlength="8"
                         maxdate="#{userContr.maxDate}" navigator="true">
                             <p:ajax event="dateSelect" update="msgBirthday" listener="#{userContr.dateChange}"/>
+                            <f:validator binding="#{futureDateValidator}" />
                             <p:ajax event="blur" update="msgBirthday"/>
                         </p:calendar>
                     </div>

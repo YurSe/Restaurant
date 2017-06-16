@@ -18,7 +18,7 @@ import java.util.Date;
  */
 @Component()
 @Scope("request")
-public class DateValidator implements Validator{
+public class LastDateValidator implements Validator{
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException{
