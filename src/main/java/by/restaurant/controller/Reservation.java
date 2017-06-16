@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.*;
-import java.util.concurrent.ConcurrentSkipListMap;
 
 @Component
 @Scope("session")
@@ -49,6 +48,13 @@ public class Reservation implements Serializable{
     private Map<Dish, String> dishes = new HashMap<>();
 
     public Reservation() {
+    }
+
+    public boolean isDateValid(){
+        if(dateTime(date,time).before(new Date())){
+           return false;
+        }
+        return false;
     }
 
     public Map<Dish, String> getDishes() {
@@ -160,6 +166,11 @@ public class Reservation implements Serializable{
         context.addMessage("messageNotFoundUser", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "User not found"));
     }
 
+    private void showTimeIsUpNotification() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage("messageTimeIsUp", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Can't select the last date."));
+    }
+
     private void goToMenuPage() throws IOException {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         context.getSessionMap().put("createdWithSuccess", "true");
@@ -167,6 +178,10 @@ public class Reservation implements Serializable{
     }
 
     public void createOrder() throws IOException {
+        if(!isDateValid()) {
+            showTimeIsUpNotification();
+            return;
+        }
         User user = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user == null) {
             showUserNotFoundNotification();

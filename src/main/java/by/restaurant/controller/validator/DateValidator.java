@@ -8,6 +8,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -18,13 +21,21 @@ import java.util.Date;
 public class DateValidator implements Validator{
 
     @Override
-    public void validate(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException {
+    public void validate(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException{
         if(value == null) {
             return;
         }
         if(value instanceof Date) {
+            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date today = new Date();
+            Date todayWithZeroTime = null;
+            try {
+                todayWithZeroTime = formatter.parse(formatter.format(today));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             Date date = (Date) value;
-            if(date.before(new Date()) ) {
+            if(date.before(todayWithZeroTime) ) {
                 throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Validation Error","Can't select the last date."));
             }
         }

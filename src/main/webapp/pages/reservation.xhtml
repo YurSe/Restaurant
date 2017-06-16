@@ -21,7 +21,8 @@
         <div class="form-group" style="padding-left: 35%">
         <p:graphicImage value="/resources/images/Reserve_a_table.gif" width="45%" height="120%"/>
         </div>
-        <div class="form-horizontal span4 offset4 well">
+        <div class="form-horizontal">
+            <p:growl for="messageTimeIsUp" autoUpdate="true" showDetail="true"/>
             <p:growl id="growl" for="messageNotFoundUser" showDetail="true" autoUpdate="true"/>
             <h:form>
                 <div class="form-group">
