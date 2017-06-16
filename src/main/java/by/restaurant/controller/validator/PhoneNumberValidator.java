@@ -24,10 +24,10 @@ public class PhoneNumberValidator implements Validator{
 
     private Pattern pattern;
 
-    private static final String NAME_PATTERN = "^\\+(?:[0-9] ?){6,14}[0-9]$";
+    private String NUMBER_PATTERN = "^\\+(?:[0-9] ?){6,14}[0-9]$";
 
     public PhoneNumberValidator() {
-        pattern = Pattern.compile(NAME_PATTERN);
+        pattern = Pattern.compile(NUMBER_PATTERN);
     }
 
     @Override
@@ -43,5 +43,9 @@ public class PhoneNumberValidator implements Validator{
         if(userRepository.findByPhoneNumber(value.toString()) != null){
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Validation Error", "User with this number phone already exists."));
         }
+    }
+
+    public String getNUMBER_PATTERN() {
+        return NUMBER_PATTERN;
     }
 }

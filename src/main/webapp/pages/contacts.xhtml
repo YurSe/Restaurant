@@ -3,17 +3,74 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+>
 <h:head>
-    <title>Контакты</title>
+    <link rel="stylesheet" href="/resources/css/login-form.css"/>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
 </h:head>
-
-<h:body>
     <ui:include src="composition/mainMenu.xhtml"/>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <img  style="float:left" src="/resources/images/ico-map.png" alt=""/>
+                    <div class="content-heading">
+                        <h3 style="margin-left:1.5em">г.Минск, ул. Ленина 3</h3>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div><h4>Ресторан</h4></div>
+                    <div><h2>+375 (29) 105-05-03</h2></div>
+                    <div><h4>Заказ тортов</h4></div>
+                    <div><h2>+375 (29) 105-16-16</h2></div>
+                    <div><h4>Кофейня, бар</h4></div>
+                    <div><h2>+375 (29) 106-00-22</h2></div>
+                    <div><a style="font-size: 30px;color: orange;" href="mailto:restaurant@tut.by">restaurant@tut.by</a></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>Обратная связь</h3>
+                <h:form>
+                    <div class="form-group">
+                        <h:outputText value="Представтесь пожалуйста " />
+                        <h:inputText id="username" value="#{feedbackContr.name}" required="true" styleClass="form-control" autocomplete="off"
+                                     requiredMessage="'Name' can't be empty.">
+                            <f:validator validatorId="nameValidator" />
+                            <p:ajax update="msgName" event="blur" />
+                        </h:inputText>
+                    </div>
+                    <div class="form-group">
+                        <p:message for="username" id="msgName"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputText value="Ваш телефон "/>
+                        <h:inputText id="phoneNumber" value="#{feedbackContr.phoneNumber}" required="true" styleClass="form-control" autocomplete="off"
+                                     requiredMessage="'Phone number' can't be empty." validatorMessage="Phone number is not valid. Example: +375 XX xxxxxxx">
+                            <f:validateRegex pattern="#{phoneNumberValidator.NUMBER_PATTERN}" />
+                            <p:ajax update="msgNumber" event="blur" />
+                        </h:inputText>
+                    </div>
+                    <div class="form-group">
+                        <p:message for="phoneNumber" id="msgNumber"/>
+                    </div>
+                <div class="form-group">
+                    <h:outputText value="Ваше сообщение "/>
+                    <h:inputTextarea id="message" value="#{feedbackContr.description}" styleClass="form-control" autocomplete="off" rows="5" required="true"
+                                     requiredMessage="'Description' can't be empty.">
+                        <p:ajax update="msgDescription" event="blur"/>
+                    </h:inputTextarea>
+                </div>
+                    <div class="form-group">
+                        <p:message for="message" id="msgDescription"/>
+                    </div>
+                    <div class="form-group">
+                        <h:commandButton  value="Отправить" styleClass="btn btn-success btn-block" actionListener="#{feedbackContr.saveMessage}"/>
+                    </div>
+                </h:form>
+            </div>
+                </div>
+            </div>
     <ui:include src="composition/footer.xhtml"/>
-
-</h:body>
 </html>
