@@ -11,6 +11,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Pavel on 15.06.2017.
@@ -71,6 +72,14 @@ public class FeedbackContr implements Serializable{
                     "We will contact you soon!"));
             ec.getSessionMap().remove("savedMessageWithSuccess");
         }
+    }
+
+    public List<Feedback> getMessages() {
+        return feedbackService.getAll();
+    }
+
+    public void deleteFeedback(Feedback feedback) {
+        feedbackService.delete(feedback);
     }
 
     public void saveMessage() throws IOException {
