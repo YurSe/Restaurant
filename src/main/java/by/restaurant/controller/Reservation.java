@@ -174,7 +174,7 @@ public class Reservation implements Serializable {
         order.setGuestCount(guestCount);
         order.setUser(user);
         iOrderService.save(order);
-
+        //Save order to get id for it.
         order = iOrderService.getById(order.getId());
 
         Set<Order_dish> order_dishes = new HashSet<>();
