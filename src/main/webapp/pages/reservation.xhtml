@@ -31,6 +31,7 @@
                                     requiredMessage="'Date' can't be empty." autocomplete="off" maxlength="8"
                         mindate="#{reservation.minDate}">
                             <p:ajax event="dateSelect" update="msgDate,time" listener="#{reservation.dateChange}"/>
+                            <f:validator binding="#{dateValidator}" />
                             <p:ajax event="blur" update="msgDate"/>
                         </p:calendar>
                     </div>
