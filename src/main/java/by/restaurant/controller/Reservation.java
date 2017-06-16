@@ -54,7 +54,7 @@ public class Reservation implements Serializable{
         if(dateTime(date,time).before(new Date())){
            return false;
         }
-        return false;
+        return true;
     }
 
     public Map<Dish, String> getDishes() {
