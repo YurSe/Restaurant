@@ -21,13 +21,13 @@
         <div class="form-horizontal">
             <p:growl for="messageTimeIsUp" autoUpdate="true" showDetail="true"/>
             <p:growl id="growl" for="messageNotFoundUser" showDetail="true" autoUpdate="true"/>
-            <h:form>
+            <h:form id="reservation">
                 <div class="form-group">
                     <h:outputLabel for="date" value="Date:" styleClass="col-md-4 control-label"/>
                     <div class="col-md-4">
                         <p:calendar id="date" value="#{reservation.date}" required="true" label="Date"
                                     requiredMessage="'Date' can't be empty." autocomplete="off" maxlength="8"
-                        mindate="#{reservation.minDate}">
+                        mindate="#{reservation.minDate}" pattern="dd-MM-yy">
                             <p:ajax event="dateSelect" update="msgDate,time" listener="#{reservation.dateChange}"/>
                             <f:validator binding="#{lastDateValidator}" />
                             <p:ajax event="blur" update="msgDate"/>
