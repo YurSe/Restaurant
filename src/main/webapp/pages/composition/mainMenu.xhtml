@@ -44,7 +44,7 @@
                     <h:commandButton id="LogIn" value="Log in" action="/pages/login?faces-redirect=true"
                                      styleClass="btn btn-success" style="margin-right:1em"
                                      rendered="#{!springUserController.IsAuthorized()}"/>
-                    <h:commandButton id="Sign up" value="" action="/pages/register?faces-redirect=true"
+                    <h:commandButton id="Registration" value="Sign up" action="/pages/register?faces-redirect=true"
                                      styleClass="btn btn-info"
                                      rendered="#{!springUserController.IsAuthorized()}"/>
                 </div>
