@@ -50,12 +50,14 @@
                     <div class="form-group">
                         <h:commandButton value="Редактировать блюдо" rendered="#{springUserController.IsAdmin()}"
                                          styleClass="btn btn-warning"
+                                         style="margin-left: 20%"
                                          action="/pages/add_editDish?faces-redirect=true">
                             <f:setPropertyActionListener target="#{dishController.dish}" value="#{dish}"/>
                         </h:commandButton>
                     </div>
                     <div class="form-group">
                         <p:commandButton value="Удалить блюдо" update="menuForm" styleClass="btn btn-danger"
+                                         style="margin-left: 20%"
                                          rendered="#{springUserController.IsAdmin()}"
                                          action="#{dishController.DeleteDish(dish.id)}">
                             <p:confirm header="Подтверждение" message="Вы уверены, что хотите удалить это блюдо?"
@@ -64,15 +66,17 @@
                     </div>
                     <div class="form-group">
                         <h:commandButton value="Добавить к заказу" rendered="#{springUserController.IsAuthorized()}"
+                                         style="margin-left: 20%;width: 185px"
                                          styleClass="btn btn-success"
                                          action="#{reservation.AddDish(dish)}"/>
                     </div>
                 </h:panelGrid>
             </p:panel>
         </p:dataGrid>
-        <p:commandButton value="Добавить блюдо" style="margin-top: 1%; margin-left: 10%;"
+        <h:commandButton value="Добавить блюдо" style="margin-top: 1%; margin-left: 10%;width: 185px"
                          rendered="#{springUserController.IsAdmin()}"
                          actionListener="#{dishController.Clear()}"
+                         styleClass="btn btn-success"
                          action="/pages/add_editDish?faces-redirect=true"/>
     </h:form>
 

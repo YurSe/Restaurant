@@ -49,17 +49,18 @@
                 </div>
                 <div class="form-group">
                     <div style="text-align: center">
-                        <p:commandButton value="Edit zone"
+                        <h:commandButton value="Edit zone"
                                          action="/pages/add_editZone?faces-redirect=true"
-                                         styleClass="btn btn-success" rendered="#{springUserController.IsAdmin()}">
+                                         style="width: 125px"
+                                         styleClass="btn btn-warning" rendered="#{springUserController.IsAdmin()}">
                             <f:setPropertyActionListener target="#{zoneContr.zone}" value="#{zone}"/>
-                        </p:commandButton>
+                        </h:commandButton>
                     </div>
                 </div>
                 <div class="form-group">
                     <div style="text-align: center">
                         <p:commandButton value="Delete zone"
-                                         styleClass="btn btn-success"
+                                         styleClass="btn btn-danger"
                                          style="width: 130px;"
                                          update="zoneForm"
                                          action="#{zoneContr.deleteZone(zone.id)}"
@@ -81,11 +82,11 @@
                          icon="ui-icon-close"/>
     </p:confirmDialog>
 
-    <p:commandButton value="Add zone" style="margin-left: 10%; margin-top: 1%;"
+    <h:commandButton value="Add zone" style="margin-left: 10%; margin-top: 1%; width: 125px"
                      actionListener="#{zoneContr.initZone}"
                      action="/pages/add_editZone?faces-redirect=true" styleClass="btn btn-success"
                      rendered="#{springUserController.IsAdmin()}">
-    </p:commandButton>
+    </h:commandButton>
 
 
     <ui:include src="composition/footer.xhtml"/>
