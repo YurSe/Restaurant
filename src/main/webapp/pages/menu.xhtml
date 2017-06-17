@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <title>Меню</title>
+    <title>Menu</title>
     <h:outputStylesheet name="css/overridePrimefaces.css"/>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
 </h:head>
@@ -50,23 +50,30 @@
                     <div class="form-group">
                         <h:commandButton value="Edit dish" rendered="#{springUserController.IsAdmin()}"
                                          styleClass="btn btn-warning"
-                                         style="margin-left: 20%"
                                          action="/pages/add_editDish?faces-redirect=true">
                             <f:setPropertyActionListener target="#{dishController.dish}" value="#{dish}"/>
                         </h:commandButton>
                     </div>
                     <div class="form-group">
-                        <p:commandButton value="Delete dish" update="menuForm" styleClass="btn btn-danger"
-                                         style="margin-left: 20%"
-                                         rendered="#{springUserController.IsAdmin()}"
-                                         action="#{dishController.DeleteDish(dish.id)}">
-                            <p:confirm header="Confirm" message="Are you sure you want to delete this dish?"
-                                       icon="ui-icon-alert"/>
-                        </p:commandButton>
+
+                        <h:commandButton action="#{dishController.DishDeleteSet(dish)}"
+                                         styleClass="btn btn-danger" value="Delete dish"
+                                         onclick="PF('dlg').show();" immediate="true">
+                        </h:commandButton>
+                        <p:confirmDialog header="Confirm" severity="alert"
+                                         message="Are you sure want to delete this dish?"
+                                         widgetVar="dlg" showEffect="fade" hideEffect="explode"
+                                         modal="true" icon="ui-icon-alert">
+                            <p:commandButton value="Yes" action="#{dishController.DishDelete()}"
+                                             onclick="PF('menuForm').update();"
+                                             oncomplete="PF('dlg').hide();" process="@this" icon="ui-icon-check">
+                            </p:commandButton>
+                            <p:commandButton value="No" oncomplete="PF('dlg').hide();" icon="ui-icon-close"/>
+                        </p:confirmDialog>
+
                     </div>
                     <div class="form-group">
                         <h:commandButton value="Add to order" rendered="#{springUserController.IsAuthorized()}"
-                                         style="margin-left: 20%;width: 185px"
                                          styleClass="btn btn-success"
                                          action="#{reservation.AddDish(dish)}"/>
                     </div>
@@ -79,13 +86,6 @@
                          styleClass="btn btn-success"
                          action="/pages/add_editDish?faces-redirect=true"/>
     </h:form>
-
-    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes"
-                         icon="ui-icon-check"/>
-        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
-                         icon="ui-icon-close"/>
-    </p:confirmDialog>
 
     <ui:include src="composition/footer.xhtml"/>
 

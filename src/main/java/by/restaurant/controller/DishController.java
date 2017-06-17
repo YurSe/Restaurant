@@ -34,6 +34,8 @@ public class DishController implements Serializable {
     @Autowired
     private ICategoryService categoryService;
 
+    private Dish dishDelete;
+
     private Dish dish = new Dish();
 
     private Map<String, String> categories = new HashMap<String, String>();
@@ -61,8 +63,8 @@ public class DishController implements Serializable {
 
     public void SaveDish() {
         dish.setCategory(categoryService.getCategoryByName(selectCategory));
-        dish.setName(StringParser.insertPeriodically(dish.getName()," ", SPACE_PERIOD_DISH_NAME));
-        dish.setDescription(StringParser.insertPeriodically(dish.getDescription()," ", SPACE_PERIOD_DISH_DESCRIPTION));
+        dish.setName(StringParser.insertPeriodically(dish.getName(), " ", SPACE_PERIOD_DISH_NAME));
+        dish.setDescription(StringParser.insertPeriodically(dish.getDescription(), " ", SPACE_PERIOD_DISH_DESCRIPTION));
         dishService.save(dish);
         dish = new Dish();
     }
@@ -87,6 +89,11 @@ public class DishController implements Serializable {
     public void DeleteDish(Long id) {
         dishService.delete(id);
     }
+
+    public void DishDelete() {
+        dishService.delete(dishDelete.getId());
+    }
+
 
     public Set<Dish> getPopularDishes() {
         return sortByValue(createMap(orderService.getAllOrdersAfter(getTimestampWeekAgoFromNow()))).keySet();
@@ -171,5 +178,17 @@ public class DishController implements Serializable {
 
     public void setCategories(Map<String, String> categories) {
         this.categories = categories;
+    }
+
+    public Dish getDishDelete() {
+        return dishDelete;
+    }
+
+    public void setDishDelete(Dish dishDelete) {
+        this.dishDelete = dishDelete;
+    }
+
+    public void DishDeleteSet(Dish dishDelete) {
+        this.dishDelete = dishDelete;
     }
 }
