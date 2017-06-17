@@ -15,33 +15,33 @@
     <ui:include src="composition/mainMenu.xhtml"/>
 
     <h:form>
-        <p:panel header="Добавление/Редактирование блюда" style="width:80%; margin-left: 10%; margin-top:1%;">
+        <p:panel header="Add/edit dish" style="width:80%; margin-left: 10%; margin-top:1%;">
             <h:panelGrid columns="2" cellpadding="5">
 
-                <p:outputLabel value="Название:" for="name"/>
+                <p:outputLabel value="Name:" for="name"/>
                 <p:inputText id="name" maxlength="255" value="#{dishController.dish.name}"
                              required="true" size="50"/>
 
-                <p:outputLabel value="Описание:" for="description"/>
+                <p:outputLabel value="Description:" for="description"/>
                 <p:inputText id="description" maxlength="255" value="#{dishController.dish.description}"
                              required="true" size="50"/>
 
-                <p:outputLabel value="Цена(руб):" for="price"/>
+                <p:outputLabel value="Price($):" for="price"/>
                 <p:inputNumber id="price" value="#{dishController.dish.price}" minValue="1" required="true"/>
 
-                <p:outputLabel value="Вес(г):" for="mass"/>
+                <p:outputLabel value="Mass(g.):" for="mass"/>
                 <p:inputNumber id="mass" value="#{dishController.dish.mass}" minValue="1" required="true"/>
 
-                <p:outputLabel value="Ссылка на изображение:" for="image"/>
+                <p:outputLabel value="Image link:" for="image"/>
                 <p:inputText id="image" value="#{dishController.dish.image}"
                              required="true" size="50"/>
 
-                <p:outputLabel value="Категория:" for="category"/>
+                <p:outputLabel value="Category:" for="category"/>
                 <p:selectOneMenu id="category" value="#{dishController.selectCategory}" required="true">
                     <f:selectItems value="#{dishController.categories}"/>
                 </p:selectOneMenu>
 
-                <h:commandButton value="Сохранить" id="add" actionListener="#{dishController.SaveDish()}"
+                <h:commandButton value="Save" id="add" actionListener="#{dishController.SaveDish()}"
                                  ajax="false" styleClass="btn btn-success"
                                  action="/pages/menu?faces-redirect=true"/>
 

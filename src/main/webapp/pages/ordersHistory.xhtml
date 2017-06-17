@@ -17,43 +17,43 @@
     <h:form id="orderdsForm">
         <p:dataGrid var="order" value="#{orderController.getUserOrders(usersController.user)}" columns="2" layout="grid"
                     rows="12"
-                    style="width: 80%; margin-left: 10%; margin-top: 1%;" emptyMessage="Нет заказов."
+                    style="width: 80%; margin-left: 10%; margin-top: 1%;" emptyMessage="No orders."
                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                     paginator="true">
             <f:facet name="header">
-                Заказы : #{usersController.user.name}
+                Orders : #{usersController.user.name}
             </f:facet>
             <p:panel style="height: 99%; width: 99%">
                 <h:panelGrid columns="1" style="width:100%">
 
-                    <h:outputText value="Количество людей : #{order.guestCount}"/>
+                    <h:outputText value="Number of guests: : #{order.guestCount}"/>
 
-                    <h:outputText value="Дата и время : #{order.dateToString}"/>
+                    <h:outputText value="Date: #{order.dateToString}"/>
 
                     <p:dataList value="#{order.order_dishes}" var="order_dish" type="definition"
-                                emptyMessage="Нет блюд.">
+                                emptyMessage="No dishes.">
                         <f:facet name="header">
                             Блюда
                         </f:facet>
                         <p:panel style="height: 90%; width: 98%">
                             <h:panelGrid columns="1" style="width:100%">
 
-                                <h:outputText value="Блюдо : #{order_dish.dish.name}"/>
+                                <h:outputText value="Dish : #{order_dish.dish.name}"/>
 
-                                <h:outputText value="Цена : #{order_dish.dish.price}"/>
+                                <h:outputText value="Price : #{order_dish.dish.price}"/>
 
-                                <h:outputText value="Количество : #{order_dish.count}"/>
+                                <h:outputText value="Count : #{order_dish.count}"/>
 
                             </h:panelGrid>
                         </p:panel>
                     </p:dataList>
 
-                    <h:outputText value="Итого : #{orderController.TotalPrice(order)}"/>
+                    <h:outputText value="Total : #{orderController.TotalPrice(order)}"/>
 
-                    <p:commandButton value="Удалить заказ" styleClass="btn btn-danger"
+                    <p:commandButton value="Delete order" styleClass="btn btn-danger"
                                      action="#{orderController.RemoveOrder(order)}"
                                      update="orderdsForm">
-                        <p:confirm header="Подтверждение" message="Вы уверены, что хотите удалить этот заказ?"
+                        <p:confirm header="Confirm" message="Are you sure you want to delete this order?"
                                    icon="ui-icon-alert"/>
                     </p:commandButton>
 
@@ -63,9 +63,9 @@
     </h:form>
 
     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-        <p:commandButton value="Да" type="button" styleClass="ui-confirmdialog-yes"
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes"
                          icon="ui-icon-check"/>
-        <p:commandButton value="Нет" type="button" styleClass="ui-confirmdialog-no"
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
                          icon="ui-icon-close"/>
     </p:confirmDialog>
 

@@ -14,22 +14,22 @@
 
     <h:form>
         <p:dataTable id="messagesDataTable" var="message" value="#{feedbackContr.messages}" rows="15"
-                     emptyMessage="Нет сообщений"
+                     emptyMessage="No messages"
                      paginator="true" style="width: 80%; margin-left: 10%; margin-top: 1%;">
-            <p:column headerText="Имя">
+            <p:column headerText="Name">
                 <h:outputText value="#{message.name}"/>
             </p:column>
 
-            <p:column headerText="Номер телефона">
+            <p:column headerText="Phone number">
                 <h:outputText value="#{message.phoneNumber}"/>
             </p:column>
 
-            <p:column headerText="Сообщение">
+            <p:column headerText="Message">
                 <h:outputText value="#{message.description}"/>
 
             </p:column>
 
-            <p:column headerText="Удалить" style="width: 20%;">
+            <p:column headerText="Delete" style="width: 20%;">
                 <h:commandButton value="X" styleClass="btn btn-danger" style="margin-left:40%"
                                  update="messagesDataTable"
                                  action="#{feedbackContr.deleteFeedback(message)}"/>

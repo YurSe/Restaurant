@@ -20,40 +20,40 @@
                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                     paginator="true">
             <f:facet name="header">
-                Ваши заказы
+                Your orders
             </f:facet>
             <p:panel style="height: 99%; width: 99%">
                 <h:panelGrid columns="1" style="width:100%">
 
-                    <h:outputText value="Количество людей : #{order.guestCount}"/>
+                    <h:outputText value="Number of guests : #{order.guestCount}"/>
 
-                    <h:outputText value="Дата и время : #{order.dateToString}"/>
+                    <h:outputText value="Date : #{order.dateToString}"/>
 
                     <p:dataList value="#{order.order_dishes}" var="order_dish" type="definition"
-                                emptyMessage="Нет блюд.">
+                                emptyMessage="No dishes.">
                         <f:facet name="header">
-                            Блюда
+                            Dishes
                         </f:facet>
                         <p:panel style="height: 99%; width: 99%">
                             <h:panelGrid columns="1" style="width:100%">
 
-                                <h:outputText value="Блюдо : #{order_dish.dish.name}"/>
+                                <h:outputText value="Dish : #{order_dish.dish.name}"/>
 
-                                <h:outputText value="Цена : #{order_dish.dish.price}"/>
+                                <h:outputText value="Price : #{order_dish.dish.price}"/>
 
-                                <h:outputText value="Количество : #{order_dish.count}"/>
+                                <h:outputText value="Count : #{order_dish.count}"/>
 
                             </h:panelGrid>
                         </p:panel>
                     </p:dataList>
 
-                    <h:outputText value="Итого : #{orderController.TotalPrice(order)}"/>
+                    <h:outputText value="Total : #{orderController.TotalPrice(order)}"/>
                     <div class="form-group">
-                        <p:commandButton value="Отменить заказ" styleClass="btn btn-danger"
+                        <p:commandButton value="Cancel order" styleClass="btn btn-danger"
                                          rendered="#{orderController.IsRemoved(order)}"
                                          action="#{orderController.RemoveOrder(order)}"
                                          update="orderdsForm">
-                            <p:confirm header="Подтверждение" message="Вы уверены, что хотите отменить этот заказ?"
+                            <p:confirm header="Confirm" message="Are you sure you want to cancel this order?"
                                        icon="ui-icon-alert"/>
                         </p:commandButton>
                     </div>
@@ -63,9 +63,9 @@
     </h:form>
 
     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-        <p:commandButton value="Да" type="button" styleClass="ui-confirmdialog-yes"
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes"
                          icon="ui-icon-check"/>
-        <p:commandButton value="Нет" type="button" styleClass="ui-confirmdialog-no"
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
                          icon="ui-icon-close"/>
     </p:confirmDialog>
 

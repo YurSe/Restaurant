@@ -17,24 +17,24 @@
                 <div class="form-group">
                     <img  style="float:left" src="/resources/images/ico-map.png" alt=""/>
                     <div class="content-heading">
-                        <h3 style="margin-left:1.5em">г.Минск, ул. Ленина 3</h3>
+                        <h3 style="margin-left:1.5em">Minsk, Lenin 3</h3>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div><h4>Ресторан</h4></div>
+                    <div><h4>Restaurant</h4></div>
                     <div><h2>+375 (29) 105-05-03</h2></div>
-                    <div><h4>Заказ тортов</h4></div>
+                    <div><h4>Goods</h4></div>
                     <div><h2>+375 (29) 105-16-16</h2></div>
-                    <div><h4>Кофейня, бар</h4></div>
+                    <div><h4>Coffee house, bar</h4></div>
                     <div><h2>+375 (29) 106-00-22</h2></div>
                     <div><a style="font-size: 30px;color: orange;" href="mailto:restaurant@tut.by">restaurant@tut.by</a></div>
                 </div>
             </div>
             <div class="col-md-6">
-                <h3>Обратная связь</h3>
+                <h3>Feedback</h3>
                 <h:form>
                     <div class="form-group">
-                        <h:outputText value="Представтесь пожалуйста " />
+                        <h:outputText value="Name " />
                         <h:inputText id="username" value="#{feedbackContr.name}" required="true" styleClass="form-control" autocomplete="off"
                                      requiredMessage="'Name' can't be empty.">
                             <f:validator validatorId="nameValidator" />
@@ -45,7 +45,7 @@
                         <p:message for="username" id="msgName"/>
                     </div>
                     <div class="form-group">
-                        <h:outputText value="Ваш телефон "/>
+                        <h:outputText value="Phone number "/>
                         <h:inputText id="phoneNumber" value="#{feedbackContr.phoneNumber}" required="true" styleClass="form-control" autocomplete="off"
                                      requiredMessage="'Phone number' can't be empty." validatorMessage="Phone number is not valid. Example: +375 XX xxxxxxx">
                             <f:validateRegex pattern="#{phoneNumberValidator.NUMBER_PATTERN}" />
@@ -56,7 +56,7 @@
                         <p:message for="phoneNumber" id="msgNumber"/>
                     </div>
                 <div class="form-group">
-                    <h:outputText value="Ваше сообщение "/>
+                    <h:outputText value="Message "/>
                     <h:inputTextarea id="message" value="#{feedbackContr.description}" styleClass="form-control" autocomplete="off" rows="5" required="true"
                                      requiredMessage="'Description' can't be empty.">
                         <p:ajax update="msgDescription" event="blur"/>
@@ -66,7 +66,7 @@
                         <p:message for="message" id="msgDescription"/>
                     </div>
                     <div class="form-group">
-                        <h:commandButton  value="Отправить" styleClass="btn btn-success btn-block" actionListener="#{feedbackContr.saveMessage}"/>
+                        <h:commandButton  value="Send" styleClass="btn btn-success btn-block" actionListener="#{feedbackContr.saveMessage}"/>
                     </div>
                 </h:form>
             </div>

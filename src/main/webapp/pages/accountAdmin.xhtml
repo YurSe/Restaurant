@@ -25,20 +25,20 @@
             <p:panel style="height: 99%; width: 99%">
                 <h:panelGrid columns="1" style="width:100%">
 
-                    <h:outputText value="Фамилия и имя : #{user.name}"/>
+                    <h:outputText value="Name: #{user.name}"/>
 
                     <h:outputText value="Email : #{user.email}"/>
 
-                    <h:outputText value="Телефон : #{user.phoneNumber}"/>
+                    <h:outputText value="Phone Number : #{user.phoneNumber}"/>
 
-                    <h:outputText value="Адрес : #{user.address}"/>
+                    <h:outputText value="Address : #{user.address}"/>
 
-                    <h:outputText value="Дата рождения : #{user.birthday}"/>
+                    <h:outputText value="Birthday : #{user.birthday}"/>
 
-                    <h:outputText value="Статус : #{usersController.Status(user)}"/>
+                    <h:outputText value="Status : #{usersController.Status(user)}"/>
 
                     <div class="form-group">
-                        <h:commandButton value="История заказов" styleClass="btn btn-link"
+                        <h:commandButton value="History of orders" styleClass="btn btn-link"
                                          action="/pages/ordersHistory?faces-redirect=true">
                             <f:setPropertyActionListener target="#{usersController.user}" value="#{user}"/>
                         </h:commandButton>

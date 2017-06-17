@@ -5,7 +5,7 @@
         xmlns:p="http://primefaces.org/ui">
     <h:form>
         <p:cache>
-            <p:carousel value="#{dishController.popularDishes}" headerText="Популярные блюда" var="dish"
+            <p:carousel value="#{dishController.popularDishes}" headerText="Popular dishes" var="dish"
                         style="width:80%; margin-left: 10%;"
                         responsive="true">
                 <p:panel header="#{dish.name}" style="height: 98%">
@@ -14,9 +14,9 @@
                         <h:graphicImage url="#{dish.image}"
                                         style="min-height: 300px; max-height: 300px; width: 100%"/>
 
-                        <h:outputText value="Цена(руб): #{dish.price}"/>
+                        <h:outputText value="Price($): #{dish.price}"/>
 
-                        <h:outputText value="Вес(г): #{dish.mass}"/>
+                        <h:outputText value="Mass(g.): #{dish.mass}"/>
 
                     </h:panelGrid>
                 </p:panel>

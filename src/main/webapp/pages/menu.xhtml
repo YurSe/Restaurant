@@ -27,7 +27,7 @@
                     rows="12" paginator="true" style="width: 80%; margin-left: 10%; margin-top: 1%;"
                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
             <f:facet name="header">
-                Меню блюд
+                Menu of dishes
             </f:facet>
 
             <p:panel header="#{dish.name}" style="height: 99%; width: 99%; margin-left: 1%; margin-top: 1%;"
@@ -40,15 +40,15 @@
                         </h:outputLink>
                     </p:lightBox>
 
-                    <h:outputText value="Категория: #{dish.category.name}"/>
+                    <h:outputText value="Category: #{dish.category.name}"/>
 
-                    <h:outputText value="Цена: #{dish.price}"/>
+                    <h:outputText value="Price: #{dish.price}"/>
 
-                    <h:outputText value="Описание: #{dish.description}"/>
+                    <h:outputText value="Description: #{dish.description}"/>
 
-                    <h:outputText value="Масса: #{dish.mass}"/>
+                    <h:outputText value="Mass: #{dish.mass}"/>
                     <div class="form-group">
-                        <h:commandButton value="Редактировать блюдо" rendered="#{springUserController.IsAdmin()}"
+                        <h:commandButton value="Edit dish" rendered="#{springUserController.IsAdmin()}"
                                          styleClass="btn btn-warning"
                                          style="margin-left: 20%"
                                          action="/pages/add_editDish?faces-redirect=true">
@@ -56,16 +56,16 @@
                         </h:commandButton>
                     </div>
                     <div class="form-group">
-                        <p:commandButton value="Удалить блюдо" update="menuForm" styleClass="btn btn-danger"
+                        <p:commandButton value="Delete dish" update="menuForm" styleClass="btn btn-danger"
                                          style="margin-left: 20%"
                                          rendered="#{springUserController.IsAdmin()}"
                                          action="#{dishController.DeleteDish(dish.id)}">
-                            <p:confirm header="Подтверждение" message="Вы уверены, что хотите удалить это блюдо?"
+                            <p:confirm header="Confirm" message="Are you sure you want to delete this dish?"
                                        icon="ui-icon-alert"/>
                         </p:commandButton>
                     </div>
                     <div class="form-group">
-                        <h:commandButton value="Добавить к заказу" rendered="#{springUserController.IsAuthorized()}"
+                        <h:commandButton value="Add to order" rendered="#{springUserController.IsAuthorized()}"
                                          style="margin-left: 20%;width: 185px"
                                          styleClass="btn btn-success"
                                          action="#{reservation.AddDish(dish)}"/>
@@ -73,7 +73,7 @@
                 </h:panelGrid>
             </p:panel>
         </p:dataGrid>
-        <h:commandButton value="Добавить блюдо" style="margin-top: 1%; margin-left: 10%;width: 185px"
+        <h:commandButton value="Add dish" style="margin-top: 1%; margin-left: 10%;width: 185px"
                          rendered="#{springUserController.IsAdmin()}"
                          actionListener="#{dishController.Clear()}"
                          styleClass="btn btn-success"
@@ -81,9 +81,9 @@
     </h:form>
 
     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-        <p:commandButton value="Да" type="button" styleClass="ui-confirmdialog-yes"
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes"
                          icon="ui-icon-check"/>
-        <p:commandButton value="Нет" type="button" styleClass="ui-confirmdialog-no"
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
                          icon="ui-icon-close"/>
     </p:confirmDialog>
 

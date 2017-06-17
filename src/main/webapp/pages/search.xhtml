@@ -65,11 +65,11 @@
                 </div>
                 <div class="form-group">
                     <h:outputText value="Price:"/>
-                    <h:outputText value="#{dish.price} руб" style="font-weight: bold"/>
+                    <h:outputText value="#{dish.price} $" style="font-weight: bold"/>
                 </div>
                 <div class="form-group">
 
-                    <h:commandButton value="Добавить к заказу" rendered="#{springUserController.IsAuthorized()}"
+                    <h:commandButton value="Add to order" rendered="#{springUserController.IsAuthorized()}"
                                      style="margin-left: 25%"
                                      styleClass="btn btn-success"
                                      action="#{reservation.AddDish(dish)}"/>
