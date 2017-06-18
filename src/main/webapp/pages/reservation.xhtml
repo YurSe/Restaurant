@@ -19,8 +19,9 @@
         <p:graphicImage value="/resources/images/Reserve_a_table.gif" width="45%" height="120%"/>
         </div>
         <div class="form-horizontal">
+            <p:growl for="messageCreatedOrder" autoUpdate="true" showDetail="true"/>
             <p:growl for="messageTimeIsUp" autoUpdate="true" showDetail="true"/>
-            <p:growl id="growl" for="messageNotFoundUser" showDetail="true" autoUpdate="true"/>
+            <p:growl id="growl" for="messageNotFoundUser" showDetail="true"/>
             <h:form id="reservation">
                 <div class="form-group">
                     <h:outputLabel for="date" value="Date:" styleClass="col-md-4 control-label"/>
