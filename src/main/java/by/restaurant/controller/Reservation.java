@@ -47,7 +47,7 @@ public class Reservation implements Serializable {
     }
 
     private boolean isDateValid() {
-        return dateTime(date, time).before(new Date());
+        return dateTime(date, time).after(new Date());
     }
 
     public Map<Dish, String> getDishes() {
