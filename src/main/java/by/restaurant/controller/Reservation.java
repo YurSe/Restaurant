@@ -25,6 +25,9 @@ import java.util.*;
 @SuppressWarnings("deprecation")
 public class Reservation implements Serializable {
 
+    private static final String orderMessageKey = "messageCreatedOrder";
+    private static final String orderDishesMessageKey = "messageCreatedDishesOrder";
+
     @Autowired
     private IOrderService iOrderService;
 
@@ -128,9 +131,13 @@ public class Reservation implements Serializable {
         time = (Date) event.getObject();
     }
 
-    private void showCreatedOrderNotification() {
+    private void showCreatedOrderNotification( String messageKey) {
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage("messageCreatedOrder", new FacesMessage("Successful", "Thank you very much, the order will be reviewed within 3 minutes"));
+            context.addMessage(messageKey, new FacesMessage("Successful", "Thank you very much, the order will be reviewed within 3 minutes"));
+    }
+
+    public void showCreatedOrderDishesNotification() {
+
     }
 
     private void showUserNotFoundNotification() {
@@ -169,7 +176,7 @@ public class Reservation implements Serializable {
         order.setGuestCount(guestCount);
         order.setUser(user);
         iOrderService.save(order);
-        showCreatedOrderNotification();
+        showCreatedOrderNotification(orderMessageKey);
         //Save order to get id for it.
         order = iOrderService.getById(order.getId());
 
@@ -180,9 +187,8 @@ public class Reservation implements Serializable {
         }
         order.setOrder_dishes(order_dishes);
         iOrderService.save(order);
-
         Clear();
-        //goToMenuPage();
+        showCreatedOrderNotification(orderDishesMessageKey);
     }
 
     public Date getDate() {

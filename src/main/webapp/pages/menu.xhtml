@@ -15,6 +15,7 @@
 <h:body>
 
     <ui:include src="composition/mainMenu.xhtml"/>
+    <p:growl for="messageCreatedDishesOrder" autoUpdate="true" showDetail="true"/>
     <p:growl for="messageSaved" autoUpdate="true" showDetail="true"/>
     <f:event type="preRenderView" listener="#{feedbackContr.showSentMessageNotification}"/>
 
