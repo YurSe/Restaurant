@@ -12,6 +12,8 @@ import javax.persistence.Table;
 @Table(name = "feedbacks")
 public class Feedback extends SuperClass {
 
+
+
     @Column(nullable = false)
     private String name;
 

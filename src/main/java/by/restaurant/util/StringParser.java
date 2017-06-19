@@ -5,15 +5,12 @@ package by.restaurant.util;
  */
 public class StringParser {
 
-    public static String insertPeriodically(
-            String text, String insert, int period)
-    {
+    public static String insertPeriodically(String text, String insert, int period) {
         StringBuilder builder = new StringBuilder(
-                text.length() + insert.length() * (text.length()/period)+1);
+                text.length() + insert.length() * (text.length() / period) + 1);
         int index = 0;
         String prefix = "";
-        while (index < text.length())
-        {
+        while (index < text.length()) {
             builder.append(prefix);
             prefix = insert;
             builder.append(text.substring(index,
