@@ -37,7 +37,7 @@ public class UsersController implements Serializable {
     }
 
     public String Status(User user) {
-        return IsAdmin(user) ? "Администратор" : "Пользователь";
+        return IsAdmin(user) ? "Admin" : "User";
     }
 
 
