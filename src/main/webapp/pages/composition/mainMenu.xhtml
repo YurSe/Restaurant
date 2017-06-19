@@ -83,11 +83,11 @@
             </p:dataTable>
 
             <p:commandButton value="Make order" rendered="#{!reservation.IsDishesEmpty()}"
-                             onclick="PF('basketPanelVar').update()"
+                             onclick="PF('basketPanelVar').hide()"
                              actionListener="#{reservation.createOrder()}"/>
 
             <p:commandButton value="Cancel" rendered="#{!reservation.IsDishesEmpty()}"
-                             onclick="PF('basketPanelVar').update()"
+                             onclick="PF('basketPanelVar').hide()"
                              actionListener="#{reservation.Clear()}"/>
 
             <h:outputText value="Total = #{reservation.fullPrice}" style="position:relative; float:right;"/>
