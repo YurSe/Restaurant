@@ -21,9 +21,9 @@ import java.util.*;
 @Scope("session")
 public class DishController implements Serializable {
 
-    private final int SPACE_PERIOD_DISH_DESCRIPTION = 23;
+    private final int SPACE_PERIOD_DISH_DESCRIPTION = 19;
 
-    private final int SPACE_PERIOD_DISH_NAME = 20;
+    private final int SPACE_PERIOD_DISH_NAME = 19;
 
     @Autowired
     private IDishService dishService;
@@ -68,23 +68,6 @@ public class DishController implements Serializable {
         dishService.save(dish);
         dish = new Dish();
     }
-
-    private String insertPeriodically(
-            String text, String insert, int period) {
-        StringBuilder builder = new StringBuilder(
-                text.length() + insert.length() * (text.length() / period) + 1);
-        int index = 0;
-        String prefix = "";
-        while (index < text.length()) {
-            builder.append(prefix);
-            prefix = insert;
-            builder.append(text.substring(index,
-                    Math.min(index + period, text.length())));
-            index += period;
-        }
-        return builder.toString();
-    }
-
 
     public void DeleteDish(Long id) {
         dishService.delete(id);
