@@ -20,8 +20,15 @@
             <p:menuitem value="Contacts" style="margin-right:0.5em" outcome="/pages/contacts?faces-redirect=true"/>
             <p:menuitem value="About" style="margin-right:0.5em" outcome="/pages/about?faces-redirect=true"/>
 
+            <p:submenu label="Admin" style="margin-right:0.5em;"
+                       rendered="#{springUserController.IsAdmin()}">
+                <p:menuitem value="Users list" outcome="/pages/accountAdmin?faces-redirect=true"/>
+                <p:menuitem value="Users messages" outcome="/pages/userMessages?faces-redirect=true"/>
+            </p:submenu>
+
             <f:facet name="options">
                 <div style="float: right;">
+
                     <h:commandButton id="basketButton" value="Cart" type="button"
                                      styleClass="btn btn-success"
                                      style="margin-right:1em"
@@ -76,10 +83,11 @@
             </p:dataTable>
 
             <p:commandButton value="Make order" rendered="#{!reservation.IsDishesEmpty()}"
+                             onclick="PF('basketPanelVar').hide()"
                              actionListener="#{reservation.createOrder()}"/>
 
             <p:commandButton value="Cancel" rendered="#{!reservation.IsDishesEmpty()}"
-                             onclick="PF('basketPanelVar').update()"
+                             onclick="PF('basketPanelVar').hide()"
                              actionListener="#{reservation.Clear()}"/>
 
             <h:outputText value="Total = #{reservation.fullPrice}" style="position:relative; float:right;"/>

@@ -44,7 +44,7 @@
 
                     <h:outputText value="Description: #{dish.description}"/>
 
-                    <h:outputText value="Mass: #{dish.mass}"/>
+                    <h:outputText value="Weight: #{dish.mass}"/>
                     <div class="form-group">
                         <h:commandButton value="Edit dish" rendered="#{springUserController.IsAdmin()}"
                                          styleClass="btn btn-warning"
@@ -53,22 +53,13 @@
                         </h:commandButton>
                     </div>
                     <div class="form-group">
-
-                        <h:commandButton action="#{dishController.DishDeleteSet(dish)}"
-                                         styleClass="btn btn-danger" value="Delete dish"
-                                         onclick="PF('dlg').show();" immediate="true">
-                        </h:commandButton>
-                        <p:confirmDialog header="Confirm" severity="alert"
-                                         message="Are you sure want to delete this dish?"
-                                         widgetVar="dlg" showEffect="fade" hideEffect="explode"
-                                         modal="true" icon="ui-icon-alert">
-                            <p:commandButton value="Yes" action="#{dishController.DishDelete()}"
-                                             onclick="PF('menuForm').update();"
-                                             oncomplete="PF('dlg').hide();" process="@this" icon="ui-icon-check">
-                            </p:commandButton>
-                            <p:commandButton value="No" oncomplete="PF('dlg').hide();" icon="ui-icon-close"/>
-                        </p:confirmDialog>
-
+                        <p:commandButton value="Удалить блюдо" update="menuForm"
+                                         styleClass="btn btn-danger"
+                                         rendered="#{springUserController.IsAdmin()}"
+                                         action="#{dishController.DeleteDish(dish.id)}">
+                            <p:confirm header="Подтверждение" message="Вы уверены, что хотите удалить это блюдо?"
+                                       icon="ui-icon-alert"/>
+                        </p:commandButton>
                     </div>
                     <div class="form-group">
                         <h:commandButton value="Add to order" rendered="#{springUserController.IsAuthorized()}"
@@ -83,6 +74,14 @@
                          actionListener="#{dishController.Clear()}"
                          styleClass="btn btn-success"
                          action="/pages/add_editDish?faces-redirect=true"/>
+
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Да" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="Нет" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
     </h:form>
 
     <ui:include src="composition/footer.xhtml"/>
