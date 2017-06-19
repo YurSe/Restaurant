@@ -1,5 +1,6 @@
 package by.restaurant.model;
 
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,14 +13,13 @@ import javax.persistence.Table;
 @Table(name = "feedbacks")
 public class Feedback extends SuperClass {
 
-
-
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
     private String phoneNumber;
 
+    @Type(type = "text")
     @Column(nullable = false)
     private String description;
 
