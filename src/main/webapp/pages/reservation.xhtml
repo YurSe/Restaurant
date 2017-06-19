@@ -16,7 +16,7 @@
     <ui:include src="composition/mainMenu.xhtml"/>
     <div class="container" id="register-form">
         <div class="form-group" style="padding-left: 35%">
-        <p:graphicImage value="/resources/images/Reserve_a_table.gif" width="45%" height="120%"/>
+            <p:graphicImage value="/resources/images/Reserve_a_table.gif" width="45%" height="120%"/>
         </div>
         <div class="form-horizontal">
             <p:growl for="messageCreatedOrder" autoUpdate="true" showDetail="true"/>
@@ -28,9 +28,9 @@
                     <div class="col-md-4">
                         <p:calendar id="date" value="#{reservation.date}" required="true" label="Date"
                                     requiredMessage="'Date' can't be empty." autocomplete="off" maxlength="8"
-                        mindate="#{reservation.minDate}" pattern="dd-MM-yy">
+                                    mindate="#{reservation.minDate}" pattern="dd-MM-yy">
                             <p:ajax event="dateSelect" update="msgDate,time" listener="#{reservation.dateChange}"/>
-                            <f:validator binding="#{lastDateValidator}" />
+                            <f:validator binding="#{lastDateValidator}"/>
                             <p:ajax event="blur" update="msgDate"/>
                         </p:calendar>
                     </div>
@@ -44,9 +44,10 @@
                     <h:outputLabel for="time" value="Time:" styleClass="col-md-4 control-label"/>
                     <div class="col-md-4">
                         <p:calendar id="time" value="#{reservation.time}" required="true" label="Time"
-                                    requiredMessage="'Time' can't be empty." autocomplete="off" maxlength="8" pattern="HH:mm:ss" timeOnly="true"
-                        minHour="#{reservation.hoursFromTime}"
-                        maxHour="20">
+                                    requiredMessage="'Time' can't be empty." autocomplete="off" maxlength="8"
+                                    pattern="HH:mm:ss" timeOnly="true"
+                                    minHour="#{reservation.hoursFromTime}"
+                                    maxHour="20">
                             <p:ajax event="dateSelect" update="msgTime" listener="#{reservation.timeChange}"/>
                             <f:validator validatorId="timeValidator"/>
                             <p:ajax event="blur" update="msgTime"/>
@@ -60,9 +61,11 @@
                 <div class="form-group">
                     <h:outputLabel for="guestsNumber" value="Number of guests:" styleClass="col-md-4 control-label"/>
                     <div class="col-md-4">
-                        <p:inputText id="guestsNumber" value="#{reservation.guestCount}" required="true" label="Number of guests" autocomplete="off"
-                                       requiredMessage="'Number of guests' can't be empty." converterMessage="Please enter only integers.">
-                            <f:validateDoubleRange minimum="1" maximum="50" />
+                        <p:inputText id="guestsNumber" value="#{reservation.guestCount}" required="true"
+                                     label="Number of guests" autocomplete="off"
+                                     requiredMessage="'Number of guests' can't be empty."
+                                     converterMessage="Please enter only integers.">
+                            <f:validateDoubleRange minimum="1" maximum="50"/>
                             <p:ajax update="msgGuestsNumber" event="blur"/>
                         </p:inputText>
                     </div>
@@ -73,26 +76,29 @@
 
                 <div class="form-group">
                     <h:commandButton immediate="true"
-                                  styleClass="btn btn-primary btn-block" value="Select goods" style="width: 60%;margin-left: 15%"
-                    action="/pages/menu.xhtml?faces-redirect=true">
+                                     styleClass="btn btn-primary btn-block" value="Select goods"
+                                     style="width: 60%;margin-left: 15%"
+                                     action="/pages/menu.xhtml?faces-redirect=true">
                     </h:commandButton>
                 </div>
                 <div class="form-inline">
-                <div class="col-md-4 col-md-offset-1">
+                    <div class="col-md-4 col-md-offset-1">
                         <h:commandButton styleClass="btn btn-success btn-block" value="Ok"
-                        actionListener="#{reservation.createOrder()}" style="margin-left: 10%">
+                                         actionListener="#{reservation.createOrder()}" style="margin-left: 10%">
                         </h:commandButton>
-                </div>
+                    </div>
                     <div class="col-md-4">
                         <h:commandButton type="button"
-                                          styleClass="btn btn-danger btn-block" value="Cancel"
-                        onclick="PF('dlg').show();" immediate="true"
-                        style="margin-left: 11%">
+                                         styleClass="btn btn-danger btn-block" value="Cancel"
+                                         onclick="PF('dlg').show();" immediate="true"
+                                         style="margin-left: 11%">
                         </h:commandButton>
-                        <p:confirmDialog header="Confirm" severity="alert" message="Are you sure you want to cancel a table reservation?"
-                                widgetVar="dlg" showEffect="fade" hideEffect="explode" modal="true" icon="ui-icon-alert">
-                                <p:commandButton value="Yes" action="/pages/zones.xhtml?faces-redirect=true"
-                                oncomplete="PF('dlg').hide();" process="@this" icon="ui-icon-check"/>
+                        <p:confirmDialog header="Confirm" severity="alert"
+                                         message="Are you sure you want to cancel a table reservation?"
+                                         widgetVar="dlg" showEffect="fade" hideEffect="explode" modal="true"
+                                         icon="ui-icon-alert">
+                            <p:commandButton value="Yes" action="/pages/zones.xhtml?faces-redirect=true"
+                                             oncomplete="PF('dlg').hide();" process="@this" icon="ui-icon-check"/>
                             <p:commandButton value="No" oncomplete="PF('dlg').hide();" icon="ui-icon-close"/>
                         </p:confirmDialog>
                     </div>
