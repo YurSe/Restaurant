@@ -32,7 +32,7 @@
                     <div class="form-group ">
                         <div class="col-md-3">
                             <p:selectOneMenu value="#{searchContr.categoryName}">
-                                <f:selectItem itemLabel="Все категории"/>
+                                <f:selectItem itemLabel="All categories"/>
                                 <f:selectItems value="#{categoryView.selectCategories}"/>
                             </p:selectOneMenu>
                         </div>
@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <p:dataGrid var="dish" value="#{searchContr.searchedDishes}" columns="3" layout="grid" rows="6"
+        <p:dataGrid var="dish" value="#{searchContr.searchedDishes}" columns="3" layout="grid" rows="9"
                     paginator="true"
                     id="searchedDishes" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
                 {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
