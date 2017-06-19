@@ -76,6 +76,7 @@
             </p:dataTable>
 
             <p:commandButton value="Make order" rendered="#{!reservation.IsDishesEmpty()}"
+                             onclick="PF('basketPanelVar').update()"
                              actionListener="#{reservation.createOrder()}"/>
 
             <p:commandButton value="Cancel" rendered="#{!reservation.IsDishesEmpty()}"
