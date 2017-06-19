@@ -39,11 +39,6 @@
                                      styleClass="btn btn-info" style="margin-right:1em"
                                      rendered="#{springUserController.IsAuthorized()}"/>
 
-                    <h:commandButton id="AccountAdmin" value="Admin account"
-                                     styleClass="btn btn-warning" style="margin-right:1em"
-                                     action="/pages/accountAdmin?faces-redirect=true"
-                                     rendered="#{springUserController.IsAdmin()}"/>
-
                     <h:commandButton ajax="false" value="Log out" action="${springUserController.logout()}"
                                      styleClass="btn btn-danger"
                                      rendered="#{springUserController.IsAuthorized()}"/>
