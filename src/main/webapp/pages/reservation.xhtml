@@ -19,15 +19,16 @@
         <p:graphicImage value="/resources/images/Reserve_a_table.gif" width="45%" height="120%"/>
         </div>
         <div class="form-horizontal">
+            <p:growl for="messageCreatedOrder" autoUpdate="true" showDetail="true"/>
             <p:growl for="messageTimeIsUp" autoUpdate="true" showDetail="true"/>
-            <p:growl id="growl" for="messageNotFoundUser" showDetail="true" autoUpdate="true"/>
-            <h:form>
+            <p:growl id="growl" for="messageNotFoundUser" showDetail="true"/>
+            <h:form id="reservation">
                 <div class="form-group">
                     <h:outputLabel for="date" value="Date:" styleClass="col-md-4 control-label"/>
                     <div class="col-md-4">
                         <p:calendar id="date" value="#{reservation.date}" required="true" label="Date"
                                     requiredMessage="'Date' can't be empty." autocomplete="off" maxlength="8"
-                        mindate="#{reservation.minDate}">
+                        mindate="#{reservation.minDate}" pattern="dd-MM-yy">
                             <p:ajax event="dateSelect" update="msgDate,time" listener="#{reservation.dateChange}"/>
                             <f:validator binding="#{lastDateValidator}" />
                             <p:ajax event="blur" update="msgDate"/>
@@ -70,22 +71,23 @@
                     </div>
                 </div>
 
-                <div class="form-group" style="padding-left: 28%">
+                <div class="form-group">
                     <h:commandButton immediate="true"
-                                  styleClass="btn btn-primary btn-block" value="Select goods" style="width: 62%;"
+                                  styleClass="btn btn-primary btn-block" value="Select goods" style="width: 60%;margin-left: 15%"
                     action="/pages/menu.xhtml?faces-redirect=true">
                     </h:commandButton>
                 </div>
-                <div class="form-group" style="padding-left: 25%">
-                    <div class="col-md-4">
+                <div class="form-inline">
+                <div class="col-md-4 col-md-offset-1">
                         <h:commandButton styleClass="btn btn-success btn-block" value="Ok"
-                        actionListener="#{reservation.createOrder()}">
+                        actionListener="#{reservation.createOrder()}" style="margin-left: 10%">
                         </h:commandButton>
-                    </div>
+                </div>
                     <div class="col-md-4">
                         <h:commandButton type="button"
                                           styleClass="btn btn-danger btn-block" value="Cancel"
-                        onclick="PF('dlg').show();" immediate="true">
+                        onclick="PF('dlg').show();" immediate="true"
+                        style="margin-left: 11%">
                         </h:commandButton>
                         <p:confirmDialog header="Confirm" severity="alert" message="Are you sure you want to cancel a table reservation?"
                                 widgetVar="dlg" showEffect="fade" hideEffect="explode" modal="true" icon="ui-icon-alert">

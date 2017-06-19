@@ -18,11 +18,30 @@ import java.util.Date;
 public class TimeValidator implements Validator {
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException {
-        if(value == null) {
+        if (value == null) {
             return;
         }
-        if(value instanceof Date) {
-            DateFormat formatter = new SimpleDateFormat("HH/mm/ss");
+        DateFormat formatter = null;
+        String enteredDate = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("reservation:date_input");
+        if (enteredDate != null) {
+            Date parsedEnteredDate = null;
+            formatter = new SimpleDateFormat("dd-MM-yy");
+            try {
+                parsedEnteredDate = formatter.parse(enteredDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (parsedEnteredDate != null && parsedEnteredDate.after(formatter.parse(formatter.format(new Date())))) {
+                    return;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (value instanceof Date) {
+            formatter = new SimpleDateFormat("HH/mm/ss");
             Date today = new Date();
             Date todayWithZeroDate = null;
             try {
@@ -30,9 +49,9 @@ public class TimeValidator implements Validator {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            Date date = (Date)(value);
-            if(date.before(todayWithZeroDate) ) {
-                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Validation Error","Can't select the last time."));
+            Date date = (Date) (value);
+            if (todayWithZeroDate != null && date.before(todayWithZeroDate)) {
+                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Validation Error", "Can't select the last time."));
             }
         }
     }

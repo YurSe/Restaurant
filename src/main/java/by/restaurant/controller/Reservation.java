@@ -47,7 +47,7 @@ public class Reservation implements Serializable {
     }
 
     private boolean isDateValid() {
-        return dateTime(date, time).before(new Date());
+        return dateTime(date, time).after(new Date());
     }
 
     public Map<Dish, String> getDishes() {
@@ -128,14 +128,9 @@ public class Reservation implements Serializable {
         time = (Date) event.getObject();
     }
 
-    public void showCreatedOrderNotification() {
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        String labelCreatedWithSuccess = (String) ec.getSessionMap().get("createdWithSuccess");
-        if (labelCreatedWithSuccess != null && labelCreatedWithSuccess.equals("true")) {
+    private void showCreatedOrderNotification() {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage("messageCreatedOrder", new FacesMessage("Successful", "Thank you very much, the order will be reviewed within 3 minutes"));
-            ec.getSessionMap().remove("createdWithSuccess");
-        }
     }
 
     private void showUserNotFoundNotification() {
@@ -174,6 +169,7 @@ public class Reservation implements Serializable {
         order.setGuestCount(guestCount);
         order.setUser(user);
         iOrderService.save(order);
+        showCreatedOrderNotification();
         //Save order to get id for it.
         order = iOrderService.getById(order.getId());
 
