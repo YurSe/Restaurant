@@ -2,6 +2,7 @@ package by.restaurant.controller;
 
 import by.restaurant.model.Feedback;
 import by.restaurant.service.FeedbackService;
+import by.restaurant.util.StringParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -13,12 +14,16 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
+import static by.restaurant.util.StringParser.insertPeriodically;
+
 /**
  * Created by Pavel on 15.06.2017.
  */
 @Controller
 @Scope("request")
-public class FeedbackContr implements Serializable{
+public class FeedbackContr implements Serializable {
+
+    private final int SPACE_PERIOD_MESSAGE_DESCRIPTION = 17;
 
     @Autowired
     private FeedbackService feedbackService;
@@ -28,7 +33,6 @@ public class FeedbackContr implements Serializable{
     private String phoneNumber;
 
     private String description;
-
 
     public FeedbackContr() {
     }
@@ -84,7 +88,7 @@ public class FeedbackContr implements Serializable{
 
     public void saveMessage() throws IOException {
         Feedback feedback = new Feedback();
-        feedback.setDescription(description);
+        feedback.setDescription(StringParser.insertPeriodically(description, " ", SPACE_PERIOD_MESSAGE_DESCRIPTION));
         feedback.setName(name);
         feedback.setPhoneNumber(phoneNumber);
         feedbackService.save(feedback);
