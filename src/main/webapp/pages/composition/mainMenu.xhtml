@@ -6,8 +6,11 @@
         xmlns:c="http://java.sun.com/jsp/jstl/core"
         xmlns:f="http://java.sun.com/jsf/core">
     <h:form>
-        <!-- <p:menuitem value="Услуги" outcome="/pages/services?faces-redirect=true"/>
-             Закоментил что бы не появлялся 2 уровень меню, у админа.
+        <!--
+            <p:menuitem value="Gallery" style="margin-right:0.5em" outcome="/pages/gallery?faces-redirect=true"/>
+            <p:menuitem value="Events" style="margin-right:0.5em" outcome="/pages/events?faces-redirect=true"/>
+            <p:menuitem value="Услуги" outcome="/pages/services?faces-redirect=true"/>
+            <p:menuitem value="About" style="margin-right:0.5em" outcome="/pages/about?faces-redirect=true"/>
           -->
         <p:menubar>
             <p:menuitem value="Home" style="margin-right:0.5em" outcome="/pages/index?faces-redirect=true"/>
@@ -15,10 +18,9 @@
             <p:menuitem value="Reserve table" style="margin-right:0.5em"
                         outcome="/pages/zones?faces-redirect=true"/>
             <p:menuitem value="Search" style="margin-right:0.5em" outcome="/pages/search?faces-redirect=true"/>
-            <p:menuitem value="Gallery" style="margin-right:0.5em" outcome="/pages/gallery?faces-redirect=true"/>
-            <p:menuitem value="Events" style="margin-right:0.5em" outcome="/pages/events?faces-redirect=true"/>
+
             <p:menuitem value="Contacts" style="margin-right:0.5em" outcome="/pages/contacts?faces-redirect=true"/>
-            <p:menuitem value="About" style="margin-right:0.5em" outcome="/pages/about?faces-redirect=true"/>
+
 
             <p:submenu label="Admin" style="margin-right:0.5em;"
                        rendered="#{springUserController.IsAdmin()}">
