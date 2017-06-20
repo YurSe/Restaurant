@@ -133,7 +133,7 @@ public class Reservation implements Serializable {
 
     private void showCreatedOrderNotification( String messageKey) {
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(messageKey, new FacesMessage("Successful", "Thank you very much, the order will be reviewed within 3 minutes"));
+            context.addMessage(messageKey, new FacesMessage("Successful", "Thank you very much, the order will be reviewed"));
     }
 
     public void showCreatedOrderDishesNotification() {
